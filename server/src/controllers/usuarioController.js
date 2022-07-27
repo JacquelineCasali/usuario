@@ -4,7 +4,7 @@ const usuarioController={
         
 },
 
-i:(req,res)=>{
+finalizacao:(req,res)=>{
     return res.render("finalizacao");
 },
 
