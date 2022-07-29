@@ -1,4 +1,4 @@
-const usuarioController={
+const userController={
     usuario:(req,res)=>{
        return res.render("usuario");
         
@@ -12,6 +12,10 @@ sucesso:(req,res)=>{
     return res.render("sucesso");
 },
 
+home:(req,res)=>{
+    return res.render("home");
+},
+
 // deletarUsuario:(req,res)=>{
 //     const {id} = req.params;
 //     res.send("Deletando Usuario com id: " +id)
@@ -19,4 +23,4 @@ sucesso:(req,res)=>{
 
 }
 
-module.exports=usuarioController;
+module.exports=userController;
