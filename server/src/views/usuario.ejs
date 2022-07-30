@@ -32,11 +32,12 @@
             <div class="line 3"></div>
         </div>  
     </section>
-<!-- <div class="foto-usuario"> -->
+
+<div class="foto-usuario">
 <img class="foto-perfil"src="../images/icones/imagemperfil.webp" alt="Imagem de perfil">
 
      <input type="file" name="arquivos" class="btn btn-success" accept="image/png, image/jpeg" multiple />
-  <!-- </div> -->
+  </div>
 
         <nav>
            
@@ -51,6 +52,11 @@
     <a href="painel-usuario.html#titulo-Meus Créditos" class="sel">Meus Créditos</a></li>
 
     <h3>CADASTRO</h3> 
+
+    <li><img class="incones" src="/images/icones/email.png" alt="Imagen não encontrada">
+        <a href="painel-usuario.html#titulo-Alterar E-mail" class="sel">Alterar E-mail</a></li>
+    
+
 
     <li><img class="incones" src="/images/icones/senha.png" alt="Imagen não encontrada">
         <a href="painel-usuario.html#titulo-Alterar Senha" class="sel">Alterar Senha</a></li>
@@ -119,74 +125,72 @@
             
            
             <!--meus dados  -->
-            <div class="row">
-       
-           <div class="coluna2">
-        <form action="/registro" method="get">
-      <label for="nome">Nome</label>
+   <form action="/registro" method="get">   
+<div class="row">
+  
+    <div class="coluna2">
         
-     <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome">
-       
-     <label for="cpf">CPF</label>
-     
-     <input type="text" class="coluna22"  id="cpf" name="cpf" placeholder="Digite seu cpf">
-                                    
-      <label for="telefone">Telefone Principal</label>
-     
-      <input type="tel"  class="coluna22" id="telefone" name="telefone" >
-    
-      <label for="Data">Data de nascimento</label>
-                      
-                <input type="date" class="coluna22" id="Data" name="Data" >
+        <label for="nome">Nome</label>
+            
+        <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome">
+        
+        <label for="cpf">CPF</label>
+        
+        <input type="text" class="coluna22"  id="cpf" name="cpf" placeholder="Digite seu cpf">
+                                        
+        <label for="telefone">Telefone Principal</label>
+        
+        <input type="tel"  class="coluna22" id="telefone" name="telefone" >
+        
+        <label for="Data">Data de nascimento</label>
                         
-                                         
-                   </div>
+        <input type="date" class="coluna22" id="Data" name="Data" >                          
+    </div>
           
-                <div class="coluna3">
-                    
-                    <label for="sexo" >Sexo</label>
-                   
-                  <div class="textocirculo">
-                    <input type="radio" class="radio"  name="sexo" value="Feminino">
-                    <label  for="sexo">F</label>
-                    
-                    <input type="radio" class="radio"  name="sexo" value="Masculino">
-                    <label for="sexo"  >M</label>
-                </div>
-                  
-                          
-                     <label for="rg">RG</label>
-                    
-                    <input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG">  
-                    
-                    
-                    <label for="telefone">Telefone Secundário</label>
-                   
-                    <input type="tel"  class="coluna22" id="telefone" name="telefone">
-                    
-                    <label for="Receber">Receber Newsletter</label>
-                    
+    <div class="coluna3">
+        
+        <label for="sexo" >Sexo</label>
+        
+        <div class="textocirculo">
+            <input type="radio" class="radio"  name="sexo" value="Feminino">
+            <label  for="sexo">F</label>
+            
+            <input type="radio" class="radio"  name="sexo" value="Masculino">
+            <label for="sexo"  >M</label>
+        </div>
+  
+        <label for="rg">RG</label>
 
-                  <div class="textocirculo">
-                    <input type="radio" class="radio"  name="Receber">
-                    <label for="Receber">S</label>
-                    <input type="radio"  class="radio" name="Receber">
-                    <label for="Receber">N</label>
-                </div>
-                </div>
-                </div>
-    <h3 class="instatexto">Instagram</h3>
+        <input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG">  
 
-    <label class="insta" for="Instagram">Instagram </label>
-                   
-   <input type="Instagram" class="instabarra" id="Instagram" name="Instagram">
+        <label for="telefone">Telefone Secundário</label>
+
+        <input type="tel"  class="coluna22" id="telefone" name="telefone">
+
+        <label for="Receber">Receber Newsletter</label>
+        
+
+        <div class="textocirculo">
+            <input type="radio" class="radio"  name="Receber">
+            <label for="Receber">S</label>
+            <input type="radio"  class="radio" name="Receber">
+            <label for="Receber">N</label>
+        </div>
+    </div>
+</div>
+
+<h3 class="instatexto">Instagram</h3>
+
+<label class="insta" for="Instagram">Instagram </label>
+                
+<input type="Instagram" class="instabarra" id="Instagram" name="Instagram">
      
- <button > <a href="./home.ejs">
+ <button > <a href="./home">
                 SALVAR DADOS</button>
             </a>
              
-                <!-- <h3 id="titulo-Meus Endereços">Meus Endereços</h3> -->
-                <!-- <h3 id="titulo-Meus Cartões">Meus Cartões</h3>  -->
+                <!-- <h3 id="titulo-Meus Endereços">Meus Endereços</h3>
+                <h3 id="titulo-Meus Cartões">Meus Cartões</h3>  -->
 
 
               
@@ -217,9 +221,10 @@
             </p>
 
           
-            <!-- <li class="cadeado"><a href="images/lock.png"><img  src="images/lock.png" width="35%" height="35%"></a></li><li>AMBIENTE 100% SEGURO</li> -->
-   
-            AMBIENTE 100% SEGURO
+           <img  class="cadeado"src="images/lock.png"  alt="Imagen não encontrada" >AMBIENTE 100% SEGURO</li>
+            
+<!--    
+            AMBIENTE 100% SEGURO -->
 
         </div>
 
