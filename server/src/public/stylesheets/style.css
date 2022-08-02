@@ -209,6 +209,8 @@ position: relative;
 /* padding: 10px 5px 0 5px; */
 min-height: 50%;
 margin-bottom: 8px;
+padding: 10px 5px 0 5px;
+
  } 
         
 
@@ -219,6 +221,8 @@ display: block;
 position: relative;
 min-height: 50%;
 margin-bottom: 8px;
+padding: 10px 5px 0 5px;
+
 
  }
 
@@ -231,16 +235,18 @@ width: 100%;
 margin:5px 0 35px 0;
 border: 2px solid #dcdcdc
       }
-    
+ 
+
 .textocirculo{ 
 
 /* height: 50px; */
   width: 80%; 
   display: flex;
+  /* flex-wrap: wrap; */
   position: relative;
   /* min-height: 90px; */
-  margin-bottom: 53px;
-  margin-top: 8px;
+  margin-bottom: 40px;
+  margin-top: 18px;
   vertical-align: middle;
   
    }
