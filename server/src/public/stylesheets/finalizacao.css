@@ -1,30 +1,50 @@
 *{
     box-sizing: border-box;  
-    background-color: rgb(250, 245, 245); 
+    margin:0  ;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: "Montserrat",sans-serif;
+    background:#fff;
 }
-
-
-
-header{
-    background-color:black;
-    font-family: 'Raleway';
-    font-size:8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+section{
+    display: block;
+    width: 100%;
+    /* float: left; */
+    clear: both;
+     margin-top: 0;
+     padding:32px 15px;
+     /* flex-direction: column;
+     justify-content: right;
+     */
+      
+  }
+.tela{
+    /* float: left; */
+    flex-wrap: wrap;
+    display: block;
+    width: 100%;
+    clear: both;
+     margin-top: 0;
+     /* padding:32px 15px; 
+    */
 
 }
-
+.ped{
+    flex-wrap: wrap;
+    display: block;
+    width: 100%;
+    clear: both;
+     margin-top: 0;
+}
 .Informacoespessoais{
     background-color: white;
     width: 300px;
     height: 100x;
     border: solid 1px rgb(196, 195, 195);
-    margin: 30px auto;
+    /* margin: 30px auto;
     padding: 20 px;
-    font-family: 'Raleway';
+    font-family: 'Raleway'; */
 }
 
 .enderecoentrega{
@@ -32,9 +52,9 @@ header{
     width: 300px;
     height: 200x;
     border: solid 1px rgb(196, 195, 195);
-    margin: 30px auto;
+    /* margin: 30px auto;
     padding: 20 px;
-    font-family: 'Raleway';
+    font-family: 'Raleway'; */
 }
 
 .formasenvio{
@@ -42,18 +62,18 @@ header{
     width: 300px;
     height: 200x;
     border: solid 1px rgb(196, 195, 195);
-    margin: 30px auto;
+    /* margin: 30px auto;
     padding: 20 px;
-    font-family: 'Raleway';
+    font-family: 'Raleway'; */
 }
 .cupom{
     background-color: white;
     width: 300px;
     height: 200x;
     border: solid 1px rgb(196, 195, 195);
-    margin: 30px auto;
+    /* margin: 30px auto;
     padding: 20 px;
-    font-family: 'Raleway';
+    font-family: 'Raleway'; */
 }
 
 .pagamento{
@@ -61,9 +81,9 @@ header{
     width: 300px;
     height: 200x;
     border: solid 1px rgb(196, 195, 195);
-    margin: 30px auto;
+    /* margin: 30px auto;
     padding: 20 px;
-    font-family: 'Raleway';
+    font-family: 'Raleway'; */
 }
 
 .pedido{
@@ -71,8 +91,8 @@ header{
     width: 300px;
     height: 200x;
     border: solid 1px rgb(196, 195, 195);
-    margin: 30px auto;
-    padding: 20px;
+    /* margin: 30px auto;
+    padding: 20px; */
     font-family: 'Raleway';
 }
 
@@ -84,3 +104,32 @@ footer{
     justify-content: center;
     align-items: center;
 }
+
+@media(min-width:769px){
+    section{
+        display: flex; 
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: right;
+       
+        /* padding:32px 15px; 
+        width: 100%;                  */
+      }
+.tela{
+    /* position: relative; */
+    display: flex; 
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+    /* align-items: flex-start; */
+}
+.ped{
+    display: flex; 
+        flex-wrap: wrap;
+        /* align-content: flex-start; */
+        /* flex-direction: column; */
+        justify-content: right; 
+}
+
+
+    }
