@@ -263,7 +263,15 @@ border: 2px solid #dcdcdc
      box-sizing: border-box; */
       
   }
+/* .password{
+  position: relative;
+  float:right;
+  right: 12px;
+  color:#888;
+  height: 0;
+  cursor: pointer;
 
+} */
 
 
 .instatexto{
@@ -353,11 +361,13 @@ border-top: 3px solid #f5f5f5;
 box-sizing: border-box;
 }
 
-p.textorodapé{
-width: 100%;
-float: left;
-margin-bottom: 10px;
-}
+p.rodapé{
+  width: 100%;
+  /* display: flex; */
+  float: left;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  }
 
 
 /* cadeado */
@@ -366,6 +376,7 @@ margin-bottom: 10px;
    /* display:block; */
    max-height: 30px;
    vertical-align:middle;
+   
    
 }
 

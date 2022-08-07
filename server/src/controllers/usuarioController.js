@@ -1,4 +1,4 @@
-const userController={
+const usuarioController={
     usuario:(req,res)=>{
        return res.render("usuario");
         
@@ -23,4 +23,4 @@ home:(req,res)=>{
 
 }
 
-module.exports=userController;
+module.exports=usuarioController;
