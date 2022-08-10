@@ -2,10 +2,13 @@
   margin:0  ;
   padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
   font-family: "Montserrat",sans-serif;
   width: 100%;
      }
+
+  html{
+    font-size: 16px;
+  }
   /* formatação geral entre o cabeçalho e o rodapé */
 section{
   background:#fff;
@@ -64,6 +67,7 @@ aside.menu{
       font-family: 'Open Sans',Arial,Helvetica,sans-serif;
         
     }
+
 /* criando o incone  */
 .mobile-menu{ 
   display: block;
@@ -318,7 +322,7 @@ position: relative;
 display: inline-block;
 background: black;
 border-radius: 5px;
-
+color: white;
 height: 45px;
 
 margin-top:50px ;

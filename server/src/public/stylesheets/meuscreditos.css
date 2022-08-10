@@ -2,16 +2,15 @@
     margin:0  ;
     padding: 0;
     box-sizing: border-box;
-    
     font-family: "Montserrat",sans-serif;
     width: 100%;
        }
-
-    html{
-      font-size: 16px;
-    }
     /* formatação geral entre o cabeçalho e o rodapé */
-  section{
+ html{
+  font-size: 16px;
+ }
+ 
+    section{
     background:#fff;
     display: block;
     width: 100%;
@@ -194,170 +193,98 @@
   border-bottom: 2px solid #d9d9d9;
   
   }
-  /* dividir tela a direita em dois  */
-  .row{
-  width: 100%;
-  display: block;
-  /* float:inline-end; */
-  /* border: 3px solid green; */
-  /* height: 90vh; */
-  box-sizing: border-box;
-  /* padding: 10px; */
-  /* padding: 10px 5px 0 5px; */
+  table{
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
   }
+
+ /* tabela */
+  .tab{
+    width: 100%;
+    border-spacing: 0;
+    text-transform: uppercase;
+    text-align: center;
   
-  .coluna2{ 
-  width: 100%;
-  float:inline-start; 
-  display: block;
-  position: relative;
-  padding: 10px 5px 0 5px;
-  min-height: 50%;
-  margin-bottom: 8px;
-  padding: 10px 5px 0 5px;
-  
-   } 
-          
-  
-  .coluna3{
-  width: 100%; 
-  float: inline-end;
-  display: block;
-  position: relative;
-  min-height: 50%;
-  margin-bottom: 8px;
-  padding: 10px 5px 0 5px;
-  
-  
-   }
-  
-  
-  /* retangulo texto */
-  .coluna22{
-  height: 40px;
-  padding: 0 10px;
-  width: 100%; 
-  margin:5px 0 25px 0;
-  border: 2px solid #dcdcdc
-        }
-   
-        .coluna25{
-            height: 40px;
-            padding: 0 10px;
-            width: 100%; 
-            margin:5px 0 0 0;
-            border: 2px solid #dcdcdc
-                  }
-  .textocirculo{ 
-  
-  /* height: 50px; */
-    width: 70%; 
-    display: flex;
-    /* flex-wrap: wrap; */
-    position: relative;
-    /* min-height: 90px; */
-    margin-bottom: 35px;
-    margin-top: 18px;
+  }
+
+  thead{
+    display: table-header-group;
     vertical-align: middle;
+    /* width: 100%; */
+    background: #f5f5f5;
+    border: 2px solid  #e5e5e5;
+ 
+      /* border:  2px solid  #e5e5e5; */
+  } 
+
+  tr{
+    text-align: center;
+    height: 48px;
+    display: table-row;
+    vertical-align: inherit;
+   
     
-     }
+   
+    
+}
+th{
+  /* border: solid 3px blue; */
+    /* border: solid 2px #e5e5e5; */
+    color: #555;
+    font-size: 12px;
+    font-weight: 700;
+    display: table-cell;
+    vertical-align: inherit;
+    border-collapse: collapse;
+    border-right: solid 1px #e5e5e5;
+  text-align: inherit;
+}
+
+
+
   
-     div.e{
-      background:#fff;
-      display: block;
-      width: 100%;
-      float: left;
-      clear: both;
-       margin-top: 0;
-       padding: 10px 5px 0 5px;
-       margin-bottom: 8px;
-       /* padding:32px 15px; 
-       box-sizing: border-box; */
-        
-    }
-  /* .password{
-    position: relative;
-    float:right;
-    right: 12px;
-    color:#888;
-    height: 0;
-    cursor: pointer;
-  
-  } */
-  
-  
-  .instatexto{
-  margin-bottom: 15px;
-  margin-top: 10px;
-  /* margin-bottom: 0; */
-  padding: 0;
-  font-size:22px ;
+
+tbody{
+   
+    display: table-row-group;
+    vertical-align: middle; 
+    text-align: center;
+    border-collapse: collapse;
+    height: 10px;
+   
+} 
+tbody  tr{
+  height: 20px;
+}
+ tfoot{
+
+    display: table-footer-group;
+    vertical-align: middle; 
+    background: #f5f5f5;
+    text-align: right;
+    text-indent: 0;
+    border: 2px solid  #e5e5e5;
+    border-collapse: collapse;
+} 
+
+tfoot tr td {
+  padding-right: 10px;
+  border-right: solid 1px #e5e5e5;
+  border-radius: 0;
+  color: #555;
+  font-size: 14px;
   font-weight: 700;
-  border-bottom: solid 2px #d9d9d9;
-  text-align: left;
-  display: flex;
-  }
-  
-  .insta{
-       
-   display: block;
-   /* float: none; */
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: 14px;
-   color: #102133;
-   font-weight: 400;
-   line-height: 1;
-   margin-bottom: 8px;
-   text-align: left;
-   text-transform: none;
-   width: 100%;
-  
-   }
-  
-  
-  .instabarra{
-  height: 40px;
-  padding: 0 10px;
-  width: 100%; 
-  margin:5px 0 10px 0;
-  
-  border: 2px solid #dcdcdc;
-  
-  }
-  
-  button{
-  position: relative;
-  display: inline-block;
-  background: black;
-  border-radius: 5px;
-  
-  height: 45px;
-  
-  margin-top:50px ;
-  
-  
-  
-  }
-  button a{
-  color: #f5f5f5;
-  font-weight: normal;
-  font-size: 18px;
-  text-align: center;
-  
-  
-  }
-  
-  
-  /* icone chat */
-  img.chat{
-    position: absolute;
-    left: 95%;
-    /* bottom: 5px; */
-    cursor:pointer;
-    /* z-index: 21000; */
-  }
-  
-  
+   text-align: right;
+}
+
+td{
+  display: table-cell;
+  vertical-align: inherit;
+}
   /* footer rodapé*/
   footer{
   margin-top: 20px;
@@ -391,18 +318,6 @@
      
      
   }
-  
-  /* footer p.rodapé{
-  width: 60%;
-  
-  text-align:center;
-  font-size: 14px;
-  color:#999;
-  padding-right: 30px;
-  margin-bottom: 15px;
-  margin-right: 50px;
-  padding-bottom: 20px;
-  } */
   
   
   /* Daqui para baixo celular grande ou tablet ou maior*/
@@ -455,14 +370,7 @@
       object-fit: contain;
     }
   
-    .textocirculo{ 
-     
-        width: 50%; 
-        display: flex;
-        /* flex-wrap: wrap; */
-        position: relative;
-            
-         }
+  
     footer div.textorodapé{
     padding-top: 19px;
     padding-bottom: 19px;
@@ -530,44 +438,8 @@
         display: block;
         
             }
-     .coluna2{ 
-              width: 50%;
-              float:left; 
-              display: block;
-              position: relative;
-    padding-right:10px ;
-              
-               } 
-   .coluna3{
-     width: 50%; 
-     float: right;
-     display: block;
-     position: relative;
-              
-              }
-  
-   .textocirculo{ 
-     
-   width: 70%; 
-     display: flex;
-    /* flex-wrap: wrap; */
-   position: relative;
-                    
-                 }
-  
-    button{
-      display: block;
-      float: right;
-  
     
-  max-width: 250px;
-  min-width: 100px;
-  height: 45px;
-  margin-right: 10px;
-     
-                
-                
-                }
+    
               
    footer div.textorodapé{
                 padding-top: 19px;

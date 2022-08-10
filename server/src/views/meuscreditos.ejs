@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeusCartoes</title>
-    <link rel="stylesheet" href="/stylesheets/cartoes.css">
+    <title>Meus Creditos</title>
+    <link rel="stylesheet" href="/stylesheets/meuscreditos.css">
  
   </head>
   <body>
@@ -37,7 +37,7 @@
 <img class="foto-perfil"src="../images/icones/imagemperfil.webp" alt="Imagem de perfil">
 
      <input type="file" name="arquivos" class="btn btn-success" accept="image/png, image/jpeg" multiple />
-  </div>
+  <!-- </div> -->
 
         <nav>
            
@@ -49,23 +49,23 @@
         <a href="#titulo-MeusPedidos" class="sel">Meus Pedidos </a></li>
 
     <li><img class="incones" src="/images/icones/meuscreditos.png" alt="Imagen não encontrada">
-    <a href="meuscreditos" class="sel">Meus Créditos</a></li>
+    <a href="#titulo-Meus Créditos" class="sel">Meus Créditos</a></li>
 
     <h3>CADASTRO</h3> 
 
     <li><img class="incones" src="/images/icones/email.png" alt="Imagen não encontrada">
-        <a href="/usuario" class="sel">Alterar E-mail</a></li>
+        <a href="usuario" class="sel">Alterar E-mail</a></li>
     
 
 
     <li><img class="incones" src="/images/icones/senha.png" alt="Imagen não encontrada">
-        <a href="./usuario" class="sel">Alterar Senha</a></li>
+        <a href="usuario" class="sel">Alterar Senha</a></li>
     
     <li><img class="incones" src="/images/icones/dados.png" alt="Imagen não encontrada">
         <a href="./usuario"class="sel">Meus Dados</a></li>
     
     <li><img class="incones" src="/images/icones/endereço.png" alt="Imagen não encontrada">
-        <a href="./meusenderecos"class="sel">Meus Endereços</a></li>
+        <a href="meusenderecos"class="sel">Meus Endereços</a></li>
     
     <li><img class="incones" src="/images/icones/cartão.png" alt="Imagen não encontrada">
         <a href="./cartoes"class="sel">Meus Cartões</a></li>
@@ -82,27 +82,47 @@
 
             <div class="codigo">
                 <!-- Tela lateral -->
-          <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Cartões</h3> 
-            </div>            <!--meus dados  -->
-            <p>
-                Aqui é possível conferir as informações do cartão de crédito.
-            </p>
-            <p>
-                Cadastre seus cartões e escolha qual irá utilizar na hora de finalizar sua compra.
-            </p>   
-            
- <button type="submit" > <a href="/adicionarcartoes">
-              CADASTRAR NOVO CARTÃO</button>
-            </a>
+                <!-- link com angora volta onde quer id -->
+         <h3 class="fontebarra" id="titulo-Meus Créditos">Meus Créditos</h3> 
+            </div>
+          <!-- MEUS CREDITOS -->
+           
+                <!-- table tabela -->
+                  <table class="tab"> 
+                    <!-- <thead> titulo da tabela -->
+                    <thead>
+                        <tr>
+                            <!-- th-cabeçalho da tabela -->
+                    <th style="width:15%">DATA</th>
+                    <th style="width:15%">HISTÓRICO</th>
+                    <th style="width:50%">TIPO DE LANÇAMENTO</th> 
+                    <th >VALOR</th>     
+                </tr> 
              
-         </div>
-        </main>
-    </section>
-    </section>
-</from>
-
-
-    <!-- footer define o rodapé -->
+                    </thead>
+              <!-- tr-linha da tabela -->
+              <!-- <tbody> corpo da tabela-->
+              <tbody>
+           <tr>        
+           </tr>
+              </tbody>
+              <!-- <tfoot> rodape da tabela-->
+              <tfoot>
+                <tr> 
+                <td colspan="3" class="texte-right">SALDO</td>
+                <td><strong><small>R$ </small>0,00</strong></td>
+                     </tr>
+              </tfoot>
+             
+                    
+           
+                </table>
+              
+          
+           
+            </section>
+    
+            <!-- footer define o rodapé -->
     <footer>
       
 
@@ -115,12 +135,7 @@
 
           
            <img  class="cadeado"src="images/lock.png"  alt="Imagen não encontrada" >AMBIENTE 100% SEGURO</li>
-            
-<!--    
-            AMBIENTE 100% SEGURO -->
-
-      
-
+       
     </footer>
   </body>
 </html>

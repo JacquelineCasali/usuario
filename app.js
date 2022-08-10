@@ -13,7 +13,9 @@ var usuarioRoute = require('./server/src/routes/usuarioRoute');
 var paymentRouter = require('./server/src/routes/paymentRoute');
 var meuscartoesRoute=require('./server/src/routes/meuscartoesRoute');
 var adicionarcartoesRoute=require('./server/src/routes/adicionarcartoesRoute');
-var meusenderecosRouter=require('./server/src/routes/meusenderecosRouter')
+var meusenderecosRoute=require('./server/src/routes/meusenderecosRoute')
+var meuscreditosRoute= require('./server/src/routes/meuscreditosRoute')
+
 var app = express();
 
 // view engine setup
@@ -34,7 +36,8 @@ app.use('/usuario', usuarioRoute);
 app.use('/finalizacao',paymentRouter);
 app.use('/cartoes',meuscartoesRoute);
 app.use('/adicionarcartoes',adicionarcartoesRoute);
-app.use('/meusenderecos',meusenderecosRouter);
+app.use('/meusenderecos',meusenderecosRoute);
+app.use('/meuscreditos',meuscreditosRoute)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

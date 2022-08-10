@@ -49,7 +49,7 @@
         <a href="#titulo-MeusPedidos" class="sel">Meus Pedidos </a></li>
 
     <li><img class="incones" src="/images/icones/meuscreditos.png" alt="Imagen não encontrada">
-    <a href="#titulo-Meus Créditos" class="sel">Meus Créditos</a></li>
+    <a href="./meuscreditos" class="sel">Meus Créditos</a></li>
 
     <h3>CADASTRO</h3> 
 
@@ -91,34 +91,7 @@
                  <!-- <h3 id="titulo-Meus Endereços">Meus Endereços</h3>  -->
                 <!-- <h3 id="titulo-Meus Cartões">Meus Cartões</h3>  -->
             </div>
-          <!-- MEUS CREDITOS -->
-            <!-- <div class="conteudodomenu">
-                <h3 id="titulo-Meus Créditos">Meus Créditos</h3>  -->
-                <!-- table tabela -->
-                 <!-- <table>  -->
-             <!-- tr-linha da tabela --> 
-                <!-- <tr> -->
-                <!-- th-cabeçalho da tabela -->
-                 <!-- <th>DATA</th>
-        <th>HISTÓRICO</th>
-        <th>TIPO DE LANÇAMENTO</th> 
-        <th>VALOR</th>     
-    </tr> 
-        <tr>  -->
-                <!-- td - dados da tabela -->
-                 <!-- <td>ted</td>
-                <td>22</td>
-                <td>estudante</td>
-                <td></td>
-
-                </tr>
-                <tr> 
-                     td - dados da tabela
-                      <td>SALDO</td>
-            <td></td> 
-                </tr>
-                </table> -->
-             
+            
             <!--meus dados  -->
    <form action="/registro" method="get">   
 <div class="row">
@@ -127,11 +100,11 @@
         
         <label for="nome">Nome :</label>
             
-        <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome">
+        <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required>
         
         <label for="cpf">CPF :</label>
         
-        <input type="text" class="coluna22"  id="cpf" name="cpf" placeholder="Digite seu cpf">
+        <input type="text" class="coluna22"  id="cpf" name="cpf" placeholder="Digite seu cpf" required>
                                         
         <label for="telefone">Telefone Principal :</label>
         
@@ -139,7 +112,7 @@
         
         <label for="Data">Data de nascimento :</label>
                         
-        <input type="date" class="coluna22" id="Data" name="Data" >                          
+        <input type="date" class="coluna22" id="Data" name="Data" required >                          
     </div>
           
     <div class="coluna3">
@@ -190,13 +163,13 @@
     
     <label for="Novo E-mail">Novo E-mail :</label>
     
-    <input type="text" class="coluna22"  id="Novo E-mail" name="Novo E-mail" placeholder="Digite seu Novo E-mail">
+    <input type="text" class="coluna22"  id="Novo E-mail" name="Novo E-mail" placeholder="Digite seu Novo E-mail" >
 </div>   
 <div class="coluna3">
 
     <label for="Confirmação do Novo E-mail">Confirmação do Novo E-mail :</label>
     
-    <input type="Confirmação do Novo E-mail"  class="coluna22" id="Confirmação do Novo E-mail" name="Confirmação do Novo E-mail" placeholder="Confirme seu Novo Email" >
+    <input type="Confirmação do Novo E-mail"  class="coluna22" id="Confirmação do Novo E-mail" name="Confirmação do Novo E-mail" placeholder="Confirme seu Novo Email"  >
 
 </div>
 
@@ -235,15 +208,17 @@
                 
 <input type="Instagram" class="instabarra" id="Instagram" name="Instagram">
      
- <button type="submit" > <a href="./">
-                SALVAR DADOS</button>
-            </a>
+<button type="submit" href="./home">SALVAR DADOS</button>                
+            
              
          </div>
         </main>
     </section>
     </section>
 </from>
+
+
+
 
 
     <!-- footer define o rodapé -->
