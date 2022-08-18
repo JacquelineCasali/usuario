@@ -22,8 +22,6 @@ section{
     
 }
 aside.menu{
-  /* width:largura; */
-  /* margin: 15px 0 0 15px; */
   width: 100%; 
   float: none;
   display: block;
@@ -198,15 +196,12 @@ border-bottom: 2px solid #d9d9d9;
 .row{
 width: 100%;
 display: block;
-/* float:inline-end; */
-/* border: 3px solid green; */
-/* height: 90vh; */
 box-sizing: border-box;
-/* padding: 10px; */
-/* padding: 10px 5px 0 5px; */
+
 }
 
-.coluna2{ 
+.coluna2,
+.coluna3{ 
 width: 100%;
 float:inline-start; 
 display: block;
@@ -217,21 +212,7 @@ margin-bottom: 8px;
 padding: 10px 5px 0 5px;
 
  } 
-        
-
-.coluna3{
-width: 100%; 
-float: inline-end;
-display: block;
-position: relative;
-min-height: 50%;
-margin-bottom: 8px;
-padding: 10px 5px 0 5px;
-
-
- }
-
-
+   
 /* retangulo texto */
 .coluna22{
 height: 40px;
@@ -243,18 +224,35 @@ border: 2px solid #dcdcdc
  
 
 .textocirculo{ 
+display: flex;
+/* margin-bottom: 35px; */
+margin-top: 18px;
 
-/* height: 50px; */
-  width: 70%; 
-  display: flex;
-  /* flex-wrap: wrap; */
-  position: relative;
-  /* min-height: 90px; */
-  margin-bottom: 35px;
-  margin-top: 18px;
-  vertical-align: middle;
-  
+
+ 
    }
+
+   .textocirculo1{ 
+    display: flex;
+    /* margin-bottom: 35px; */
+   width: 30%;
+        
+       }
+.textocirculo label{
+  padding: 0 5px 0 5px;
+  margin-bottom: 35px;
+  vertical-align: middle;
+  /* width: 20%; */
+}
+
+  
+  .textocirculo input[type="radio"]{
+    width: 45px;
+    height: 15px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
 
    div.e{
     background:#fff;
@@ -267,15 +265,7 @@ border: 2px solid #dcdcdc
      box-sizing: border-box; */
       
   }
-/* .password{
-  position: relative;
-  float:right;
-  right: 12px;
-  color:#888;
-  height: 0;
-  cursor: pointer;
 
-} */
 
 
 .instatexto{
@@ -312,33 +302,28 @@ height: 40px;
 padding: 0 10px;
 width: 100%; 
 margin:5px 0 10px 0;
-
 border: 2px solid #dcdcdc;
 
 }
 
-button{
+.botao{
 position: relative;
 display: inline-block;
 background: black;
 border-radius: 5px;
 color: white;
 height: 45px;
-
+cursor: pointer;
 margin-top:50px ;
-
-
 
 }
 button a{
 color: #f5f5f5;
-font-weight: normal;
+font-weight: 700;
 font-size: 18px;
 text-align: center;
 
-
 }
-
 
 /* icone chat */
 img.chat{
@@ -383,18 +368,6 @@ p.rodapé{
    
    
 }
-
-/* footer p.rodapé{
-width: 60%;
-
-text-align:center;
-font-size: 14px;
-color:#999;
-padding-right: 30px;
-margin-bottom: 15px;
-margin-right: 50px;
-padding-bottom: 20px;
-} */
 
 
 /* Daqui para baixo celular grande ou tablet ou maior*/
@@ -448,13 +421,12 @@ section{
   }
 
   .textocirculo{ 
-   
-      width: 50%; 
-      display: flex;
-      /* flex-wrap: wrap; */
-      position: relative;
-          
-       }
+    display: flex;
+    /* margin-bottom: 35px; */
+    margin-top: 18px;
+    width: 100%;
+  }
+  
   footer div.textorodapé{
   padding-top: 19px;
   padding-bottom: 19px;
@@ -509,14 +481,12 @@ section{
 
   .mobile-menu{
       cursor: pointer;
-  
-      display: none;
+        display: none;
           }
 
           h3{
             font-size: 1rem;
-            
-          }
+                      }
 
    ul{
       display: block;
@@ -540,25 +510,23 @@ section{
 
  .textocirculo{ 
    
- width: 70%; 
+ width: 100%; 
    display: flex;
   /* flex-wrap: wrap; */
  position: relative;
                   
                }
 
+            
+
   button{
     display: block;
     float: right;
-
-  
 max-width: 250px;
 min-width: 100px;
 height: 45px;
 margin-right: 10px;
-   
-              
-              
+             
               }
             
  footer div.textorodapé{
