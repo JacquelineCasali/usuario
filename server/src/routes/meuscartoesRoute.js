@@ -6,7 +6,6 @@ var meuscartoesController=require("../controllers/meuscartoesController")
 router.get('/', function(req, res, next) {
     res.render('cartoes', { title: 'Express' });
   });
-router.get( "/cartoes",meuscartoesController.cartoes)
 
 
 module.exports = router;

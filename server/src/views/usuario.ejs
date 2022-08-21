@@ -4,103 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>usuario</title>
+    <title>Meus Dados</title>
     <link rel="stylesheet" href="/stylesheets/usuario.css">
  
   </head>
   <body>
-    <header>
-        <!-- a href linkar  -->
-        <a href="./">
-            <!-- img importa imagem alt escreve mensagem quando a imagem nao aparece  -->
-        <img src="../images/icones/cabeçalho usuario.png" width="100%"  max-width="100%" alt="Imagen não encontrada">
-        </a>
-
-    </header>
-    <!-- section toda a tela entre o cabeçalho e o rodpé -->
-    <section>
-        <!-- aside parte do menu - minha conta até sair -->
-    <aside class="menu">
-        <!-- para formatar minha conta -->
-    <section class="perfil">
-       
-<a href="#" class="mobile-menu1"> MINHA CONTA</a>
-   
-         <div class="mobile-menu">
-            <div class="line 1"></div>
-            <div class="line 2"></div>
-            <div class="line 3"></div>
-        </div>  
-    </section>
-
-<!-- <div class="foto-usuario"> -->
-<img class="foto-perfil"src="../images/icones/imagemperfil.webp" alt="Imagem de perfil">
-
-     <input type="file" name="arquivos" class="btn btn-success" accept="image/png, image/jpeg" />
-  </div>
-
-        <nav>
-           
-<ul>
-      <h3>MINHAS COMPRAS</h3>
+    <%- include('./partials/header')%>
   
-    <li>
-        <img class="incones" src="/images/icones/carinho.png" alt="Imagen não encontrada">
-        <a href="#titulo-MeusPedidos" class="sel">Meus Pedidos </a></li>
+    <!-- section toda a tela entre o cabeçalho e o rodpé -->
+    <%- include('./partials/usuariomenu')%>
 
-    <li><img class="incones" src="/images/icones/meuscreditos.png" alt="Imagen não encontrada">
-    <a href="./meuscreditos" class="sel">Meus Créditos</a></li>
-
-    <h3>CADASTRO</h3> 
-
-    <li><img class="incones" src="/images/icones/email.png" alt="Imagen não encontrada">
-        <a href="#titulo-Alterar E-mail" class="sel">Alterar E-mail</a></li>
-    
-
-
-    <li><img class="incones" src="/images/icones/senha.png" alt="Imagen não encontrada">
-        <a href="#titulo-Alterar Senha" class="sel">Alterar Senha</a></li>
-    
-    <li><img class="incones" src="/images/icones/dados.png" alt="Imagen não encontrada">
-        <a href="#titulo-Meus Dados"class="sel">Meus Dados</a></li>
-    
-    <li><img class="incones" src="/images/icones/endereço.png" alt="Imagen não encontrada">
-        <a href="meusenderecos"class="sel">Meus Endereços</a></li>
-    
-    <li><img class="incones" src="/images/icones/cartão.png" alt="Imagen não encontrada">
-        <a href="./cartoes"class="sel">Meus Cartões</a></li>
-    
-    <li><img class="incones" src="/images/icones/sair.png" alt="Imagen não encontrada">
-        <a href="./"class="sel">Sair</a></li>
-    
-</ul>
-            </nav>
-          </aside>
-   
     <!-- tela lado direito -->
         <main class="main_content">
 
             <div class="codigo">
                 <!-- Tela lateral -->
-                <!-- link com angora volta onde quer id -->
-             <!-- <h3 class="fontebarra" id="titulo-MeusPedidos">Meus Pedidos</h3>  -->
-           <!-- <h3 class="fontebarra" id="titulo-Meus Créditos">Meus Créditos</h3>  -->
-             <!-- <h3 class="fontebarra" id="titulo-Alterar E-mail">Alterar E-mail</h3>
-            <h3 class="fontebarra" id="titulo-Alterar Senha">Alterar Senha</h3> -->
+                     
                 <h3 class="fontebarra" id="titulo-Meus Dados">Meus Dados</h3> 
-                 <!-- <h3 id="titulo-Meus Endereços">Meus Endereços</h3>  -->
-                <!-- <h3 id="titulo-Meus Cartões">Meus Cartões</h3>  -->
-            </div>
+                      </div>
             
             <!--meus dados  -->
    <form action="/usuario" method="get">   
 <div class="row">
   
     <div class="coluna2">
+
+    <!-- exibir array de objeto dinamico <% %> ejs-->  
+
+    <% 
+    var usuario=[
+    {
+    nome: "vinicius", cpf:"000000", rg:"7894", telefone:"71 999999999"} 
+    ]
+    %> 
+    <!-- <% for (var usuario of usuario){%> -->
+    <label for="nome">Nome Completo :</label>
+    <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required>
+   <%= usuario.nome %>  
+   <!-- <%} %>    -->
+    
         
-        <label for="nome">Nome :</label>
-            
-        <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required>
         
         <label for="cpf">CPF :</label>
         
@@ -155,7 +98,10 @@
 <h3 class="fontebarra" id="titulo-Alterar E-mail">Alterar E-mail:</h3>
 <div class="e">
 <div class="coluna2">
+
+  
     
+
     <label  for="E-mail Atual">E-mail Atual:</label>
         
     <input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual">
@@ -214,7 +160,7 @@
 <input type="text" class="instabarra" id="Instagram" name="Instagram">
 </form>  
 
-<input class="botao" type="submit" value="SALVAR DADOS"/>
+<!-- <input class="botao" type="submit" value="SALVAR DADOS"/> -->
 
 <button type="submit" > <a href="./">
     SALVAR DADOS </button>

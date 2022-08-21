@@ -6,7 +6,7 @@ var adicionarcartoesController=require("../controllers/adicionarcartoesControlle
 router.get('/', function(req, res, next) {
     res.render('adicionarcartoes', { title: 'Express' });
   });
-router.get( "/adicionarcartoes",adicionarcartoesController.adicionarcartoes)
+router.get( "/adicionarcartoes",adicionarcartoesController.index)
 
 
 module.exports = router;

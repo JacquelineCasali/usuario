@@ -1,6 +1,6 @@
 const adicionarcartoesController={
 
-adicionarcartoes:(req,res)=>{
+index:(req,res)=>{
     return res.render("cartoes");
      
 },
