@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "nomeCompleto": "Roberto Silva",
+      "CPF": "123456879",
+      "RG":"000000 SSP/PE",
+      "telefonePrincipal": "",
+      "celular": "",
+      "email": "robertinho123@email.com"
+         },
+    {
+      "id": 2,
+      "nomeCompleto": "Ana",
+      "CPF": "123456879",
+      "RG":"000000 SSP/PE",
+      "telefonePrincipal": "",
+      "celular": "",
+      "email": "aninha123@email.com"
+      
+    }
+   
+  ]
+}
