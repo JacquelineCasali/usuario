@@ -13,6 +13,7 @@ var usuarioController=require("../controllers/usuarioController")
 router.get( "/",usuarioController.index);
 router.get("/:id",usuarioController.show);
 router.post("/",usuarioController.store);
+
 router.patch("/:id",usuarioController.update);
 router.put("/:id",usuarioController.update);
 router.delete("/:id",usuarioController.delete);
