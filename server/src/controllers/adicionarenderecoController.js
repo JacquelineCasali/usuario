@@ -1,24 +1,12 @@
 var users=require("../data/users.json");
 users=users.data;
-const usuarioController={
-// read - ler / listar todos os usuarios pode filtrar eles
+const adicionarenderecoController={
     index:(req,res)=>{
-        // return 
-       return res
-       .status(200)
-       .render("usuario");
-
-    },
-
- 
-
-// CRUD
-// CREATE - Criar 
-// read - ler 
-// update-atualizar
-// delete - deletar
-// read - ler / listar todos os usuarios pode filtrar eles
-
+        return res
+        .status(200)
+        .render("adicionarendereco");
+        
+},
 
 // read - ler apenas um usuario
 show:(req,res)=>{ 
@@ -31,57 +19,49 @@ show:(req,res)=>{
         return res
         // .status(400) mensagem de erro
         .status(400)
-        .json({message:"Nenhum Usuário Encontrado"})
+        .json({message:"Nenhum usuário encontrado"})
     }
     return res .status(200)
-    .json({data:result, message:"Usuario Encontrado"})
+    .json({data:result, message:"Usuario encontrado"})
     
     
 },
 // CREATE - Criar um usuario
     store:(req,res)=>{ 
-    const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
-    }=req.body;
+    const {nomeDoDestinatário, cep,rua, bairro, Cidade,numero,complemento}=req.body;
     // para validação
     // ! é negação 
     //  condicional ou
-    if(!nomeCompleto|| !CPF ||!email ||!novoEmail ||!ConfirmaçãoNovoEmail){
+    if(!nomeDoDestinatário|| !cep|| !rua|| !bairro|| ! Cidade|| !numero|| !complemento ){
     return res.status(404)
     .json({message:"Preencha todos os campos"})
     }
     users.push({
     // length pega a quantidade de usuarios e soma 1
     id:users.length + 1,
-    nomeCompleto,
-    CPF,
-    telefonePrincipal,
-    RG,
-    celular,
-    email,novoEmail,ConfirmaçãoNovoEmail
-    })
+    nomeDoDestinatário, cep,rua, bairro, Cidade,numero,complemento 
+        })
      res.status(201).json({Messange: "Usúario Criado com Sucesso"});
 },
 // update-atualizar um usuario
     update:(req,res)=>{
     const {id}= req.params
-    const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
-    }=req.body;
+    const {nomeDoDestinatário, cep,rua, bairro, Cidade,numero,complemento}=req.body;
     const result= users.find((users)=>
     users.id===parseInt(id));
     if(!result){
         return res
         .status(400)
-        .json({message:"Nenhum usuário encontrado"})
+        .json({message:"Nenhum endereço encontrado"})
     }
 const newUser=result;
-if(nomeCompleto) newUser.nomeCompleto=nomeCompleto;
-if(CPF) newUser.CPF=CPF;
-if(telefonePrincipal) newUser.telefonePrincipal=telefonePrincipal;
-if(RG) newUser.RG=RG;
-if(celular) newUser.celular=celular;
-if(email) newUser.email=email;
-if(novoEmail) newUser.novoEmail=novoEmail;
-if(ConfirmaçãoNovoEmail) newUser.ConfirmaçãoNovoEmail=ConfirmaçãoNovoEmail;
+if(nomeDoDestinatário) newUser.nomeDoDestinatário=nomeDoDestinatário;
+if(cep) newUser.cep=cep;
+if(rua) newUser.rua=rua;
+if(bairro) newUser.bairro=bairro;
+if(Cidade) newUser.Cidade=Cidade;
+if(numero) newUser.numero=numero;
+if(complemento) newUser.complemento=complemento;
 return res.status(200).json({message:"Atualização realizada com sucesso"})
     
 },
@@ -93,12 +73,12 @@ delete:(req,res)=>{
     if(result===-1){
         return res
         .status(400)
-        .json({message:"Nenhum usuário encontrado"})
+        .json({message:"Nenhum Endereço Encontrado"})
     }
 users.splice(result,1);
 return res
 .status(200)
-.json({message:"Usuario deletado com sucesso"})
+.json({message:"Endereço Deletado Com Sucesso"})
 },
 save:(req,res)=>{
     const {id,name}= req.params;
@@ -114,4 +94,10 @@ save:(req,res)=>{
 
 
 
-module.exports=usuarioController;
+module.exports=adicionarenderecoController;
+
+
+
+
+
+

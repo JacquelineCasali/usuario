@@ -1,5 +1,5 @@
 const meuscartoesController={
-    cartoes:(req,res)=>{
+    index:(req,res)=>{
        return res.render("cartoes");
         
 },

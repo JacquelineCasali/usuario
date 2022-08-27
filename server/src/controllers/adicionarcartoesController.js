@@ -3,9 +3,10 @@ users=users.data;
 const adicionarcartoesController={
 
 index:(req,res)=>{
-    return res.render("cartoes");
+    return res.render("adicionarcartoes");
      
 },
+
 show:(req,res)=>{ 
     const { id }= req.params
     const result=users.find((user)=>{
@@ -16,10 +17,10 @@ show:(req,res)=>{
         return res
         // .status(400) mensagem de erro
         .status(400)
-        .json({message:"Nenhum usuário encontrado"})
+        .json({message:"Nenhum Cartão Encontrado"})
     }
     return res .status(200)
-    .json({data:result, message:"Usuario encontrado"})
+    .json({data:result, message:"Cartão Encontrado"})
     
     
 },
@@ -32,7 +33,7 @@ show:(req,res)=>{
     //  condicional ou
     if(!nomeCompleto|| !CPF ||!email ||!novoEmail ||!ConfirmaçãoNovoEmail){
     return res.status(404)
-    .json({message:"Preencha todos os campos"})
+    .json({message:"Preencha Todos Os Campos"})
     }
     users.push({
     // length pega a quantidade de usuarios e soma 1
@@ -44,7 +45,7 @@ show:(req,res)=>{
     celular,
     email,novoEmail,ConfirmaçãoNovoEmail
     })
-     res.status(201).json({Messange: "Usúario Criado com Sucesso"});
+     res.status(201).json({Messange: "Cartão Criado Com Sucesso"});
 },
 // update-atualizar um usuario
     update:(req,res)=>{
@@ -56,7 +57,7 @@ show:(req,res)=>{
     if(!result){
         return res
         .status(400)
-        .json({message:"Nenhum usuário encontrado"})
+        .json({message:"Nenhum Cartão Encontrado"})
     }
 const newUser=result;
 if(nomeCompleto) newUser.nomeCompleto=nomeCompleto;
@@ -67,7 +68,7 @@ if(celular) newUser.celular=celular;
 if(email) newUser.email=email;
 if(novoEmail) newUser.novoEmail=novoEmail;
 if(ConfirmaçãoNovoEmail) newUser.ConfirmaçãoNovoEmail=ConfirmaçãoNovoEmail;
-return res.status(200).json({message:"Atualização realizada com sucesso"})
+return res.status(200).json({message:"Atualização Realizada Com Sucesso"})
     
 },
 // delete - deletar um usuario
@@ -78,12 +79,12 @@ delete:(req,res)=>{
     if(result===-1){
         return res
         .status(400)
-        .json({message:"Nenhum usuário encontrado"})
+        .json({message:"Nenhum Cartão Encontrado"})
     }
 users.splice(result,1);
 return res
 .status(200)
-.json({message:"Usuario deletado com sucesso"})
+.json({message:"Cartão Deletado Com Sucesso"})
 },
 save:(req,res)=>{
     const {id,name}= req.params;
