@@ -1,165 +1,141 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Conta</title>
-    <link rel="stylesheet" href="/stylesheets/usuario.css">
+<%- include('./partials/usuariomenu')%>
+<main class="main_content">
+
+    <div class="codigo">
+        <!-- Tela lateral -->
+             
+<h3 class="fontebarra" id="titulo-Meus Dados">Meus Dados</h3> 
+              </div>
     
-  </head>
-  <body>
-   
-  
-    <!-- section toda a tela entre o cabeçalho e o rodpé -->
-    <%- include('./partials/usuariomenu')%>
-
-    <!-- tela lado direito -->
-        <main class="main_content">
-
-            <div class="codigo">
-                <!-- Tela lateral -->
-                     
-    <h3 class="fontebarra" id="titulo-Meus Dados">Meus Dados</h3> 
-                      </div>
-            
-            <!--meus dados  -->
-   <form action="/usuario" method="get">   
+    <!--meus dados  -->
+<form action="/usuario" method="get">   
 <div class="row">
-  
-    <div class="coluna2">
-   <label for="nome">Nome Completo :</label>
-    <input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required>
-        <label for="cpf">CPF :</label>
-        
-        <input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required>
-                                        
-        <label for="telefone">Telefone Principal :</label>
-        
-        <input type="tel"  class="coluna22" id="telefone" name="telefone" >
-        
-        <label for="Data">Data de nascimento :</label>
-                        
-        <input type="date" class="coluna22" id="Data" name="Data" required >                          
-    </div>
-          
-    <div class="coluna3">
-        
-        <label for="sexo" >Sexo :</label>
-        
-        <div class="textocirculo">
-            <div class="textocirculo1">  
-            <input type="radio" id="Femenino"  name="sexo"  value="Feminino">
-            <label  for="sexo">Femenino</label>
-            </div>
-            <div class="textocirculo1"> 
-            <input type="radio"  id="Masculino" name="sexo" value="Masculino">
-            <label for="sexo">Masculino</label>
-            </div>
-            <input type="radio"  id="Não Informado" name="sexo" value="Não Informado">
-            <label for="sexo">Não Informado</label>
-        </div>
-  
-        <label for="rg">RG:</label>
 
-        <input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG">  
+<div class="coluna2">
+<label for="nome">Nome Completo :</label>
+<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required>
+<label for="cpf">CPF :</label>
 
-        <label for="telefone">Celular:</label>
+<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required>
+                                
+<label for="telefone">Telefone Principal :</label>
 
-        <input type="tel"  class="coluna22" id="telefone" name="telefone" size="14" maxlength="14">
+<input type="tel"  class="coluna22" id="telefone" name="telefone" >
 
-        <label for="Receber">Receber Newsletter:</label>
-        
-
-        <div class="textocirculo">
-            <input type="radio" id="sim" name="Receber"  value="Receber">
-            <label for="Receber">Sim</label>
-            <input type="radio" id="sim" name="Receber" value="Receber">
-            <label for="Receber">Não</label>
-        </div>
-    </div>
+<label for="Data">Data de nascimento :</label>
+                
+<input type="date" class="coluna22" id="Data" name="Data" required >                          
 </div>
- 
+  
+<div class="coluna3">
+
+<label for="sexo" >Sexo :</label>
+
+<div class="textocirculo">
+    <div class="textocirculo1">  
+    <input type="radio" id="Femenino"  name="sexo"  value="Feminino">
+    <label  for="sexo">Femenino</label>
+    </div>
+    <div class="textocirculo1"> 
+    <input type="radio"  id="Masculino" name="sexo" value="Masculino">
+    <label for="sexo">Masculino</label>
+    </div>
+    <input type="radio"  id="Não Informado" name="sexo" value="Não Informado">
+    <label for="sexo">Não Informado</label>
+</div>
+
+<label for="rg">RG:</label>
+
+<input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG">  
+
+<label for="telefone">Celular:</label>
+
+<input type="tel"  class="coluna22" id="telefone" name="telefone" size="14" maxlength="14">
+
+<label for="Receber">Receber Newsletter:</label>
+
+
+<div class="textocirculo">
+    <input type="radio" id="sim" name="Receber"  value="Receber">
+    <label for="Receber">Sim</label>
+    <input type="radio" id="sim" name="Receber" value="Receber">
+    <label for="Receber">Não</label>
+</div>
+</div>
+</div>
+
 <h3 class="fontebarra" id="titulo-Alterar E-mail">Alterar E-mail:</h3>
 <div class="e">
 <div class="coluna2">
 
-    <label  for="E-mail Atual">E-mail Atual:</label>
-        
-    <input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual">
+<label  for="E-mail Atual">E-mail Atual:</label>
+
+<input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual">
 </div>
 </div>
 
-    <div class="coluna2">
+<div class="coluna2">
 
-    
-    <label for="Novo E-mail">Novo E-mail:</label>
-    
-    <input type="email" class="coluna22"  id="Novo E-mail" name="Novo E-mail" placeholder="Digite seu Novo E-mail" >
+
+<label for="Novo E-mail">Novo E-mail:</label>
+
+<input type="email" class="coluna22"  id="Novo E-mail" name="Novo E-mail" placeholder="Digite seu Novo E-mail" >
 </div>   
 <div class="coluna3">
 
-    <label for="Confirmação do Novo E-mail">Confirmação do Novo E-mail:</label>
-    
-    <input type="email"  class="coluna22" id="Confirmação do Novo E-mail" name="Confirmação do Novo E-mail" placeholder="Confirme seu Novo Email"  >
+<label for="Confirmação do Novo E-mail">Confirmação do Novo E-mail:</label>
+
+<input type="email"  class="coluna22" id="Confirmação do Novo E-mail" name="Confirmação do Novo E-mail" placeholder="Confirme seu Novo Email"  >
 
 </div>
 
 
 
- 
- <h3 class="fontebarra" id="titulo-Alterar Senha">Alterar Senha:</h3>
 
- <div class="e">
-    <div class="coluna2">
-        
-       
-        <label  for="Senha Atual">Senha Atual:</label>
-        <input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual">
-    </div>
-    </div>
-    
-        <div class="coluna2">
-    
-        
-        <label for="Nova Senha">Nova Senha:</label>
-        
-        <input type="password" class="coluna22"  id="Nova Senha" name="novapassword" placeholder="Digite sua Nova Senha">
-    </div>   
-    <div class="coluna3">
-    
-        <label for="confirm-password">Confirmação da Nova Senha :</label>
-        
-        <input type="password"  class="coluna22" id="Confirmação da Nova Senha" name="confirmpassword"  placeholder="Confirme sua Nova Senha" >
-    
-    </div>
-   
-    
+<h3 class="fontebarra" id="titulo-Alterar Senha">Alterar Senha:</h3>
+
+<div class="e">
+<div class="coluna2">
+
+
+<label  for="Senha Atual">Senha Atual:</label>
+<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual">
+</div>
+</div>
+
+<div class="coluna2">
+
+
+<label for="Nova Senha">Nova Senha:</label>
+
+<input type="password" class="coluna22"  id="Nova Senha" name="novapassword" placeholder="Digite sua Nova Senha">
+</div>   
+<div class="coluna3">
+
+<label for="confirm-password">Confirmação da Nova Senha :</label>
+
+<input type="password"  class="coluna22" id="Confirmação da Nova Senha" name="confirmpassword"  placeholder="Confirme sua Nova Senha" >
+
+</div>
+
+
 <h3 class="instatexto">Instagram</h3>
 
 <label class="insta" for="Instagram">Instagram </label>
-                
+        
 <input type="text" class="instabarra" id="Instagram" name="Instagram">
 </form>  
 
 <!-- <input class="botao" type="submit" value="SALVAR DADOS"/> -->
 
-<button type="submit" > <a href="./">
-    SALVAR DADOS </button>
+<button class="usuario" type="submit" > <a href="./">
+SALVAR DADOS </button>
 </a>           
-         </div>
-        </main>
-    </section>
-    </section>
-<!-- </from> -->
+ </div>
+</main>
+</section>
+</section>
 
 
 
-
-
-    <!-- footer define o rodapé -->
-    <%- include('./partials/footerusuario')%>
-
-  </body>
-</html>
-
+<%- include('./partials/footerusuario')%>

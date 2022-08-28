@@ -1,7 +1,7 @@
 const cadastroController={
 
-    cadastro:(req,res)=>{
-        return res.render("cadastro");
+    index:(req,res)=>{
+        return res.render("cadastro",{title:"Cadastro"});
     },
    
     }

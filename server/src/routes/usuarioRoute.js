@@ -2,44 +2,46 @@ var express = require('express');
 var router = express.Router();
 var usuarioController=require("../controllers/usuarioController")
 var meuscreditosController=require("../controllers/meuscreditosController")
-var meusenderecosController=require("../controllers/meusenderecosController")
-var adicionarenderecoController=require("../controllers/adicionarenderecoController")
-var meuscartoesController=require("../controllers/meuscartoesController")
-var adicionarcartoesController=require("../controllers/adicionarcartoesController")
+var enderecoController=require("../controllers/enderecoController")
+var cartoesController=require("../controllers/cartoesController")
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('usuario', { title: 'Express' });
-// });
+
 // get pegar dados, ou seja leitura 
 // post - cadastrar /salvar dados 
 // patch/put -atualizar dados
 // delete - deletar dados 
-router.get( "/",usuarioController.index);
+router.get("/",usuarioController.index);
 router.get("/meuscreditos",meuscreditosController.index);
 router.get("/meuspedidos",meuscreditosController.meuspedidos);
-router.get( "/endereco",meusenderecosController.index);
-router.get( "/endereco/adicionarendereco",adicionarenderecoController.index);
-
-
-router.get("/cartoes",meuscartoesController.index);
-router.get("/cartoes/adicionarcartoes",adicionarcartoesController.index);
+router.get("/endereco",enderecoController.endereco);
+router.get("/endereco/adicionarendereco",enderecoController.index);
+router.get("/cartoes",cartoesController.cartoes);
+router.get("/cartoes/adicionarcartoes",cartoesController.index);
 
 router.get("/:id",usuarioController.show);
-router.get("/cartoes/adicionarcartoes/:id",adicionarcartoesController.show);
+router.get("/cartoes/adicionarcartoes/:id",cartoesController.show);
+router.get( "/endereco/adicionarendereco/:id",enderecoController.show);
+
 
 router.post("/",usuarioController.store);
-router.post("/cartoes/adicionarcartoes",adicionarcartoesController.store);
+router.post("/cartoes/adicionarcartoes",cartoesController.store);
+router.post("/endereco/adicionarendereco",enderecoController.store);
+
 
 router.patch("/:id",usuarioController.update);
-router.patch("/cartoes/adicionarcartoes/:id",adicionarcartoesController.update);
+router.patch("/cartoes/adicionarcartoes/:id",cartoesController.update);
+router.patch("/endereco/adicionarendereco/:id",enderecoController.update);
+
 
 
 router.put("/:id",usuarioController.update);
-router.put("/cartoes/adicionarcartoes/:id",adicionarcartoesController.update);
+router.put("/cartoes/adicionarcartoes/:id",cartoesController.update);
+router.put("/endereco/adicionarendereco/:id",enderecoController.update);
+
 
 router.delete("/:id",usuarioController.delete);
-router.delete("/cartoes/adicionarcartoes/:id",adicionarcartoesController.delete);
+router.delete("/cartoes/adicionarcartoes/:id",cartoesController.delete);
+router.delete("/endereco/adicionarendereco/:id",enderecoController.delete);
 
 
 

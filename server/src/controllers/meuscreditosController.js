@@ -3,12 +3,12 @@
 const meuscreditosController={
 
     index:(req,res)=>{
-        return res.render("meuscreditos");
+        return res.render("meuscreditos",{title:"Meus Créditos"});
          
     },
 
     meuspedidos:(req,res)=>{
-        return res.render("meuspedidos");
+        return res.render("meuspedidos",{title:"Meus Pedidos"});
          
     },
 }

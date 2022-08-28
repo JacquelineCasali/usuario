@@ -6,7 +6,7 @@ const usuarioController={
         // return 
        return res
        .status(200)
-       .render("usuario");
+       .render("usuario",{title:"Minha Conta"});
 
     },
 

@@ -1,10 +1,14 @@
 var users=require("../data/users.json");
 users=users.data;
-const adicionarenderecoController={
+const enderecoController={
+    endereco:(req,res)=>{
+        return res.render("endereco",{title:"Endereço"});
+    },
+    
     index:(req,res)=>{
         return res
         .status(200)
-        .render("adicionarendereco");
+        .render("adicionarendereco",{title:"Adicionar Endereço"});
         
 },
 
@@ -19,10 +23,10 @@ show:(req,res)=>{
         return res
         // .status(400) mensagem de erro
         .status(400)
-        .json({message:"Nenhum usuário encontrado"})
+        .json({message:"Nenhum Endereço Encontrado"})
     }
     return res .status(200)
-    .json({data:result, message:"Usuario encontrado"})
+    .json({data:result, message:"Endereço Encontrado"})
     
     
 },
@@ -34,14 +38,14 @@ show:(req,res)=>{
     //  condicional ou
     if(!nomeDoDestinatário|| !cep|| !rua|| !bairro|| ! Cidade|| !numero|| !complemento ){
     return res.status(404)
-    .json({message:"Preencha todos os campos"})
+    .json({message:"Preencha Todos Os Campos"})
     }
     users.push({
     // length pega a quantidade de usuarios e soma 1
     id:users.length + 1,
     nomeDoDestinatário, cep,rua, bairro, Cidade,numero,complemento 
         })
-     res.status(201).json({Messange: "Usúario Criado com Sucesso"});
+     res.status(201).json({Messange: "Endereço Criado com Sucesso"});
 },
 // update-atualizar um usuario
     update:(req,res)=>{
@@ -52,7 +56,7 @@ show:(req,res)=>{
     if(!result){
         return res
         .status(400)
-        .json({message:"Nenhum endereço encontrado"})
+        .json({message:"Nenhum Endereço Encontrado"})
     }
 const newUser=result;
 if(nomeDoDestinatário) newUser.nomeDoDestinatário=nomeDoDestinatário;
@@ -62,7 +66,7 @@ if(bairro) newUser.bairro=bairro;
 if(Cidade) newUser.Cidade=Cidade;
 if(numero) newUser.numero=numero;
 if(complemento) newUser.complemento=complemento;
-return res.status(200).json({message:"Atualização realizada com sucesso"})
+return res.status(200).json({message:"Atualização Realizada Com Sucesso"})
     
 },
 // delete - deletar um usuario
@@ -94,7 +98,7 @@ save:(req,res)=>{
 
 
 
-module.exports=adicionarenderecoController;
+module.exports=enderecoController;
 
 
 

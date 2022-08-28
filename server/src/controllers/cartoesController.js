@@ -1,9 +1,13 @@
 var users=require("../data/users.json");
 users=users.data;
-const adicionarcartoesController={
+const cartoesController={
+    cartoes:(req,res)=>{
+        return res.render("cartoes",{title:"Meus Cartões"});
+         
+ },
 
 index:(req,res)=>{
-    return res.render("adicionarcartoes");
+    return res.render("adicionarcartoes",{title:"Adicionar Cartoes"});
      
 },
 
@@ -101,4 +105,4 @@ save:(req,res)=>{
 
 
 
-module.exports=adicionarcartoesController;
+module.exports=cartoesController;
