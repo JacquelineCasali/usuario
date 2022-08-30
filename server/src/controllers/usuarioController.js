@@ -4,9 +4,24 @@ const usuarioController={
 // read - ler / listar todos os usuarios pode filtrar eles
     index:(req,res)=>{
         // return 
-       return res
-       .status(200)
-       .render("usuario",{title:"Minha Conta"});
+        const usuarios=[
+            {
+                nome:"Roberto Silva",
+                CPF:"123456879",
+                telefonePrincipal: "",
+                RG:"000000 SSP/PE",
+                celular: "",
+                email:"robertinho123@email.com",
+                novoEmail: "123@email.com",
+                ConfirmaçãoNovoEmail: "123@email.com"
+
+
+            },
+            
+                ]
+        return res
+    //    .status(200)
+       .render("usuario",{title:"Minha Conta",usuario:usuarios});
 
     },
 

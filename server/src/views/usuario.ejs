@@ -1,4 +1,17 @@
 <%- include('./partials/usuariomenu')%>
+<!-- <main>
+    <h1>Usuarios</h1>
+    <% for (let Usuarios of usuario){ %>
+<div>
+    <h2><%= Usuarios.nome %></h2>
+    <span><%= Usuarios.preco %></span>
+    <p><%= Usuarios.descricao %></p>
+</div>
+<% } %>
+    </main> -->
+
+
+    
 <main class="main_content">
 
     <div class="codigo">
@@ -10,23 +23,30 @@
     <!--meus dados  -->
 <form action="/usuario" method="get">   
 <div class="row">
-
 <div class="coluna2">
 <label for="nome">Nome Completo :</label>
-<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required>
-<label for="cpf">CPF :</label>
+<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required value="<%= usuario[0].nome %>">
 
-<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required>
+<label for="cpf"> CPF :</label>
+
+<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required value="<%= usuario[0].CPF %>">
                                 
 <label for="telefone">Telefone Principal :</label>
 
-<input type="tel"  class="coluna22" id="telefone" name="telefone" >
+<input type="tel"  class="coluna22" id="telefone" name="telefone" value="<%= usuario[0].telefonePrincipal %>" >
 
 <label for="Data">Data de nascimento :</label>
                 
 <input type="date" class="coluna22" id="Data" name="Data" required >                          
 </div>
-  
+
+
+    
+
+
+
+
+
 <div class="coluna3">
 
 <label for="sexo" >Sexo :</label>
@@ -46,11 +66,11 @@
 
 <label for="rg">RG:</label>
 
-<input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG">  
+<input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG" value="<%= usuario[0].RG %>">  
 
 <label for="telefone">Celular:</label>
 
-<input type="tel"  class="coluna22" id="telefone" name="telefone" size="14" maxlength="14">
+<input type="tel"  class="coluna22" id="telefone" name="telefone" size="14" maxlength="14" value="<%= usuario[0].celular %>">
 
 <label for="Receber">Receber Newsletter:</label>
 
@@ -70,7 +90,7 @@
 
 <label  for="E-mail Atual">E-mail Atual:</label>
 
-<input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual">
+<input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual" value="<%= usuario[0].email %>">
 </div>
 </div>
 

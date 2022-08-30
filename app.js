@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var port=3001;
+var methodOverride=require("method-override");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -19,10 +20,14 @@ app.set('views', path.join(__dirname, 'server/src/views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'server/public')));
+
+
+
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
@@ -47,6 +52,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
 app.listen(port, () => {

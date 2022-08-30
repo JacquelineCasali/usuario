@@ -19,11 +19,11 @@ router.get("/cartoes",cartoesController.cartoes);
 router.get("/cartoes/adicionarcartoes",cartoesController.index);
 
 router.get("/:id",usuarioController.show);
-router.get("/cartoes/adicionarcartoes/:id",cartoesController.show);
-router.get( "/endereco/adicionarendereco/:id",enderecoController.show);
+router.get("/cartoes/:id",cartoesController.show);
+router.get( "/endereco/:id",enderecoController.show);
 
 
-router.post("/",usuarioController.store);
+
 router.post("/cartoes/adicionarcartoes",cartoesController.store);
 router.post("/endereco/adicionarendereco",enderecoController.store);
 
