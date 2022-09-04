@@ -1,31 +1,18 @@
 var users=require("../data/users.json");
-users=users.data;
+users=users.usuarios;
+
+
+
+
+
 const usuarioController={
 // read - ler / listar todos os usuarios pode filtrar eles
     index:(req,res)=>{
         // return 
-        const usuarios=[
-            {
-                nome:"Roberto Silva",
-                CPF:"123456879",
-                telefonePrincipal: "",
-                RG:"000000 SSP/PE",
-                celular: "",
-                email:"robertinho123@email.com",
-                novoEmail: "123@email.com",
-                ConfirmaçãoNovoEmail: "123@email.com"
-
-
-            },
-            
-                ]
+        
         return res
-    //    .status(200)
-       .render("usuario",{title:"Minha Conta",usuario:usuarios});
-
+           .render("usuarios",{title:"Minha Conta",users});
     },
-
- 
 
 // CRUD
 // CREATE - Criar 
@@ -37,24 +24,28 @@ const usuarioController={
 
 // read - ler apenas um usuario
 show:(req,res)=>{ 
-    const { id }= req.params
-    const result=users.find((user)=>{
-       return user.id === parseInt(id);
-     })
+    const { id }= req.params;
+    const userResult=users.find((user)=>user.id === parseInt(id));
+    
 
-     if(!result){
+     if(!userResult){
         return res
-        // .status(400) mensagem de erro
-        .status(400)
-        .json({message:"Nenhum Usuário Encontrado"})
-    }
-    return res .status(200)
-    .json({data:result, message:"Usuario Encontrado"})
+         // mensagem de erro
+        .status(400) 
+           
+        .send("Nenhum Usuário Encontrado")
+             
+          }
+    return res 
+    .status(200)
+    .render("usuarios",{title:"Visualizar Usuário",user:userResult})
+    
     
     
 },
+
 // CREATE - Criar um usuario
-    store:(req,res)=>{ 
+    create:(req,res)=>{ 
     const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
     }=req.body;
     // para validação

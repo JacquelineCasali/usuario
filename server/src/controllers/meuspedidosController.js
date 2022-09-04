@@ -1,26 +1,24 @@
 var users=require("../data/users.json");
 users=users.usuarios;
-const meuscreditosController={
+const meuspedidosController={
 
-    index:(req,res)=>{
-        return res.render("meuscreditos",{title:"Meus Créditos",users});
+
+    meuspedidos:(req,res)=>{
+        return res.render("meuspedidos",{title:"Meus Pedidos",users});
          
     },
 
-
  
-
-
 show:(req,res)=>{
     const {id}=req.params;
     const userResult=users.find(user=>user.id===parseInt(id));
     if(!userResult){
         return res 
-        .render("Creditos não entcontrado")
+        .render("Pedido não entcontrado")
      }
         return res 
    
-        .render("meuscreditos",{title:"Visualizar Pedidos",
+        .render("meuspedidos",{title:"Visualizar Pedidos",
         user:userResult} )
 },
 
@@ -33,6 +31,6 @@ show:(req,res)=>{
 
 
 
- module.exports=meuscreditosController;
+ module.exports=meuspedidosController;
  
 

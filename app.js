@@ -12,7 +12,6 @@ var adminProductRouter = require('./server/src/routes/adminProductsRoute');
 var usuarioRoute = require('./server/src/routes/usuarioRoute');
 var paymentRouter = require('./server/src/routes/paymentRoute');
 var cadastroRoute= require('./server/src/routes/cadastroRoute');
-
 var app = express();
 
 // view engine setup
@@ -30,9 +29,10 @@ app.use(express.static(path.join(__dirname, 'server/public')));
 
 
 app.use('/', indexRouter);
+
 app.use('/login', loginRouter);
 app.use('/admin-produtos', adminProductRouter);
-app.use('/MinhaConta', usuarioRoute);
+app.use('/MinhaConta/', usuarioRoute);
 app.use('/finalizacao',paymentRouter);
 app.use('/cadastro',cadastroRoute);
 
@@ -57,5 +57,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 app.listen(port, () => {
-  console.log("Estamos rodando em: http://localhost:" + port + "/MinhaConta");
+  console.log("Estamos rodando em: http://localhost:" + port + "/MinhaConta/1");
 });

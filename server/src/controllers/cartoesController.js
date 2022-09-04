@@ -1,35 +1,36 @@
 var users=require("../data/users.json");
-users=users.data;
+users=users.usuarios;
 const cartoesController={
     cartoes:(req,res)=>{
-        return res.render("cartoes",{title:"Meus Cartões"});
+        return res.render("cartoes",{title:"Meus Cartões",users});
          
  },
 
 index:(req,res)=>{
-    return res.render("adicionarcartoes",{title:"Adicionar Cartoes"});
+    return res.render("adicionarcartoes",{title:"Adicionar Cartoes",users});
      
 },
 
 show:(req,res)=>{ 
+
     const { id }= req.params
-    const result=users.find((user)=>{
+    const userResult=users.find((user)=>{
        return user.id === parseInt(id);
      })
 
-     if(!result){
-        return res
-        // .status(400) mensagem de erro
-        .status(400)
-        .json({message:"Nenhum Cartão Encontrado"})
-    }
-    return res .status(200)
-    .json({data:result, message:"Cartão Encontrado"})
+     if(!userResult){
+        return res 
+        .render("Cartão não entcontrado")
+     }
+        return res 
+   
+        .render("cartoes",{title:"Visualizar Cartão",
+        user:userResult} )
     
     
 },
 // CREATE - Criar um usuario
-    store:(req,res)=>{ 
+    create:(req,res)=>{ 
     const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
     }=req.body;
     // para validação

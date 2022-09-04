@@ -1,0 +1,50 @@
+    <!-- section toda a tela entre o cabeçalho e o rodpé -->
+    <%- include('./partials/usuariomenu')%>
+
+   <!-- css linha 754 -->
+    <main class="main_content">
+
+        <div class="codigo">
+            <!-- Tela lateral -->
+      <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Endereços</h3> 
+<main id="user">
+   
+    
+   
+
+
+<span><%= user.nomeCompleto %></span>
+<span>Endereço: <%= user.Rua%> , <%= user.Numero %>.</span>
+
+<span>Bairro:<%= user.Bairro %></span>
+
+<span>Cidade:<%= user.Cidade %> - <%= user.Complemento %>.</span>
+
+<span>
+
+    CEP:<%= user.cep %>
+</span>
+
+<a href="./adicionarendereco <%=user.adicionarendereco%>" class="editar1">Editar</a>
+
+<a href="./adicionarendereco <%=user.adicionarendereco%>" class="deletar">Deletar</a>
+
+
+</main>
+<button class="cartoes1" type="submit" > <a href="./adicionarendereco">
+    CADASTRAR NOVO ENDEREÇO</button>
+  </a>
+
+
+  
+
+
+
+</main>
+ 
+   
+<%- include('./partials/footerusuario')%>
+
+
+
+
