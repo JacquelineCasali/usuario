@@ -1,32 +1,53 @@
 
     <!-- section toda a tela entre o cabeçalho e o rodpé -->
     <%- include('./partials/usuariomenu')%>
-    
-   
-    <!-- tela lado direito -->
-        <main class="main_content">
 
-            <div class="codigo">
-                <!-- Tela lateral -->
-          <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Cartões</h3> 
-            </div>            <!--meus dados  -->
-            <p>
-                Aqui é possível conferir as informações do cartão de crédito.
-            </p>
-            <p>
-                Cadastre seus cartões e escolha qual irá utilizar na hora de finalizar sua compra.
-            </p>   
-            
- <button class="cartoes1" type="submit" > <a href="./adicionarcartoes">
-              CADASTRAR NOVO CARTÃO</button>
-            </a>
-             
-         </div>
-        </main>
-    </section>
-    </section>
-</from>
+   <!-- css linha 754 -->
+    <main class="main_content">
+
+        <div class="codigo">
+            <!-- Tela lateral -->
+      <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Endereços</h3> 
+<main id="user">
+ 
+<span><%= user.nome %></span>
+<span>Endereço: <%= user.rua%> , <%= user.numero %>.</span>
+
+<span>Bairro:<%= user.bairro %></span>
+
+<span>Cidade:<%= user.cidade %> - <%= user.complemento %>.</span>
+
+<span>
+
+    CEP:<%= user.cep %>
+</span>
+
+<a href="./editarcartoes/<%=user.id%>" class="editar1">Editar</a>
+
+<a href="./adicionarendereco <%=user.adicionarendereco%>" class="deletar">Deletar</a>
+
+
+</main>
+<button class="cartoes1" type="submit" > <a href="../adicionarcartoes">
+    CADASTRAR NOVO CARTÃO</button>
+  </a>
+
+  
+
+
+
+</main>
+ 
+   
 <%- include('./partials/footerusuario')%>
+
+
+
+
+
+
+
+
 
 
 

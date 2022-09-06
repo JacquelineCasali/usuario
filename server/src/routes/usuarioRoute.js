@@ -11,6 +11,8 @@ var meuspedidosController=require("../controllers/meuspedidosController")
 // patch/put -atualizar dados
 // delete - deletar dados 
 router.get("/",usuarioController.index);
+
+
 router.get("/meuscreditos",meuscreditosController.index);
 router.get("/meuspedidos",meuspedidosController.meuspedidos);
 router.get("/enderecos/",enderecoController.endereco);
@@ -20,29 +22,41 @@ router.get("/cartoes/adicionarcartoes",cartoesController.index);
 
 router.get("/:id",usuarioController.show);
 router.get("/cartoes/:id",cartoesController.show);
-router.get( "/enderecos/:id",enderecoController.show);
+router.get("/enderecos/:id",enderecoController.show);
 router.get("/meuspedidos/:id",meuspedidosController.show);
 router.get("/meuscreditos/:id",meuscreditosController.show);
 
 
-router.post("/cartoes/adicionarcartoes",cartoesController.create);
-router.post("/enderecos/adicionarendereco",enderecoController.create);
+router.get("/enderecos/adicionarendereco",enderecoController.create);
+router.post('/enderecos/adicionarendereco',enderecoController.store)
+
+
+router.get("/cartoes/adicionarcartoes",cartoesController.create);
+router.post("/cartoes/adicionarcartoes",cartoesController.store);
+
 
 
 router.patch("/:id",usuarioController.update);
-router.patch("/cartoes/adicionarcartoes/:id",cartoesController.update);
-// router.patch("/enderecos/adicionarendereco/:id",enderecoController.update);
+
+
+
+
+router.get("/cartoes/editarcartoes/:id",cartoesController.edit);
+router.put("/cartoes/editarcartoes/:id",cartoesController.update);
+router.patch("/cartoes/editarcartoes/:id",cartoesController.update);
+
+router.patch("/enderecos/adicionarendereco/:id",enderecoController.update);
 
 
 
 router.put("/:id",usuarioController.update);
 router.put("/cartoes/adicionarcartoes/:id",cartoesController.update);
-// router.put("/enderecos/adicionarendereco/:id",enderecoController.update);
+router.put("/enderecos/adicionarendereco/:id",enderecoController.update);
 
 
 router.delete("/:id",usuarioController.delete);
 router.delete("/cartoes/adicionarcartoes/:id",cartoesController.delete);
-// router.delete("/enderecos/adicionarendereco/:id",enderecoController.delete);
+router.delete("/enderecos/adicionarendereco/:id",enderecoController.delete);
 
 
 

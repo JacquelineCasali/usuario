@@ -33,7 +33,7 @@ show:(req,res)=>{
          // mensagem de erro
         .status(400) 
            
-        .send("Nenhum Usuário Encontrado")
+        .render("Nenhum Usuário Encontrado")
              
           }
     return res 
@@ -45,33 +45,32 @@ show:(req,res)=>{
 },
 
 // CREATE - Criar um usuario
-    create:(req,res)=>{ 
-    const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
-    }=req.body;
-    // para validação
-    // ! é negação 
-    //  condicional ou
-    if(!nomeCompleto|| !CPF ||!email ||!novoEmail ||!ConfirmaçãoNovoEmail){
-    return res.status(404)
-    .json({message:"Preencha todos os campos"})
-    }
-    users.push({
-    // length pega a quantidade de usuarios e soma 1
-    id:users.length + 1,
-    nomeCompleto,
-    CPF,
-    telefonePrincipal,
-    RG,
-    celular,
-    email,novoEmail,ConfirmaçãoNovoEmail
-    })
-     res.status(201).json({Messange: "Usúario Criado com Sucesso"});
-},
+//     create:(req,res)=>{ 
+//     const {nome, cpf,telefonePrincipal, rg, celular,email,novoEmail,confirmaçãoEmail
+//     }=req.body;
+//     // para validação
+//     // ! é negação 
+//     //  condicional ou
+//     if(!nome|| !cpf ||!email ||!telefonePrincipal ||!rg || !celular ||!email ||!novoEmail ||!confirmaçãoEmail){
+//     return res.status(404)
+//     .json({message:"Preencha todos os campos"})
+//     }
+//     users.push({
+//     // length pega a quantidade de usuarios e soma 1
+//     id:users.length + 1,
+//     Completo,
+//     CPF,
+//     telefonePrincipal,
+//     RG,
+//     celular,
+//     email,novoEmail,ConfirmaçãoNovoEmail
+//     })
+//      res.status(201).json({Messange: "Usúario Criado com Sucesso"});
+// },
 // update-atualizar um usuario
     update:(req,res)=>{
     const {id}= req.params
-    const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
-    }=req.body;
+    const {nome, cpf,telefonePrincipal, rg, celular,email,novoEmail,confirmaçãoEmail}=req.body;
     const result= users.find((users)=>
     users.id===parseInt(id));
     if(!result){
@@ -80,14 +79,14 @@ show:(req,res)=>{
         .json({message:"Nenhum usuário encontrado"})
     }
 const newUser=result;
-if(nomeCompleto) newUser.nomeCompleto=nomeCompleto;
-if(CPF) newUser.CPF=CPF;
+if(nome) newUser.nome=nome;
+if(cpf) newUser.cpf=cpf;
 if(telefonePrincipal) newUser.telefonePrincipal=telefonePrincipal;
-if(RG) newUser.RG=RG;
+if(rg) newUser.rg=rg;
 if(celular) newUser.celular=celular;
 if(email) newUser.email=email;
 if(novoEmail) newUser.novoEmail=novoEmail;
-if(ConfirmaçãoNovoEmail) newUser.ConfirmaçãoNovoEmail=ConfirmaçãoNovoEmail;
+if(confirmaçãoEmail) newUser.confirmaçãoEmail=confirmaçãoEmail;
 return res.status(200).json({message:"Atualização realizada com sucesso"})
     
 },

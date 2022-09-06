@@ -9,18 +9,16 @@
      </div>
 
     <!--meus dados  -->
-<form action="/usuarios" method="post">   
+<form action="" method="post">   
 <div class="row">
 <div class="coluna2">
-
-    <% if(locals.user){ %>                         
+                 
 <label for="nome">Nome Completo :</label>
-<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required value="<%= user.nomeCompleto %>">
-                                                                                              
-
+<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required value="<%= user.nome %>">
+    
 <label for="cpf"> CPF :</label>
 
-<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required value="<%= user.CPF %>">
+<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required value="<%= user.cpf %>">
                                 
 <label for="telefone">Telefone Principal :</label>
 
@@ -155,24 +153,20 @@
         
 <input type="text" class="instabarra" id="Instagram" name="Instagram">
 
+<button class="usuario" type="submit" > <a href="/">
+    SALVAR DADOS </button>
+    </a>  
 
 </form>  
 
     
    
-<!-- <input class="botao" type="submit" value="SALVAR DADOS"/> -->
 
-<button class="usuario" type="submit" > <a href="./">
-SALVAR DADOS </button>
-</a>           
+         
  </div>
- <%}else{%>
- <h2 class="error-alert">Usuários não Cadastrado</h2>
-
-<%}%>
 
 </main>
-
+<%- include('./partials/footerusuario')%>
 
 
 

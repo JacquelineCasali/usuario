@@ -8,17 +8,13 @@
             <!-- Tela lateral -->
       <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Endereços</h3> 
 <main id="user">
-   
-    
-   
+ 
+<span><%= user.nome %></span>
+<span>Endereço: <%= user.rua%> , <%= user.numero %>.</span>
 
+<span>Bairro:<%= user.bairro %></span>
 
-<span><%= user.nomeCompleto %></span>
-<span>Endereço: <%= user.Rua%> , <%= user.Numero %>.</span>
-
-<span>Bairro:<%= user.Bairro %></span>
-
-<span>Cidade:<%= user.Cidade %> - <%= user.Complemento %>.</span>
+<span>Cidade:<%= user.cidade %> - <%= user.complemento %>.</span>
 
 <span>
 

@@ -11,7 +11,7 @@
 <body> 
     <header>
         <!-- a href linkar  -->
-        <a href="../">
+        <a href="/">
             <!-- img importa imagem alt escreve mensagem quando a imagem nao aparece  -->
         <img src="/images/icones/cabeçalho usuario.png" width="100%"  max-width="100%" alt="Imagen não encontrada">
         </a>
@@ -44,6 +44,8 @@
 
   <%} else {%>
     <img class="foto-perfil"src="/images/icones/imagemperfil.webp" alt="Imagem de perfil">
+    <input type="file" name="arquivos" class="btn btn-success" accept="image/png, image/jpeg" />
+
     <%} %>  
         <nav>
            
@@ -75,7 +77,7 @@
         <a href="/MinhaConta/cartoes/1"class="sel">Meus Cartões</a></li>
     
     <li><img class="incones" src="/images/icones/sair.png" alt="Imagen não encontrada">
-        <a href="../"class="sel">Sair</a></li>
+        <a href="/"class="sel">Sair</a></li>
     
 </ul>
             </nav>

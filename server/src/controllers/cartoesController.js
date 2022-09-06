@@ -29,33 +29,60 @@ show:(req,res)=>{
     
     
 },
+
+create:(req,res)=>{
+
+    return res.render("adicionarcartoes",{title:"Cadastrar Cartão"})
+    
+    },
+
 // CREATE - Criar um usuario
-    create:(req,res)=>{ 
-    const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
-    }=req.body;
+store:(req,res)=>{ 
+    const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
     // para validação
     // ! é negação 
     //  condicional ou
-    if(!nomeCompleto|| !CPF ||!email ||!novoEmail ||!ConfirmaçãoNovoEmail){
-    return res.status(404)
-    .json({message:"Preencha Todos Os Campos"})
+    if(!nome|| !cpf ||!telefonePrincipal ||!cvc ||!cartao){
+        return res.render ("adicionarcartoes",{
+            title:"Cadastrar Cartões",
+            error:{
+            message:"Preencha todos os campos!",}
+    
+        })
     }
     users.push({
     // length pega a quantidade de usuarios e soma 1
     id:users.length + 1,
-    nomeCompleto,
-    CPF,
-    telefonePrincipal,
-    RG,
-    celular,
-    email,novoEmail,ConfirmaçãoNovoEmail
+    nome, cpf, telefonePrincipal,  cvc,  cartao  
+     })
+    
+     return res.render("Success",{
+        title:"Cartão Cadastrado",
+        message:"Cartão Cadastrado com Sucesso",
     })
-     res.status(201).json({Messange: "Cartão Criado Com Sucesso"});
+
+    },
+// editar
+edit:(req,res)=>{
+const {id}=req.params;
+const userResult=users.find((user)=>user.id===parseInt(id));
+if(!userResult){
+    return res.render ("error",{
+        title:"Ops!",
+        message:"Nenhum Cartão encontrado",
+    });
+}
+return res.render("editarcartoes",{
+    title: "Editar Cartão",
+    user:userResult,
+})
 },
+
+
 // update-atualizar um usuario
     update:(req,res)=>{
     const {id}= req.params
-    const {nomeCompleto, CPF,telefonePrincipal, RG, celular,email,novoEmail,ConfirmaçãoNovoEmail
+    const {nome, cpf,telefonePrincipal, cvc,cartao
     }=req.body;
     const result= users.find((users)=>
     users.id===parseInt(id));
@@ -65,16 +92,15 @@ show:(req,res)=>{
         .json({message:"Nenhum Cartão Encontrado"})
     }
 const newUser=result;
-if(nomeCompleto) newUser.nomeCompleto=nomeCompleto;
-if(CPF) newUser.CPF=CPF;
+if(nome) newUser.nome=nome;
+if(cpf) newUser.cpf=cpf;
 if(telefonePrincipal) newUser.telefonePrincipal=telefonePrincipal;
-if(RG) newUser.RG=RG;
-if(celular) newUser.celular=celular;
-if(email) newUser.email=email;
-if(novoEmail) newUser.novoEmail=novoEmail;
-if(ConfirmaçãoNovoEmail) newUser.ConfirmaçãoNovoEmail=ConfirmaçãoNovoEmail;
-return res.status(200).json({message:"Atualização Realizada Com Sucesso"})
-    
+if(cvc) newUser.cvc=cvc;
+if(cartao) newUser.cartao=cartao;
+return res.render("success", {
+    title: "Cartão atualizado",
+    message: `Cartão ${newUser.nome} atualizado com sucesso`,
+  });    
 },
 // delete - deletar um usuario
 delete:(req,res)=>{ 

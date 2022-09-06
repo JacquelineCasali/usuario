@@ -10,16 +10,20 @@
                 <!-- Tela lateral -->
           <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Endereços</h3> 
             </div>            <!--meus dados  -->
+        
+            
+            <% if (locals.error) {%>
+                <h2 class="error-alert"><%= error.message%></h2>
+                    <%}%>       
            
-           
-            <form action="/enderecos/adicionarendereco" method="post">   
-                <!-- <div class="row"> -->
+            <form action="" method="post">   
+                <!-- <div class="row"> -->  
                   
                     <div class="coluna2">
                         
         <label for="nome do destinatário">Nome do Destinatário:</label>
                         
-        <input type="text" class="coluna22"  id="nome do destinatário" name="nome do destinatário" placeholder="Digite o nome do destinatário">
+        <input type="text" class="coluna22"  id="nome " name="nome" placeholder="Digite o nome do destinatário">
                         
                                           
                     </div>
@@ -33,51 +37,41 @@
                                           
              <label  for="Rua">Rua :</label>
                                     
-            <input type="text" class="coluna22" id="Rua" name="Rua">
+            <input type="text" class="coluna22" id="rua" name="rua">
              </div>        
              <div class="coluna2">
 
                 <label  for="Bairro">Bairro :</label>
                                     
-                <input type="text" class="coluna22" id="Bairro" name="Bairro">
+                <input type="text" class="coluna22" id="bairro" name="bairro">
             
                 <label  for="Numero">Numero :</label>
                                     
-                <input type="text" class="coluna22" id="Numero" name="Numero">
+                <input type="text" class="coluna22" id="numero" name="numero">
             
 </div>
 <div class="coluna3">
 
     <label  for="Cidade">Cidade/Estado :</label>
                                     
-                <input type="text" class="coluna22" id="Cidade" name="Cidade">
+                <input type="text" class="coluna22" id="cidade" name="cidade">
             
     <label  for="Complemento">Complemento :</label>
                         
-    <input type="text" class="coluna22" id="Complemento" name="Complemento">
+    <input type="text" class="coluna22" id="complemento" name="complemento">
 
 </div>
          
               
-            </div>
-        </form>
-            <button class="endereco" type="submit" > <a href="./">
-                    SALVAR ENDEREÇO </button>
-                </a>
-               
-     
-                           
-
-            </div>
-
-                </div>  
-                
-         </div>        
           
-           
+       
+            <button class="endereco" type="submit" >
+                    SALVAR ENDEREÇO </button>
+               
+               
+                               
 
-             
-         </div>
+        </form>
         </main>
     </section>
     
