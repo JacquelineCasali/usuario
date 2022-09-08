@@ -12,6 +12,9 @@ var adminProductRouter = require('./server/src/routes/adminProductsRoute');
 var usuarioRoute = require('./server/src/routes/usuarioRoute');
 var paymentRouter = require('./server/src/routes/paymentRoute');
 var cadastroRoute= require('./server/src/routes/cadastroRoute');
+
+
+
 var app = express();
 
 // view engine setup
@@ -35,6 +38,8 @@ app.use('/admin-produtos', adminProductRouter);
 app.use('/MinhaConta', usuarioRoute);
 app.use('/finalizacao',paymentRouter);
 app.use('/cadastro',cadastroRoute);
+
+
 
 
 // catch 404 and forward to error handler

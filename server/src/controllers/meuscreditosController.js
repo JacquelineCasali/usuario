@@ -12,11 +12,14 @@ const meuscreditosController={
 
 
 show:(req,res)=>{
-    const {id}=req.params;
-    const userResult=users.find(user=>user.id===parseInt(id));
-    if(!userResult){
+    const { id }= req.params
+    const userResult=users.find((user)=>{
+       return user.id === parseInt(id);
+     })
+
+     if(!userResult){
         return res 
-        .render("Creditos não entcontrado")
+        .send("Meus Creditos não entcontrado")
      }
         return res 
    
@@ -28,10 +31,6 @@ show:(req,res)=>{
 }
     
   
-
-
-
-
 
  module.exports=meuscreditosController;
  

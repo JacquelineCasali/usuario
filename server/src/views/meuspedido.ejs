@@ -8,7 +8,7 @@
       <!-- link com angora volta onde quer id -->
 <h3 class="fontebarra" id="titulo-Meus Créditos">Meus Pedidos</h3> 
   </div>
- 
+  <% if (users.length>0) {%>
   <div class="table-container">
 <table>
  <thead>
@@ -24,14 +24,17 @@
   
 
   <tr>
-  
+    <td><%= user.pedido%></td>
+    <td><%= user.status %></td>
+    <td><%= user.data %></td>
+    <td><%= user.valor %> </td>
     <td class="table-actions">
-      <a href="/MinhaConta/" class="table-link-show"> Visualizar Pedido</a>
+      <a href="/MinhaConta/<%= user.id%>" class="table-link-show"> Visualizar Pedido</a>
     </td>
 
   </tr>
 
-
+<%}%>
   
  </tbody>
 </table>
@@ -39,9 +42,9 @@
     
   </div>
 
- 
- 
-
+  <%}else{ %>
+    <h2 class="error-alert">Nenhum usuário encontrado </h2>
+<%} %>
 
 
 </main>

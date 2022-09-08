@@ -48,7 +48,7 @@ return res.render("adicionarendereco",{title:"Cadastrar Endereço"})
     // para validação
     // ! é negação 
     //  condicional ou
-    if(!nome|| !cep|| !rua|| !bairro|| ! cidade|| !numero|| !complemento ){
+    if(!nome|| !cep|| !rua|| !bairro|| ! cidade|| !numero|| complemento ){
         return res.render ("adicionarendereco",{
             title:"Cadastrar Endereço",
             error:{
@@ -75,18 +75,36 @@ return res.render("adicionarendereco",{title:"Cadastrar Endereço"})
             message:"Endereço Criado com Sucesso",
         })   
 },
-// update-atualizar um usuario
+edit:(req,res)=>{
+const {id} = req.params;
+const userResult = users.find((user) => user.id === parseInt(id))
+if (!userResult){
+    return res.render("error", {
+        title: "Ops!",
+        message: "Nenhum Endereço encontrado",
+      });
+        
+}
+return res.render("editarendereco", {
+    title: "Editar Endereço",
+    user: userResult,
+  });
+},
+
+
+// update-atualizar um endereco
     update:(req,res)=>{
     const {id}= req.params
     const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
-    const result= users.find((users)=>
+    const userResult= users.find((users)=>
     users.id===parseInt(id));
-    if(!result){
-        return res
-        .status(400)
-        .json({message:"Nenhum Endereço Encontrado"})
-    }
-const newUser=result;
+    if (!userResult){
+        return res.render("error", {
+            title: "Ops!",
+            message: "Nenhum Endereço encontrado",
+          });
+        }
+const newUser=userResult;
 if(nome) newUser.nome=nome;
 if(cep) newUser.cep=cep;
 if(rua) newUser.rua=rua;
@@ -94,23 +112,44 @@ if(bairro) newUser.bairro=bairro;
 if(cidade) newUser.cidade=cidade;
 if(numero) newUser.numero=numero;
 if(complemento) newUser.complemento=complemento;
-return res.status(200).json({message:"Atualização Realizada Com Sucesso"})
-
+return res.render("success", {
+    title: "Endereço atualizado",
+    message: `Endereço do usuáro ${newUser.nome} atualizado com sucesso`,
+  });
 },
 // delete - deletar um usuario
 delete:(req,res)=>{ 
-    const {id}= req.params;
-    const result= users.findIndex((users)=>
-    users.id===parseInt(id));
-    if(result===-1){
-        return res
-        .status(400)
-        .json({message:"Nenhum Endereço Encontrado"})
-    }
-users.splice(result,1);
-return res
-.status(200)
-.json({message:"Endereço Deletado Com Sucesso"})
+        const {id} = req.params;
+        const userResult = users.find((user) => user.id === parseInt(id))
+        if (!userResult){
+            return res.render("error", {
+                title: "Ops!",
+                message: "Nenhum Endereço encontrado",
+              });
+                
+        }
+        return res.render("deletarenderecos", {
+            title: "Deletar Endereço",
+            user: userResult,
+          });
+        },
+         
+
+        destroy:(req,res)=>{
+const {id}=req.params;
+const userResult =users.findIndex((user)=>user.id===parseInt(id))
+if(userResult === -1){
+    return res.render("error", {
+        title: "Ops!",
+        message: "Nenhum Cartão Cadastrado",
+      });
+}  
+users.splice(userResult,1)
+return res.render("success",{
+    title:"Usuário deletado",
+    message: "Cartão deletado com sucesso!"
+  })
+
 },
 save:(req,res)=>{
     const {id,name}= req.params;

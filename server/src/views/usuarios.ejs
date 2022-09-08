@@ -1,174 +1,94 @@
-<%- include('./partials/usuariomenu')%>
-    
-<main class="main_content">
 
-    <div class="codigo">
-        <!-- Tela lateral -->
-             
-<h3 class="fontebarra" id="titulo-Meus Dados">Meus Dados</h3> 
-     </div>
-
-    <!--meus dados  -->
-<form action="" method="post">   
-<div class="row">
-<div class="coluna2">
-                 
-<label for="nome">Nome Completo :</label>
-<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required value="<%= user.nome %>">
-    
-<label for="cpf"> CPF :</label>
-
-<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required value="<%= user.cpf %>">
-                                
-<label for="telefone">Telefone Principal :</label>
-
-<input type="tel"  class="coluna22" id="telefone" name="telefone" value="<%= user.telefonePrincipal %>" >
-
-<label for="Data">Data de nascimento :</label>
-                
-<input type="date" class="coluna22" id="Data" name="Data" required >                          
-</div>
-
-<div class="coluna3">
-
-<label for="sexo" >Sexo :</label>
-
-<div class="textocirculo">
-    <div class="textocirculo1"> 
-    <input type="radio" id="Feminino"  name="sexo"  value="Feminino"  required
-  <% if (user.sexo=="Feminino"){%>
+  <link rel="stylesheet" href="/stylesheets/123.css">
+<main id="user-list">
+    <h1>Lista de Usuários</h1>
    
-   checked
-    <%}%>
-    >
-     <label  for="sexo">Feminino</label>
-    
-</div>
-    <div class="textocirculo1"> 
-    <input type="radio"  id="Masculino" name="sexo" value="Masculino" required
-    <% if (user.sexo=="Masculino"){%>
-   
-        checked
-         <%}%>>
-    
-    <label for="sexo">Masculino</label>
-    </div>
-    <input type="radio"  id="Não Informado" name="sexo" value="Não Informado" required
-    <% if (user.sexo=="Não Informado"){%>
-   
-        checked
-         <%}%>>
-    
-    <label for="sexo">Não Informado</label>
-</div>
+   <!-- verificação  -->
+   <% if (users.length>0) {%>
 
-<label for="rg">RG:</label>
+    <div class="table-container">
+      <table >
+        <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <TH>Telefone Principal</TH>
+                <th>Celular</th> 
+              <TH>Data de nascimento</TH>
+              <TH>Sexo</TH>
+              <th>RG</th>
+              <th>Receber Newsletter</th>
+              <th>E-mail</th>
+              <th>Instagram</th>
 
-<input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG" value="<%= user.RG %>">  
-
-<label for="telefone">Celular:</label>
-
-<input type="tel"  class="coluna22" id="telefone" name="telefone" size="14" maxlength="14" value="<%= user.celular %>">
-
-<label for="Receber">Receber Newsletter:</label>
-
-
-<div class="textocirculo">
-    <input type="radio" id="sim" name="Receber"  value="Receber" required
-    <% if (user.receber=="sim"){%>
-   
-        checked
-         <%}%>
-    
-    
-    
-    <label for="Receber">Não</label>
-    <input type="radio" id="Não" name="Receber" value="Receber" required
-    <% if (user.receber=="Não"){%>
-   
-        checked
-         <%}%>
-    >
-       
-    <label for="Receber">Não</label>
-</div>
-</div>
-</div>
-
-<h3 class="fontebarra" id="titulo-Alterar E-mail">Alterar E-mail:</h3>
-<div class="e">
-<div class="coluna2">
-
-<label  for="E-mail Atual">E-mail Atual:</label>
-
-<input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual" value="<%= user.email %>">
-</div>
-</div>
-
-<div class="coluna2">
-
-
-<label for="Novo E-mail">Novo E-mail:</label>
-
-<input type="email" class="coluna22"  id="Novo E-mail" name="Novo E-mail" placeholder="Digite seu Novo E-mail" >
-</div>   
-<div class="coluna3">
-
-<label for="Confirmação do Novo E-mail">Confirmação do Novo E-mail:</label>
-
-<input type="email"  class="coluna22" id="Confirmação do Novo E-mail" name="Confirmação do Novo E-mail" placeholder="Confirme seu Novo Email"  >
-
-</div>
-
-<h3 class="fontebarra" id="titulo-Alterar Senha">Alterar Senha:</h3>
-
-<div class="e">
-<div class="coluna2">
-
-
-<label  for="Senha Atual">Senha Atual:</label>
-<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual">
-</div>
-</div>
-
-<div class="coluna2">
-
-
-<label for="Nova Senha">Nova Senha:</label>
-
-<input type="password" class="coluna22"  id="Nova Senha" name="novapassword" placeholder="Digite sua Nova Senha">
-</div>   
-<div class="coluna3">
-
-<label for="confirm-password">Confirmação da Nova Senha :</label>
-
-<input type="password"  class="coluna22" id="Confirmação da Nova Senha" name="confirmpassword"  placeholder="Confirme sua Nova Senha" >
-
-</div>
-
-
-<h3 class="instatexto">Instagram</h3>
-
-<label class="insta" for="Instagram">Instagram </label>
-        
-<input type="text" class="instabarra" id="Instagram" name="Instagram">
-
-<button class="usuario" type="submit" > <a href="/">
-    SALVAR DADOS </button>
-    </a>  
-
-</form>  
-
-    
-   
-
+              <th>Pedido</th>
+              <th>Status</th>
+              <TH>Data</TH>
+                <th>Valor</th> 
+              <th>Ação</th>
+<!-- <th>cep</th>
+<th>rua</th>
+<th>bairro</th>
+<th>cidade</th>
+<th>numero</th>
+<th>complemento</th>
+<th>cartao</th> -->
+            </tr>
+        </thead>
+        <tbody>
+<!-- variavel no plural no for of vem para o singular -->
+    <% for (let user of users){%>
+            <!--conteudo daqui roda a quantidade de vezes da variavel  -->
+      <!-- trabalhando com for  nao pode ter id  -->
+            <tr>
          
- </div>
+                <td><%= user.nome %> </td>
+                <td><%= user.cpf %></td>
+                <td><%= user.telefonePrincipal %></td>
+               
+                <td><%= user.celular %> </td>
+                <td><%= user.nascimento %> </td>
+                    <td><%= user.sexo %></td>
+                    <td><%= user.rg %></td>           
+                    
+                    <td><%= user.receber %></td>
+                    <td><%= user.email %></td>
+                    
+                <td><%= user.instagram %></td>
+
+               
+  <!-- <td><%= user.nome %>cep</td>
+  <td><%= user.nome %>rua</td>
+  <td><%= user.nome %>bairro</td>
+  <td><%= user.nome %>cidade</td>
+  <td><%= user.nome %>numero</td>
+  <td><%= user.nome %>complemento</td>
+  <td><%= user.nome %>cartao</td> -->
+  <td><%= user.pedido%> </td>
+  <td><%= user.status %></td>
+  <td><%= user.data %></td>
+ 
+  <td><%= user.valor %> 
+
+
+                
+                <td class="table-actions">
+                    <a href="/MinhaConta/<%= user.id%>" class="table-link-show"> Visualizar</a>
+                    <a href="/MinhaConta/<%= user.id%>" class="table-link-edit" >Editar</a>
+                    <a href="/MinhaConta/<%= user.id%>" class="table-link-delete" >Excluir</a>
+                </td>
+            </tr>
+            <%}%>
+        </tbody>
+    </table>
+</div>
+<%}else{ %>
+    <h2 class="error-alert">Nenhum usuário encontrado </h2>
+<%} %>
+
+
 
 </main>
-<%- include('./partials/footerusuario')%>
-
-
 
 
 

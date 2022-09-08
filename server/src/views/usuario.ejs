@@ -1,0 +1,154 @@
+<%- include('./partials/usuariomenu')%>
+    
+<main class="main_content">
+
+    <div class="codigo">
+        <!-- Tela lateral -->
+             
+<h3 class="fontebarra" id="titulo-Meus Dados">Meus Dados</h3> 
+     </div>
+
+    <!--meus dados  -->
+<form action="" method="post">   
+<div class="row">
+<div class="coluna2">
+                 
+<label for="nome">Nome Completo :</label>
+<input type="text" class="coluna22" id="nome" name="nome" placeholder="Digite seu nome" required value="<%= user.nome %>">
+    
+<label for="cpf"> CPF :</label>
+
+<input type="text" class="coluna22"  id="cpf" name="cpf" minlength="11" maxlength="14" placeholder="Digite seu cpf" required value="<%= user.cpf %>">
+                                
+<label for="telefone">Telefone Principal :</label>
+
+<input type="tel"  class="coluna22" id="telefone" name="telefone" value="<%= user.telefonePrincipal %>" >
+
+<label for="Data">Data de nascimento :</label>
+                
+<input type="date" class="coluna22" id="Data" name="Data" required >                          
+</div>
+
+<div class="coluna3">
+
+<label for="sexo" >Sexo :</label>
+
+<div class="textocirculo">
+    <div class="textocirculo1"> 
+    <input type="radio" id="Feminino"  name="sexo"  value="Feminino"  required
+  <% if (user.sexo=="Feminino"){%>
+   
+   checked
+    <%}%>
+    >
+     <label  for="sexo">Feminino</label>
+    
+</div>
+    <div class="textocirculo1"> 
+    <input type="radio"  id="Masculino" name="sexo" value="Masculino" required
+    <% if (user.sexo=="Masculino"){%>
+   
+        checked
+         <%}%>>
+    
+    <label for="sexo">Masculino</label>
+    </div>
+    <input type="radio"  id="Não Informado" name="sexo" value="Não Informado" required
+    <% if (user.sexo=="Não Informado"){%>
+   
+        checked
+         <%}%>>
+    
+    <label for="sexo">Não Informado</label>
+</div>
+
+<label for="rg">RG:</label>
+
+<input type="text" class="coluna22" id="RG" name="RG" placeholder="Digite seu RG" value="<%= user.RG %>">  
+
+<label for="telefone">Celular:</label>
+
+<input type="tel"  class="coluna22" id="telefone" name="telefone" size="14" maxlength="14" value="<%= user.celular %>">
+
+<label for="Receber">Receber Newsletter:</label>
+
+
+<div class="textocirculo">
+    <input type="radio" id="sim" name="Receber"  value="Receber" required
+    <% if (user.receber=="sim"){%>
+   
+        checked
+         <%}%>
+    
+    
+    
+    <label for="Receber">Não</label>
+    <input type="radio" id="Não" name="Receber" value="Receber" required
+    <% if (user.receber=="Não"){%>
+   
+        checked
+         <%}%>
+    >
+       
+    <label for="Receber">Não</label>
+</div>
+</div>
+</div>
+
+<h3 class="fontebarra" id="titulo-Alterar E-mail">Alterar E-mail:</h3>
+
+<div class="coluna2">
+
+
+    <label  for="E-mail Atual">E-mail Atual:</label>
+
+    <input type="email" class="coluna22" id="email" name="email" placeholder="E-mail Atual" value="<%= user.email %>">
+</div>   
+<div class="coluna3">
+
+    <a href="./editaremail/<%=user.id%>" class="editarusuario">Editar</a>
+
+</div>
+
+<h3 class="fontebarra" id="titulo-Alterar Senha">Alterar Senha:</h3>
+
+<div class="coluna2">
+
+<label  for="Senha Atual">Senha Atual:</label>
+<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual"
+value="<%= user.senha %>">
+    
+</div>   
+<div class="coluna3">
+
+    <a href="./editarsenha/<%=user.id%>" class="editarusuario">Editar</a>
+
+
+</div>
+
+
+<h3 class="instatexto">Instagram</h3>
+
+<label class="insta" for="Instagram">Instagram </label>
+        
+<input type="text" class="instabarra" id="Instagram" name="Instagram">
+
+<button class="usuario" type="submit" > <a href="/">
+    SALVAR DADOS </button>
+    </a>  
+
+</form>  
+
+    
+   
+
+         
+ </div>
+
+</main>
+
+
+
+
+
+

@@ -20,12 +20,13 @@ show:(req,res)=>{
 
      if(!userResult){
         return res 
-        .render("Cartão não entcontrado")
+        .send("Cartão não entcontrado")
      }
-        return res 
-   
-        .render("cartoes",{title:"Visualizar Cartão",
-        user:userResult} )
+     return res 
+     .status(400)
+     .render("cartoes",{title:"Visualizar Endereço",
+     user:userResult} )
+     
     
     
 },
@@ -42,7 +43,7 @@ store:(req,res)=>{
     // para validação
     // ! é negação 
     //  condicional ou
-    if(!nome|| !cpf ||!telefonePrincipal ||!cvc ||!cartao){
+    if(!nome|| !cpf || telefonePrincipal ||!cvc ||!cartao){
         return res.render ("adicionarcartoes",{
             title:"Cadastrar Cartões",
             error:{
@@ -81,17 +82,19 @@ return res.render("editarcartoes",{
 
 // update-atualizar um usuario
     update:(req,res)=>{
-    const {id}= req.params
+      const {id}= req.params
     const {nome, cpf,telefonePrincipal, cvc,cartao
     }=req.body;
-    const result= users.find((users)=>
-    users.id===parseInt(id));
-    if(!result){
-        return res
-        .status(400)
-        .json({message:"Nenhum Cartão Encontrado"})
+    const userResult= users.find((user)=>
+    user.id===parseInt(id));
+    if(!userResult){
+    return res.render ("error",{
+     title:"Ops!",
+     message:"Nenhum Cartão encontrado",
+        });
+
     }
-const newUser=result;
+const newUser=userResult;
 if(nome) newUser.nome=nome;
 if(cpf) newUser.cpf=cpf;
 if(telefonePrincipal) newUser.telefonePrincipal=telefonePrincipal;
@@ -102,30 +105,46 @@ return res.render("success", {
     message: `Cartão ${newUser.nome} atualizado com sucesso`,
   });    
 },
+// delete - deletar um cartão
+
 // delete - deletar um usuario
 delete:(req,res)=>{ 
-    const {id}= req.params;
-    const result= users.findIndex((users)=>
-    users.id===parseInt(id));
-    if(result===-1){
-        return res
-        .status(400)
-        .json({message:"Nenhum Cartão Encontrado"})
+    const {id} = req.params;
+    const userResult = users.find((user) => user.id === parseInt(id))
+    if (!userResult){
+        return res.render("error", {
+            title: "Ops!",
+            message: "Nenhum Cartão encontrado",
+          });
+            
     }
-users.splice(result,1);
-return res
-.status(200)
-.json({message:"Cartão Deletado Com Sucesso"})
-},
-save:(req,res)=>{
-    const {id,name}= req.params;
-    if(name){
-        res.send(`Save ${id} e ${name}`);
-    } else{
-        res.send(`Save ${id}`);
+    return res.render("deletarcartao", {
+        title: "Deletar Cartão",
+        user: userResult,
+      });
+    },
+     
+
+    destroy:(req,res)=>{
+    const { id } = req.params;
+    const userResult =users.findIndex((user)=>user.id===parseInt(id))
+if(userResult === -1){
+  
+
+    return res.render("error", {
+        title: "Ops!",
+        message: "Nenhum Cartão Cadastrado",
+      });
+}
+
+users.splice(userResult,1)
+
+return res.render("success",{
+  title:"Usuário deletado",
+  message: "Cartão deletado com sucesso!"
+})
+}
     }
-    }
-};
 
 
 
