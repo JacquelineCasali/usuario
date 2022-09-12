@@ -1,5 +1,8 @@
+
 <%- include('./partials/usuariomenu')%>
-    
+
+
+   
 <main class="main_content">
 
     <div class="codigo">
@@ -9,7 +12,7 @@
      </div>
 
     <!--meus dados  -->
-<form action="" method="post">   
+<form action="" method="post" enctype="multipart/form-data">   
 <div class="row">
 <div class="coluna2">
                  
@@ -115,8 +118,8 @@
 <div class="coluna2">
 
 <label  for="Senha Atual">Senha Atual:</label>
-<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual"
-value="<%= user.senha %>">
+<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Preencha Sua Senha Atual Aqui"
+>
     
 </div>   
 <div class="coluna3">
@@ -147,6 +150,7 @@ value="<%= user.senha %>">
 
 </main>
 
+<%- include('./partials/footerusuario')%>
 
 
 

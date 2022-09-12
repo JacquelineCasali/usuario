@@ -136,6 +136,16 @@ li{
   
 }
 
+.incones2{
+  object-fit: contain;
+  /* line-height:10px; */
+  width: 15%;
+  position: absolute;
+  right: 3px;
+  margin: 5px;
+  /* margin-top: 25px; */
+}
+
   /*formatando o texto   */
   li a{
       /* alinhamento do texto */
@@ -164,7 +174,7 @@ ul li a:hover{
  section main.main_content{
   width: 100%;
   float:none;
- margin-left: 10px;
+ /* margin-left: 10px; */
   
  
            }
@@ -182,7 +192,7 @@ padding-top: 5px;
 
 } 
 h3.fontebarra{
-margin-top: 10px;
+margin-top: 30px;
 /* padding: 0 5px 10px 5px; */
 margin-bottom: 23px;
 padding: 0;
@@ -258,10 +268,42 @@ margin-top: 18px;
     float: left;
     clear: both;
      margin-top: 0;
-     /* padding:32px 15px; 
-     box-sizing: border-box; */
-      
+     /* padding:32px 15px;  */
+     box-sizing: border-box;
+   
+      /* border: 2px solid black; */
   }
+
+  
+
+
+span.imagem2{
+
+  width: 50%;
+  padding-left:75px ;
+
+}
+
+
+#user1
+{
+  background: #fff;
+  width: 100%;
+  display: flex;
+  position: relative;
+  float: center;
+   flex-direction: column;
+  align-items: center;
+ /* justify-content: center; */
+  text-transform: capitalize;
+   margin-bottom: 20px;
+
+} 
+
+
+
+
+
 .instatexto{
 margin-bottom: 15px;
 margin-top: 10px;
@@ -375,6 +417,11 @@ p{
   margin-bottom: 25px;
 
 }
+h2{
+  margin-bottom: 5px;
+  font-size: 1rem;
+  border-bottom: 3px solid #e5e5e5;
+}
 
 /* endereco */
 
@@ -400,9 +447,9 @@ p{
   font-size: 1.5rem;
    color: green;
    width: 100%;
-   margin-top: 50px;
+   margin-top: 10px;
    margin-right: 50px;
-   padding: 80px;
+   padding: 20px;
           }
 
 /* adicionar cartao */
@@ -489,7 +536,7 @@ th{
 /* border: solid 3px blue; */
   /* border: solid 2px #e5e5e5; */
   color: #555;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-weight: 700;
   display: table-cell;
   vertical-align: inherit;
@@ -554,6 +601,7 @@ vertical-align: inherit;
   margin-bottom: 20px;
 
 }
+
 
 .formatar{
   display: flex;
@@ -902,10 +950,12 @@ margin-right: 10px;
   justify-content: center;
  flex-wrap: wrap;
  max-width: 55%;
+ max-height: 350px;
  object-fit: contain;
-  padding-left: 75px;
+  padding-left: 65px;
   
-  margin-left: 15%;
+  margin-left: 10%;
+  margin-top: 5px;
 
            } 
            .validademes{
@@ -1012,17 +1062,20 @@ margin-top: 30px;
 }
 
 
-
-
-
-
-
-}
-
 a.editar1,
 a.deletar
 {
 font-size: 1rem;
+}
+
+span.imagem2{
+
+  width: 50%;
+  padding-left:18% ;
+  /* padding-right: 25px; */
+
+}
+
 }
 
 
@@ -1030,5 +1083,4 @@ font-size: 1rem;
 
 
                                 
-                            
-                      
+                 

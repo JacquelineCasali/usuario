@@ -1,3 +1,4 @@
+const files=require("../helpers/files")
 var users=require("../data/users.json");
 users=users.usuarios;
 const emailController={
@@ -22,11 +23,13 @@ edit:(req,res)=>{
             title: "Ops!",
             message: "Nenhum Email encontrado",
           });
-            
-    }
+        }
+       
+
+   
     return res.render("editaremail", {
         title: "Editar Email",
-        user: userResult,
+        user:userResult
       });
     },
     
@@ -43,6 +46,9 @@ edit:(req,res)=>{
                 message: "Nenhum E-mail encontrado",
               });
             }
+
+         
+            
     const newUser=userResult;
     if(email) newUser.email=email;
     if(novoEmail) newUser.novoEmail=novoEmail;

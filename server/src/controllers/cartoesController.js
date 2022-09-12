@@ -1,8 +1,10 @@
+const fs=require("fs")
+const files=require("../helpers/files")
 var users=require("../data/users.json");
 users=users.usuarios;
 const cartoesController={
     cartoes:(req,res)=>{
-        return res.render("cartoes",{title:"Meus Cartões",users});
+    return res.render("cartoes",{title:"Meus Cartões",users});
          
  },
 
@@ -12,34 +14,43 @@ index:(req,res)=>{
 },
 
 show:(req,res)=>{ 
-
-    const { id }= req.params
-    const userResult=users.find((user)=>{
-       return user.id === parseInt(id);
+   const { id }= req.params
+  const userResult=users.find((user)=>{
+  return user.id === parseInt(id);
      })
 
-     if(!userResult){
-        return res 
-        .send("Cartão não entcontrado")
+if(!userResult){
+return res 
+ .render("cartoes",{
+    title: "Ops!",
+    message: "Nenhum Cartão encontrado",
+  });
+ 
      }
+     const user ={
+        ...userResult,
+        avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+      }
+
      return res 
-     .status(400)
-     .render("cartoes",{title:"Visualizar Endereço",
-     user:userResult} )
+    .render("cartoes",{title:"Visualizar Cartões",
+     user} )
      
     
     
 },
 
 create:(req,res)=>{
-
-    return res.render("adicionarcartoes",{title:"Cadastrar Cartão"})
-    
+return res.render("adicionarcartoes",{title:"Cadastrar Cartão"})
     },
 
-// CREATE - Criar um usuario
+// CREATE - Criar um cartao
 store:(req,res)=>{ 
     const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
+    let filename="user-default.jpeg";
+    if(req.file){
+      filename=req.file.filename;
+    }
     // para validação
     // ! é negação 
     //  condicional ou
@@ -51,13 +62,20 @@ store:(req,res)=>{
     
         })
     }
-    users.push({
+    const newUser = {
+        id:users.length + 1,
+        nome,
+        cpf, 
+        telefonePrincipal, 
+         cvc, 
+        cartao ,
+        avatar: filename,
+
+    }
+    users.push(newUser)
     // length pega a quantidade de usuarios e soma 1
-    id:users.length + 1,
-    nome, cpf, telefonePrincipal,  cvc,  cartao  
-     })
     
-     return res.render("Success",{
+       return res.render("Success",{
         title:"Cartão Cadastrado",
         message:"Cartão Cadastrado com Sucesso",
     })
@@ -73,9 +91,15 @@ if(!userResult){
         message:"Nenhum Cartão encontrado",
     });
 }
+const user ={
+  ...userResult,
+  avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+}  
+
+
 return res.render("editarcartoes",{
     title: "Editar Cartão",
-    user:userResult,
+    user,
 })
 },
 
@@ -87,6 +111,10 @@ return res.render("editarcartoes",{
     }=req.body;
     const userResult= users.find((user)=>
     user.id===parseInt(id));
+    let filename;
+    if(req.file){
+      filename=req.file.filename;
+    }
     if(!userResult){
     return res.render ("error",{
      title:"Ops!",
@@ -94,15 +122,21 @@ return res.render("editarcartoes",{
         });
 
     }
-const newUser=userResult;
-if(nome) newUser.nome=nome;
-if(cpf) newUser.cpf=cpf;
-if(telefonePrincipal) newUser.telefonePrincipal=telefonePrincipal;
-if(cvc) newUser.cvc=cvc;
-if(cartao) newUser.cartao=cartao;
+const updateUser=userResult;
+if(nome) updateUser.nome=nome;
+if(cpf) updateUser.cpf=cpf;
+if(telefonePrincipal) updateUser.telefonePrincipal=telefonePrincipal;
+if(cvc) updateUser.cvc=cvc;
+if(cartao) updateUser.cartao=cartao;
+if(filename) 
+{
+  let avatarTmp = updateUser.avatar;
+  fs.unlinkSync(__dirname + "/../../uploads/" + avatarTmp);
+    updateUser.avatar=filename;
+}
 return res.render("success", {
     title: "Cartão atualizado",
-    message: `Cartão ${newUser.nome} atualizado com sucesso`,
+    message: `Cartão ${updateUser.nome} atualizado com sucesso`,
   });    
 },
 // delete - deletar um cartão
@@ -118,32 +152,45 @@ delete:(req,res)=>{
           });
             
     }
+
+    const user={
+      ...userResult,
+      avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+    }
     return res.render("deletarcartao", {
         title: "Deletar Cartão",
-        user: userResult,
+        user
       });
     },
      
 
     destroy:(req,res)=>{
     const { id } = req.params;
-    const userResult =users.findIndex((user)=>user.id===parseInt(id))
-if(userResult === -1){
+    const result =users.findIndex((user)=>user.id===parseInt(id))
+if(result === -1){
   
 
-    return res.render("error", {
+    return res.render("cartão", {
         title: "Ops!",
         message: "Nenhum Cartão Cadastrado",
       });
 }
 
-users.splice(userResult,1)
+fs.unlinkSync(__dirname + "/../../uploads/" + users[result].avatar);
+
+users.splice(result,1)
 
 return res.render("success",{
   title:"Usuário deletado",
   message: "Cartão deletado com sucesso!"
 })
-}
+},
+
+// salvarCadastro:(req,res)=>{
+//     if(!req.file)
+//     console.log(req.file);
+//     return res.send("deu certo")
+//   }
     }
 
 

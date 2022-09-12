@@ -1,37 +1,129 @@
+const files=require("../helpers/files")
 var users=require("../data/users.json");
-users=users.usuarios;
+users=users.usuarios;   
 
-const meuspedidosController={
+const meuspedidos = {
+    index: (req, res) => {
+
+      
+    return res.render("meuspedidos", { title: "Lista de usuários", users});
+  
+  },
 
 
-    meuspedidos:(req,res)=>{
-        return res.render("meuspedidos",{title:"Meus Pedidos",users});
-         
-    },
+  show: (req, res) => {
+    const { id } = req.params;
+    const userResult = users.find((user) => user.id === parseInt(id));
+    if (!userResult) {
+      return res.render("error", {
+        title: "Ops!",
+        message: "Nenhum pedido encontrado",
+      });
+    }
+const user ={
+  ...userResult,
+  avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+}
 
- 
-// show:(req,res)=>{
+
+    return res.render("meuspedidos", { title: "Meus Pedidos", user });
+  },
+}
+//   create: (req, res) => {
+//     return res.render("user-create", { title: "Criar usuário" });
+//   },
+//   store: (req, res) => {
+//     const { nome, sobrenome, idade,email, avatar } = req.body;
+
+//     if (!nome || !sobrenome ||  !idade || !email || !avatar) {
+//       return res.render("user-create", {
+//         title: "Criar usuário",
+//         error: { message: "Preencha todos os campo" },
+//       });
+//     }
+
+//     const newUser={
+//       id: users.length + 1,
+//       nome, 
+//       sobrenome,
+//       idade, 
+//       email, 
+//       avatar:"https://i.pravatar.cc/300?img=${avatar}",
+//   }
+//     users.push(newUser)
+     
+      
+//     return res.render("success", {
+//       title: "Usuário criado",
+//       message: "Usuário criado com sucesso",
+//     });
+//   },
+//   // editar
+//   edit: (req, res) => {
 //     const { id } = req.params;
 //     const userResult = users.find((user) => user.id === parseInt(id));
 //     if (!userResult) {
 //       return res.render("error", {
 //         title: "Ops!",
-//         message: "Nenhum pedido encontrado",
+//         message: "Nenhum usuário encontrado",
 //       });
 //     }
-//     return res.render("meuspedidos", { title: "Meus pedidos", user: userResult });
+//     return res.render("user-edit", {
+//       title: "Editar usuário",
+//       user: userResult,
+//     });
 //   },
-// }
+//   // atualizar
+//   update: (req, res) => {
+//     const { id } = req.params;
+//     const { nome, sobrenome, email, idade, avatar } = req.body;
+//     const userResult = users.find((user) => user.id === parseInt(id));
+//     if (!userResult) {
+//       return res.render("error", {
+//         title: "Ops!",
+//         message: "Nenhum usuário encontrado",
+//       });
+//     }
+//     const newUser = userResult;
 
+//     if (nome) newUser.nome = nome;
+//     if (sobrenome) newUser.sobrenome = sobrenome;
+//     if (email) newUser.email = email;
+//     if (idade) newUser.idade = idade;
+//     if (avatar) newUser.avatar = "https://i.pravatar.cc/300?img=" + avatar;
+//     return res.render("success", {
+//       title: "Usuário atualizado",
+//       message: `Usuário ${newUser.nome} atualizado com sucesso`,
+//     });
+//   },
+//   delete: (req, res) => {
+//     const { id } = req.params;
+//     const userResult = users.find((user) => user.id === parseInt(id));
+//     if (!userResult) {
+//       return res.render("error", {
+//         title: "Ops!",
+//         message: "Nenhum usuário encontrado",
+//       });
+//     }
+//     return res.render("user-delete", {
+//       title: "Deletar usuário",
+//       user: userResult,
+//     });
+//   },
+//   destroy: (req, res) => {
+//     const { id } = req.params;
+//     const result = users.findIndex((user) => user.id === parseInt(id));
+//     if (result === -1) {
+//       return res
+//         .status(400)
+//         .json({ message: "Nenhum usuário encontrado", error: true });
+//     }
+//     users.splice(result, 1);
+//     return res.render("success", {
+//       title: "Usuário deletado",
+//       message: `Usuário deletado com sucesso`,
+//     });
+//   },
+// };
 
-
-    
-}
-
-
-
-
-
- module.exports=meuspedidosController;
- 
-
+module.exports = meuspedidos;

@@ -2,19 +2,14 @@ const files=require("../helpers/files")
 var users=require("../data/users.json");
 users=users.usuarios;   
 
-const userController = {
-  index: (req, res) => {
-    return res.render("usuarios", { title: "Lista de usuários", users});
-  },
-
-
+const pedidosController = {
   show: (req, res) => {
     const { id } = req.params;
     const userResult = users.find((user) => user.id === parseInt(id));
     if (!userResult) {
       return res.render("error", {
         title: "Ops!",
-        message: "Nenhum usuário encontrado",
+        message: "Nenhum pedido encontrado",
       });
     }
 const user ={
@@ -23,7 +18,7 @@ const user ={
 }
 
 
-return res.render("usuario", { title: "Usuário", user });
+    return res.render("pedidos", { title: "Meus Pedidos", user });
   },
 }
 //   create: (req, res) => {
@@ -123,4 +118,4 @@ return res.render("usuario", { title: "Usuário", user });
 //   },
 // };
 
-module.exports = userController;
+module.exports = pedidosController;

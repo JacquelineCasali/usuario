@@ -7,14 +7,14 @@
        <% if (locals.error) {%>
       <h2 class="error-alert"><%= error.message%></h2>
           <%}%>
-
+  
 
         <div class="codigo">
             <!-- Tela lateral -->
       <h3 class="fontebarra" id="titulo-Meus Cartões">Meus Cartões</h3> 
       <% if(locals.user){ %>
       <main id="user">
- 
+
 <span>Nome:<%= user.nome %></span>
 <span>Numero do Cartão: <%= user.cartao%></span>
 
@@ -28,10 +28,10 @@
 </main>
 <%} else {%>
   <p>
-    Aqui é possível conferir as informações do cartão de crédito.
-</p>
+    Nenhum Cartão Cadastrado Nesse Usuário
+   </p>
 <p>
-  Cadastre seus cartões e escolha qual irá utilizar na hora de finalizar sua compra.
+  Click no Botão e Cadastre Seu Cartão, Para Finalizar sua compra.
             </p>  
             
             <%} %>          

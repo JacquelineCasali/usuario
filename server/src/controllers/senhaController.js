@@ -1,3 +1,4 @@
+const files=require("../helpers/files")
 var users=require("../data/users.json");
 users=users.usuarios;
 const senhaController={
@@ -13,9 +14,14 @@ edit:(req,res)=>{
           });
             
     }
+
+    const user ={
+      ...userResult,
+      avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+    }
     return res.render("editarsenha", {
         title: "Alterar Senha",
-        user: userResult,
+        user
       });
     },
     
@@ -37,7 +43,7 @@ edit:(req,res)=>{
     if(nonovaSenhavoEmail) newUser.novaSenha=novaSenha;
     if(confirmaçãoSenha) newUser.confirmaçãoSenha=confirmaçãoSenha;
     return res.render("success", {
-        title: "Endereço atualizado",
+        title: "Senha atualizada",
         message: `Senha atualizada com sucesso`,
       });
     },

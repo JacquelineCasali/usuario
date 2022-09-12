@@ -1,3 +1,4 @@
+const files=require("../helpers/files")
 var users=require("../data/users.json");
 users=users.usuarios;
 
@@ -22,16 +23,21 @@ show:(req,res)=>{
      })
 
      if(!userResult){
-        return res 
-        .send("Endereço não entcontrado")
-             
-    }
+        return res.render("enderecos", {
+            title: "Ops!",
+            message: "Nenhum Endereço encontrado",
+          });
+        }
+        const user ={
+  ...userResult,
+   avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+          }
+
     return res 
     .status(400)
     .render("enderecos",{title:"Visualizar Endereço",
-    user:userResult} )
+    user} )
     
-
 },
 
 create:(req,res)=>{
@@ -45,22 +51,25 @@ return res.render("adicionarendereco",{title:"Cadastrar Endereço"})
 // CREATE - Criar um endereço
     store:(req,res)=>{ 
     const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
+    
+    let filename="user-default.jpeg";
+    if(req.file){
+      filename=req.file.filename;
+    }
     // para validação
     // ! é negação 
     //  condicional ou
     if(!nome|| !cep|| !rua|| !bairro|| ! cidade|| !numero|| complemento ){
-        return res.render ("adicionarendereco",{
+      return res.render ("adicionarendereco",{
             title:"Cadastrar Endereço",
             error:{
             message:"Preencha todos os campos!",}
     
         })
     }
+    
     const newUser={
         id:users.length + 1,
-        nome, cep,rua, bairro, cidade,numero,complemento
-    }
-    users.push({
         nome, 
         cep,
         rua, 
@@ -68,12 +77,16 @@ return res.render("adicionarendereco",{title:"Cadastrar Endereço"})
         cidade,
         numero,
         complemento,
-
-    });
+        avatar:filename,
+    }
+    users.push(newUser)
            return res.render("Success",{
             title:"Endereço criado",
             message:"Endereço Criado com Sucesso",
         })   
+
+
+        
 },
 edit:(req,res)=>{
 const {id} = req.params;
@@ -83,11 +96,16 @@ if (!userResult){
         title: "Ops!",
         message: "Nenhum Endereço encontrado",
       });
-        
-}
+    }
+      const user ={
+        ...userResult,
+        avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+      }  
+
+
 return res.render("editarendereco", {
     title: "Editar Endereço",
-    user: userResult,
+    user
   });
 },
 
@@ -104,6 +122,8 @@ return res.render("editarendereco", {
             message: "Nenhum Endereço encontrado",
           });
         }
+
+        
 const newUser=userResult;
 if(nome) newUser.nome=nome;
 if(cep) newUser.cep=cep;
@@ -114,7 +134,7 @@ if(numero) newUser.numero=numero;
 if(complemento) newUser.complemento=complemento;
 return res.render("success", {
     title: "Endereço atualizado",
-    message: `Endereço do usuáro ${newUser.nome} atualizado com sucesso`,
+    message: `Endereço do usuário ${newUser.nome} atualizado com sucesso`,
   });
 },
 // delete - deletar um usuario
@@ -128,9 +148,13 @@ delete:(req,res)=>{
               });
                 
         }
+        const user ={
+            ...userResult,
+            avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+          }
         return res.render("deletarenderecos", {
             title: "Deletar Endereço",
-            user: userResult,
+            user
           });
         },
          
@@ -141,25 +165,21 @@ const userResult =users.findIndex((user)=>user.id===parseInt(id))
 if(userResult === -1){
     return res.render("error", {
         title: "Ops!",
-        message: "Nenhum Cartão Cadastrado",
+        message: "Nenhum Endereço Cadastrado",
       });
 }  
+
+
+
+
 users.splice(userResult,1)
 return res.render("success",{
-    title:"Usuário deletado",
-    message: "Cartão deletado com sucesso!"
+    title:"Endereço deletado",
+    message: "Endereço deletado com sucesso!"
   })
 
 },
-save:(req,res)=>{
-    const {id,name}= req.params;
-    if(name){
-        res.send(`Save ${id} e ${name}`);
-    } else{
-        res.send(`Save ${id}`);
-    }
-    }
-};
+}
 
 
 

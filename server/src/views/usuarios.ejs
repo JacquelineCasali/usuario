@@ -1,5 +1,126 @@
 
   <link rel="stylesheet" href="/stylesheets/123.css">
+  <main id="user-list">
+      <h1>Lista de Endereços</h1>
+     
+     <!-- verificação  -->
+     <% if (users.length>0) {%>
+  
+      <div class="table-container">
+        <table >
+          <thead>
+              <tr>
+    
+                <th>Nome</th>
+                <th>Endereço</th>
+                <TH>Bairro:</TH>
+                <TH>Cidade:</TH>
+                <TH>CEP:</TH>
+                
+                   <th>Ação</th>        
+              </tr>
+          </thead>
+          <tbody>
+  <!-- variavel no plural no for of vem para o singular -->
+      <% for (let user of users){%>
+              <!--conteudo daqui roda a quantidade de vezes da variavel  -->
+        <!-- trabalhando com for  nao pode ter id  -->
+              <tr>
+           
+                  <td><%= user.nome %> </td>
+                  <td><%= user.rua %></td>
+                  <td><%= user.bairro %></td>
+                  <td><%= user.cidade %></td>
+                  <td><%= user.cep %></td>
+
+                 
+                  <td class="table-actions">
+                      <a href="/MinhaConta/enderecos/<%= user.id%>" class="table-link-show"> Visualizar</a>
+                      <a href="/MinhaConta/enderecos/adicionarendereco" class="table-link-show"> adicionarcartoes</a>
+                      
+                      <a href="/MinhaConta/enderecos/editarendereco/<%= user.id%>" class="table-link-edit" >Editar</a>
+                      <a href="/MinhaConta/enderecos/deletarenderecos/<%= user.id%>" class="table-link-delete" >Excluir</a>
+                  </td>
+              </tr>
+              <%}%>
+          </tbody>
+      </table>
+  </div>
+  <%}else{ %>
+      <h2 class="error-alert">Nenhum usuário encontrado </h2>
+  <%} %>
+  
+  
+  
+  </main>
+  
+  
+  
+  <link rel="stylesheet" href="/stylesheets/123.css">
+  <main id="user-list">
+      <h1>Lista de Cartões</h1>
+     
+     <!-- verificação  -->
+     <% if (users.length>0) {%>
+  
+      <div class="table-container">
+        <table >
+          <thead>
+              <tr>
+    
+                <th>Nome</th>
+                <th>CPF</th>
+                <TH>Numero do Cartão:</TH>
+                   <th>Ação</th>        
+              </tr>
+          </thead>
+          <tbody>
+  <!-- variavel no plural no for of vem para o singular -->
+      <% for (let user of users){%>
+              <!--conteudo daqui roda a quantidade de vezes da variavel  -->
+        <!-- trabalhando com for  nao pode ter id  -->
+              <tr>
+           
+                  <td><%= user.nome %> </td>
+                  <td><%= user.cpf %></td>
+                  <td><%= user.cartao %></td>
+                 
+                  <td class="table-actions">
+                      <a href="./cartoes/<%= user.id%>" class="table-link-show"> Visualizar</a>
+                      <a href="./cartoes/adicionarcartoes" class="table-link-show"> adicionarcartoes</a>
+                      
+                      <a href="./cartoes/editarcartoes/<%= user.id%>" class="table-link-edit" >Editar</a>
+                      <a href="./cartoes/deletarcartao/<%= user.id%>" class="table-link-delete" >Excluir</a>
+                  </td>
+              </tr>
+              <%}%>
+          </tbody>
+      </table>
+  </div>
+  <%}else{ %>
+      <h2 class="error-alert">Nenhum usuário encontrado </h2>
+  <%} %>
+  
+  
+  
+  </main>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+  <link rel="stylesheet" href="/stylesheets/123.css">
 <main id="user-list">
     <h1>Lista de Usuários</h1>
    
@@ -14,25 +135,10 @@
               <th>CPF</th>
               <TH>Telefone Principal</TH>
                 <th>Celular</th> 
-              <TH>Data de nascimento</TH>
-              <TH>Sexo</TH>
+                <TH>Sexo</TH>
               <th>RG</th>
-              <th>Receber Newsletter</th>
               <th>E-mail</th>
-              <th>Instagram</th>
-
-              <th>Pedido</th>
-              <th>Status</th>
-              <TH>Data</TH>
-                <th>Valor</th> 
-              <th>Ação</th>
-<!-- <th>cep</th>
-<th>rua</th>
-<th>bairro</th>
-<th>cidade</th>
-<th>numero</th>
-<th>complemento</th>
-<th>cartao</th> -->
+                <th>Ação</th>        
             </tr>
         </thead>
         <tbody>
@@ -47,31 +153,12 @@
                 <td><%= user.telefonePrincipal %></td>
                
                 <td><%= user.celular %> </td>
-                <td><%= user.nascimento %> </td>
-                    <td><%= user.sexo %></td>
+                   <td><%= user.sexo %></td>
                     <td><%= user.rg %></td>           
+                                 <td><%= user.email %></td>
                     
-                    <td><%= user.receber %></td>
-                    <td><%= user.email %></td>
-                    
-                <td><%= user.instagram %></td>
+             
 
-               
-  <!-- <td><%= user.nome %>cep</td>
-  <td><%= user.nome %>rua</td>
-  <td><%= user.nome %>bairro</td>
-  <td><%= user.nome %>cidade</td>
-  <td><%= user.nome %>numero</td>
-  <td><%= user.nome %>complemento</td>
-  <td><%= user.nome %>cartao</td> -->
-  <td><%= user.pedido%> </td>
-  <td><%= user.status %></td>
-  <td><%= user.data %></td>
- 
-  <td><%= user.valor %> 
-
-
-                
                 <td class="table-actions">
                     <a href="/MinhaConta/<%= user.id%>" class="table-link-show"> Visualizar</a>
                     <a href="/MinhaConta/<%= user.id%>" class="table-link-edit" >Editar</a>

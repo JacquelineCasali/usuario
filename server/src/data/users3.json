@@ -1,6 +1,6 @@
 {
   "usuarios": [
-      {
+    {
       "id": 1,
       "nome": "Roberto Silva",
       "cpf": "123456879",
@@ -18,7 +18,7 @@
       "complemento":"",
       "sexo":"Masculino",
     "receber":"Não",
-    "avatar": "user1.jpeg",
+    "avatar": "https://i.pravatar.cc/300?img=70",
     "cvc": "454",
     "cartao":"454646548",
     "senha":"hiho",
@@ -43,7 +43,7 @@
       "email": "aninha123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-      "avatar": "user2.jpeg",
+      "avatar": "https://i.pravatar.cc/300?img=49",
       "cep":"45897654",
       "rua":" Dias da Silva",
       "bairro": "Piripiri",
@@ -58,8 +58,9 @@
     "pedido":"220906630703",
     "status":"Pedido Entregue",
     "data":"06/10/2021",
-"valor":"R$ 149,32"
-    
+"valor":"R$ 149,32",
+"formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     },
     {
       "id": 3,
@@ -71,7 +72,7 @@
       "email": "ju123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-     "avatar": "user3.jpeg",
+     "avatar": "https://i.pravatar.cc/300?img=48",
      "cep":"45897654",
       "rua":" Dias da Silva",
       "bairro": "Piripiri",
@@ -99,7 +100,7 @@
       "email": "joaozinho123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-      "avatar": "user4.jpeg",
+      "avatar": "https://i.pravatar.cc/300?img=33",
       "cep":"45897654",
       "rua":" Dias da Silva",
       "bairro": "Piripiri",
@@ -109,7 +110,9 @@
       "pedido":"220906630703",
       "status":"Pedido Entregue",
       "data":"06/09/2020",
-  "valor":"R$ 49,32"
+  "valor":"R$ 49,32",
+  "formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     },
     {
       "id": 5,
@@ -121,7 +124,7 @@
       "email": "robertinho123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-      "avatar": "user5.jpeg",
+      "avatar": "https://i.pravatar.cc/300?img=17",
       "cep":"45897654",
       "rua":" Dias da Silva",
       "bairro": "Piripiri",
@@ -131,7 +134,9 @@
       "pedido":"220906630703",
       "status":"Pedido em Entregue",
       "data":"06/09/2020",
-  "valor":"R$ 44,32"
+  "valor":"R$ 44,32",
+  "formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     },
     {
       "id": 6,
@@ -143,7 +148,7 @@
       "email": "pedrinho123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-     "avatar": "user6.jpeg",
+     "avatar": "https://i.pravatar.cc/300?img=18",
      "cep":"45897654",
      "rua":" Dias da Silva",
      "bairro": "Piripiri",
@@ -153,7 +158,9 @@
      "pedido":"220906630703",
      "status":"Pedido em Entregue",
      "data":"06/09/2020",
- "valor":"R$ 44,32"
+ "valor":"R$ 44,32",
+ "formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     },
     {
       "id": 7,
@@ -165,7 +172,7 @@
       "email": "luquinhas123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-     "avatar": "user7.jpeg",
+     "avatar": "https://i.pravatar.cc/300?img=14",
      "cep":"45897654",
      "rua":" Dias da Silva",
      "bairro": "Piripiri",
@@ -175,7 +182,9 @@
      "pedido":"220906630703",
      "status":"Pedido em Entregue",
      "data":"06/09/2020",
- "valor":"R$ 44,32"
+ "valor":"R$ 44,32",
+ "formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     },
     {
       "id": 8,
@@ -187,7 +196,7 @@
       "email": "helder123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-     "avatar": "user8.jpeg",
+     "avatar": "https://i.pravatar.cc/300?img=6",
      "cep":"45897654",
      "rua":" Dias da Silva",
      "bairro": "Piripiri",
@@ -197,7 +206,9 @@
      "pedido":"220906630703",
      "status":"Pedido em Entregue",
      "data":"06/09/2020",
- "valor":"R$ 44,32"
+ "valor":"R$ 44,32",
+ "formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     },
     {
       "id": 9,
@@ -209,7 +220,7 @@
       "email": "marquinhos123@email.com",
       "novoEmail": "123@email.com",
       "confirmaçãoEmail": "123@email.com",
-    "avatar": "user9.jpeg",
+    "avatar": "https://i.pravatar.cc/300?img=3",
     "cep":"45897654",
     "rua":" Dias da Silva",
     "bairro": "Piripiri",
@@ -219,7 +230,9 @@
     "pedido":"220906630703",
     "status":"Pedido em Entregue",
     "data":"06/09/2020",
-"valor":"R$ 44,32"
+"valor":"R$ 44,32",
+"formaPagamento":"Cartão de Crédito",
+"imagempagamento":"tipo de cartao.png"
     }
    
   ]

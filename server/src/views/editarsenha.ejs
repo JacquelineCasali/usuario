@@ -14,13 +14,13 @@
             <%}%>    
 
 
-<form action="<%= user.id %>?_method=put" method="post">   
+<form action="<%= user.id %>?_method=put" method="post" enctype="multipart/form-data">   
 <div class="row">
 
 <div class="e">
 <div class="coluna2">
 <label  for="Senha Atual">Senha Atual:</label>
-<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual" value="<%= user.senha %>">
+<input type="password" class="coluna22" id="Senha Atual" name="password" placeholder="Senha Atual" required>
 </div>
 </div>
 
@@ -52,6 +52,7 @@
  </div>
 
 </main>
+<%- include('./partials/footerusuario')%>
 
 
 
