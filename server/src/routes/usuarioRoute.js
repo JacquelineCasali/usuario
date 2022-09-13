@@ -8,22 +8,9 @@ var meuspedidosController=require("../controllers/meuspedidosController")
 var emailController=require("../controllers/emailController")
 var senhaController=require("../controllers/senhaController")
 var pedidosController=require("../controllers/pedidosController")
-const crypto=require("crypto")
-const multer=require ("multer");
 
-const storage=multer.diskStorage({
-    destination:(req,file,cd)=>{
-        cd(null,__dirname+"/../../uploads/") 
-     },
-     filename:(req,file,cd)=>{
-        const extension=file.originalname.split(".")[1]
-    const newName=crypto.randomBytes(5).toString("hex");
-    console.log(file)
-    cd(null, `${newName}.${extension}`);
-     }
-});
 
-const upload=multer({storage})
+var upload=require("../helpers/multer")
 // get pegar dados, ou seja leitura 
 // post - cadastrar /salvar dados 
 // patch/put -atualizar dados
@@ -90,3 +77,7 @@ router.get("/cartoes/:id",cartoesController.show);
 
 
 module.exports = router;
+
+
+
+

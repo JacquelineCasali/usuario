@@ -1,4 +1,5 @@
 const files=require("../helpers/files")
+const upload = require("../config/upload");
 var users=require("../data/users.json");
 users=users.usuarios;
 const emailController={
@@ -24,12 +25,15 @@ edit:(req,res)=>{
             message: "Nenhum Email encontrado",
           });
         }
-       
+        const user ={
+          ...userResult,
+          avatar:files.base64Encode(upload.path + userResult.avatar),
+        }  
 
    
     return res.render("editaremail", {
         title: "Editar Email",
-        user:userResult
+        user
       });
     },
     
@@ -38,8 +42,8 @@ edit:(req,res)=>{
         update:(req,res)=>{
         const {id}= req.params
         const {email, novoEmail,confirmaçãoEmail}=req.body;
-        const userResult= users.find((users)=>
-        users.id===parseInt(id));
+        const userResult= users.find((user)=>
+        user.id===parseInt(id));
         if (!userResult){
             return res.render("error", {
                 title: "Ops!",
@@ -49,13 +53,13 @@ edit:(req,res)=>{
 
          
             
-    const newUser=userResult;
-    if(email) newUser.email=email;
-    if(novoEmail) newUser.novoEmail=novoEmail;
-    if(confirmaçãoEmail) newUser.confirmaçãoEmail=confirmaçãoEmail;
+    const updateUser=userResult;
+    if(email) updateUser.email=email;
+    if(novoEmail) updateUser.novoEmail=novoEmail;
+    if(confirmaçãoEmail) updateUser.confirmaçãoEmail=confirmaçãoEmail;
     return res.render("success", {
         title: "Email atualizado",
-        message: `Email ${newUser.email} atualizado com sucesso`,
+        message: `Email ${updateUser.email} atualizado com sucesso`,
       });
     },
     

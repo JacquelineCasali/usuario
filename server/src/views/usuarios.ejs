@@ -35,7 +35,7 @@
 
                  
                   <td class="table-actions">
-                      <a href="/MinhaConta/enderecos/<%= user.id%>" class="table-link-show"> Visualizar</a>
+                      <a href="./enderecos/<%= user.id%>" class="table-link-show"> Visualizar</a>
                       <a href="/MinhaConta/enderecos/adicionarendereco" class="table-link-show"> adicionarcartoes</a>
                       
                       <a href="/MinhaConta/enderecos/editarendereco/<%= user.id%>" class="table-link-edit" >Editar</a>
@@ -86,11 +86,11 @@
                   <td><%= user.cartao %></td>
                  
                   <td class="table-actions">
-                      <a href="./cartoes/<%= user.id%>" class="table-link-show"> Visualizar</a>
-                      <a href="./cartoes/adicionarcartoes" class="table-link-show"> adicionarcartoes</a>
+                      <a href="/MinhaConta/cartoes/<%= user.id%>" class="table-link-show"> Visualizar</a>
+                      <a href="/MinhaConta/cartoes/adicionarcartoes" class="table-link-show"> adicionarcartoes</a>
                       
-                      <a href="./cartoes/editarcartoes/<%= user.id%>" class="table-link-edit" >Editar</a>
-                      <a href="./cartoes/deletarcartao/<%= user.id%>" class="table-link-delete" >Excluir</a>
+                      <a href="/MinhaConta/cartoes/editarcartoes/<%= user.id%>" class="table-link-edit" >Editar</a>
+                      <a href="/MinhaConta/cartoes/deletarcartao/<%= user.id%>" class="table-link-delete" >Excluir</a>
                   </td>
               </tr>
               <%}%>

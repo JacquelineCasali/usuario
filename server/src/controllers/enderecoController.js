@@ -1,4 +1,6 @@
 const files=require("../helpers/files")
+const upload = require("../config/upload");
+
 var users=require("../data/users.json");
 users=users.usuarios;
 
@@ -30,7 +32,7 @@ show:(req,res)=>{
         }
         const user ={
   ...userResult,
-   avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+   avatar:files.base64Encode(upload.path + userResult.avatar),
           }
 
     return res 
@@ -49,42 +51,45 @@ return res.render("adicionarendereco",{title:"Cadastrar Endereço"})
 
 
 // CREATE - Criar um endereço
-    store:(req,res)=>{ 
-    const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
-    
-    let filename="user-default.jpeg";
-    if(req.file){
-      filename=req.file.filename;
-    }
-    // para validação
-    // ! é negação 
-    //  condicional ou
-    if(!nome|| !cep|| !rua|| !bairro|| ! cidade|| !numero|| complemento ){
-      return res.render ("adicionarendereco",{
-            title:"Cadastrar Endereço",
-            error:{
-            message:"Preencha todos os campos!",}
-    
-        })
-    }
-    
-    const newUser={
-        id:users.length + 1,
-        nome, 
-        cep,
-        rua, 
-        bairro, 
-        cidade,
-        numero,
-        complemento,
-        avatar:filename,
-    }
-    users.push(newUser)
-           return res.render("Success",{
-            title:"Endereço criado",
-            message:"Endereço Criado com Sucesso",
-        })   
+   
+store:(req,res)=>{ 
+  const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
+  
+  let filename="user-default.jpeg";
+  if(req.file){
+    filename=req.file.filename;
+  }
+  // para validação
+  // ! é negação 
+  //  condicional ou
+  if(!nome|| !cep|| !rua|| !bairro|| ! cidade|| !numero|| complemento ){
+    return res.render ("adicionarendereco",{
+          title:"Cadastrar Endereço",
+          error:{
+          message:"Preencha todos os campos!",}
+  
+      })
+  }
+  
+  const newUser={
+      id:users.length + 1,
+      nome, 
+      cep,
+      rua, 
+      bairro, 
+      cidade,
+      numero,
+      complemento,
+      avatar:filename,
+  }
+  users.push(newUser)
+         return res.render("Success",{
+          title:"Endereço criado",
+          message:"Endereço Criado com Sucesso",
+      })   
 
+
+      
 
         
 },
@@ -99,7 +104,7 @@ if (!userResult){
     }
       const user ={
         ...userResult,
-        avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+        avatar:files.base64Encode(upload.path + userResult.avatar),
       }  
 
 
@@ -114,8 +119,8 @@ return res.render("editarendereco", {
     update:(req,res)=>{
     const {id}= req.params
     const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
-    const userResult= users.find((users)=>
-    users.id===parseInt(id));
+    const userResult= users.find((user)=>
+    user.id===parseInt(id));
     if (!userResult){
         return res.render("error", {
             title: "Ops!",
@@ -124,17 +129,17 @@ return res.render("editarendereco", {
         }
 
         
-const newUser=userResult;
-if(nome) newUser.nome=nome;
-if(cep) newUser.cep=cep;
-if(rua) newUser.rua=rua;
-if(bairro) newUser.bairro=bairro;
-if(cidade) newUser.cidade=cidade;
-if(numero) newUser.numero=numero;
-if(complemento) newUser.complemento=complemento;
+const updateUser=userResult;
+if(nome) updateUser.nome=nome;
+if(cep) updateUser.cep=cep;
+if(rua) updateUser.rua=rua;
+if(bairro) updateUser.bairro=bairro;
+if(cidade) updateUser.cidade=cidade;
+if(numero) updateUser.numero=numero;
+if(complemento) updateUser.complemento=complemento;
 return res.render("success", {
     title: "Endereço atualizado",
-    message: `Endereço do usuário ${newUser.nome} atualizado com sucesso`,
+    message: `Endereço do usuário ${updateUser.nome} atualizado com sucesso`,
   });
 },
 // delete - deletar um usuario
@@ -150,7 +155,7 @@ delete:(req,res)=>{
         }
         const user ={
             ...userResult,
-            avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+            avatar:files.base64Encode(upload.path+ userResult.avatar),
           }
         return res.render("deletarenderecos", {
             title: "Deletar Endereço",
@@ -189,9 +194,3 @@ return res.render("success",{
 
 
 module.exports=enderecoController;
-
-
-
-
-
-

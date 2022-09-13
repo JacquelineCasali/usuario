@@ -1,4 +1,5 @@
 const files=require("../helpers/files")
+const upload = require("../config/upload");
 
 
 var users=require("../data/users.json");
@@ -27,7 +28,7 @@ show:(req,res)=>{
 
      const user ={
         ...userResult,
-        avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+        avatar:files.base64Encode(upload.path + userResult.avatar),
       }
 
 

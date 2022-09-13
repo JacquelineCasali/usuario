@@ -4,7 +4,9 @@ var path = require('path');
 var port=3001;
 var methodOverride=require("method-override");
 var cookieParser = require('cookie-parser');
+// const session=require("express-session")
 var logger = require('morgan');
+
 
 var indexRouter = require('./server/src/routes/indexRoute');
 var loginRouter = require('./server/src/routes/loginRoute');
@@ -26,9 +28,16 @@ app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(session({secret:"senha"}));
+
+
 app.use(express.static(path.join(__dirname, 'server/public')));
 
-
+app.use((req,res,next)=>{
+  console.log("entrou no middleware");
+  console.log(req.url);
+  next();
+})
 
 
 app.use('/', indexRouter);
@@ -43,22 +52,36 @@ app.use('/cadastro',cadastroRoute);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
+// pagina nao encontrada
+// app.use((req,res,next)=>{
+//   res.status(404).render("error",{
+//       title:"|Ops",
+//       message:"Pagina não encontrada"
+//   });
+//   });
 
+  app.get("*",(req, res,next)=>{
+    res.status(404).render("error",{
+      title:"|Ops",
+      message:"Pagina não encontrada"
+  });
+  });
+  
 
 module.exports = app;
 app.listen(port, () => {

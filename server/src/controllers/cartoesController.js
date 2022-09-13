@@ -1,5 +1,6 @@
 const fs=require("fs")
-const files=require("../helpers/files")
+const files=require("../helpers/files");
+const upload = require("../config/upload");
 var users=require("../data/users.json");
 users=users.usuarios;
 const cartoesController={
@@ -29,7 +30,7 @@ return res
      }
      const user ={
         ...userResult,
-        avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+        avatar:files.base64Encode(upload.path + userResult.avatar),
       }
 
      return res 
@@ -45,42 +46,44 @@ return res.render("adicionarcartoes",{title:"Cadastrar Cartão"})
     },
 
 // CREATE - Criar um cartao
+
 store:(req,res)=>{ 
-    const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
-    let filename="user-default.jpeg";
-    if(req.file){
-      filename=req.file.filename;
-    }
-    // para validação
-    // ! é negação 
-    //  condicional ou
-    if(!nome|| !cpf || telefonePrincipal ||!cvc ||!cartao){
-        return res.render ("adicionarcartoes",{
-            title:"Cadastrar Cartões",
-            error:{
-            message:"Preencha todos os campos!",}
-    
-        })
-    }
-    const newUser = {
-        id:users.length + 1,
-        nome,
-        cpf, 
-        telefonePrincipal, 
-         cvc, 
-        cartao ,
-        avatar: filename,
+  const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
+  let filename="user-default.jpeg";
+  if(req.file){
+    filename=req.file.filename;
+  }
+  // para validação
+  // ! é negação 
+  //  condicional ou
+  if(!nome|| !cpf || telefonePrincipal ||!cvc ||!cartao){
+      return res.render ("adicionarcartoes",{
+          title:"Cadastrar Cartões",
+          error:{
+          message:"Preencha todos os campos!",}
+  
+      })
+  }
+  const newUser = {
+      id:users.length + 1,
+      nome,
+      cpf, 
+      telefonePrincipal, 
+       cvc, 
+      cartao ,
+      avatar: filename,
 
-    }
-    users.push(newUser)
-    // length pega a quantidade de usuarios e soma 1
-    
-       return res.render("Success",{
-        title:"Cartão Cadastrado",
-        message:"Cartão Cadastrado com Sucesso",
-    })
+  }
+  users.push(newUser)
+  // length pega a quantidade de usuarios e soma 1
+  
+     return res.render("Success",{
+      title:"Cartão Cadastrado",
+      message:"Cartão Cadastrado com Sucesso",
+  })
 
-    },
+  },
+
 // editar
 edit:(req,res)=>{
 const {id}=req.params;
@@ -93,7 +96,7 @@ if(!userResult){
 }
 const user ={
   ...userResult,
-  avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+  avatar:files.base64Encode(upload.path + userResult.avatar),
 }  
 
 
@@ -131,7 +134,7 @@ if(cartao) updateUser.cartao=cartao;
 if(filename) 
 {
   let avatarTmp = updateUser.avatar;
-  fs.unlinkSync(__dirname + "/../../uploads/" + avatarTmp);
+  fs.unlinkSync(upload.path +  avatarTmp);
     updateUser.avatar=filename;
 }
 return res.render("success", {
@@ -155,7 +158,7 @@ delete:(req,res)=>{
 
     const user={
       ...userResult,
-      avatar:files.base64Encode(__dirname + "/../../uploads/" + userResult.avatar),
+      avatar:files.base64Encode(upload.path + userResult.avatar),
     }
     return res.render("deletarcartao", {
         title: "Deletar Cartão",
@@ -176,7 +179,7 @@ if(result === -1){
       });
 }
 
-fs.unlinkSync(__dirname + "/../../uploads/" + users[result].avatar);
+fs.unlinkSync(upload.path + users[result].avatar);
 
 users.splice(result,1)
 
