@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const bcryp = require("../helpers/bcrypt");
+const bcrypt = require("../helpers/bcrypt");
 
 const adminAuthController = {
     adminLogin: (req, res) => {
@@ -21,7 +21,7 @@ const adminAuthController = {
 
         const userAuth = admins.find((admin) => {
             if(admin.username === username){
-                if(bcryp.compareHash(senha, admin.senha)){
+                if(bcrypt.compareHash(senha, admin.senha)){
                     return true;
                 }
             }

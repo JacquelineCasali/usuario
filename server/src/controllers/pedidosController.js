@@ -1,8 +1,19 @@
-const files=require("../helpers/files")
-const upload = require("../config/upload");
+const fs=require("fs")
 
-var users=require("../data/users.json");
-users=users.usuarios;   
+const files=require("../helpers/files")
+const uploads = require("../config/uploads");
+const path=require("path")
+
+// var users=require("../data/users.json");
+// users=users.usuarios;   
+
+const userJson=fs.readFileSync(
+
+  path.join(__dirname,"..","data","users.json"),
+  "utf-8"
+)
+const users=JSON.parse(userJson);
+
 
 const pedidosController = {
   show: (req, res) => {
@@ -16,7 +27,7 @@ const pedidosController = {
     }
 const user ={
   ...userResult,
-  avatar:files.base64Encode(upload.path + userResult.avatar),
+  avatar:files.base64Encode(uploads.path + userResult.avatar),
 }
 
 

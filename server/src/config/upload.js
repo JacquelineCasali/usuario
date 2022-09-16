@@ -1,5 +1,5 @@
 const upload = {
-    path: __dirname + "/../../uploads/"
-  }
-  
-  module.exports = upload
+    imagePath: __dirname + "/../public/images/",
+}
+
+module.exports = upload;

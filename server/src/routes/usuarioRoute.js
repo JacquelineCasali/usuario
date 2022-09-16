@@ -11,6 +11,7 @@ var pedidosController=require("../controllers/pedidosController")
 
 
 var upload=require("../helpers/multer")
+
 // get pegar dados, ou seja leitura 
 // post - cadastrar /salvar dados 
 // patch/put -atualizar dados
@@ -18,20 +19,28 @@ var upload=require("../helpers/multer")
 
 
 // criar 
-router.get("/enderecos/adicionarendereco",enderecoController.create);
-router.post('/enderecos/adicionarendereco',upload.single("avatar"),enderecoController.store)
 
 
-router.get("/cartoes/adicionarcartoes",cartoesController.create);
-router.post("/cartoes/adicionarcartoes", upload.single("avatar"),cartoesController.store);
 
-// editar
-// router.patch("/:id",usuarioController.update);
-// router.put("/:id",usuarioController.update);
+router.post('/enderecos/adicionarendereco',upload.single("avatar"),enderecoController.create)
+
+
+router.post("/cartoes/adicionarcartoes",upload.single("avatar"),cartoesController.create);
+
+// router.post("/cartoes/adicionarcartoes", upload.single("avatar"),cartoesController.store);
+
+// editar usuario
+router.get("/:id",usuarioController.edit);
+router.patch("/:id",upload.single("avatar"),usuarioController.update);
+router.put("/:id",upload.single("avatar"),usuarioController.update);
+
+
 
 router.get("/editaremail/:id",emailController.edit);
 router.put("/editaremail/:id",emailController.update);
 router.patch("/editaremail/:id",emailController.update);
+
+
 
 
 router.get("/editarsenha/:id",senhaController.edit);
@@ -59,10 +68,10 @@ router.get("/",usuarioController.index);
 router.get("/meuspedidos",meuspedidosController.index);
 router.get("/meuscreditos",meuscreditosController.index);
 
-router.get("/enderecos/",enderecoController.endereco);
-router.get("/enderecos/adicionarendereco",enderecoController.index);
+router.get("/enderecos",enderecoController.endereco);
+router.get("/enderecos/adicionarendereco",enderecoController.adicionarendereco);
 router.get("/cartoes",cartoesController.cartoes);
-router.get("/cartoes/adicionarcartoes",cartoesController.index);
+router.get("/cartoes/adicionarcartoes",cartoesController.adicionarcartoes);
 
 // :id
 router.get("/:id",usuarioController.show);

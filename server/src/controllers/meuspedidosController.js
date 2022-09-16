@@ -1,14 +1,25 @@
+const fs=require("fs")
+const path=require("path")
 const files=require("../helpers/files")
-const upload = require("../config/upload");
+const uploads = require("../config/uploads");
 
-var users=require("../data/users.json");
-users=users.usuarios;   
+// var users=require("../data/users.json");
+// users=users.usuarios;   
+const userJson=fs.readFileSync(
+
+  path.join(__dirname,"..","data","users.json"),
+  "utf-8"
+)
+const users=JSON.parse(userJson);
+
+
+
 
 const meuspedidos = {
     index: (req, res) => {
 
       
-    return res.render("meuspedidos", { title: "Lista de usuários", users});
+    return res.render("meuspedidos", { title: "Lista de usuários"});
   
   },
 
@@ -24,7 +35,7 @@ const meuspedidos = {
     }
 const user ={
   ...userResult,
-  avatar:files.base64Encode(upload.path	 + userResult.avatar),
+  avatar:files.base64Encode(uploads.path	 + userResult.avatar),
 }
 
 

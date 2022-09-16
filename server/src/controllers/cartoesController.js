@@ -1,18 +1,23 @@
 const fs=require("fs")
+const path=require("path")
 const files=require("../helpers/files");
-const upload = require("../config/upload");
-var users=require("../data/users.json");
-users=users.usuarios;
+const uploads = require("../config/uploads");
+// var users=require("../data/users.json");
+// users=users.usuarios;
+
+const userJson=fs.readFileSync(
+
+  path.join(__dirname,"..","data","users.json"),
+  "utf-8"
+)
+const users=JSON.parse(userJson);
+
+
 const cartoesController={
     cartoes:(req,res)=>{
-    return res.render("cartoes",{title:"Meus Cartões",users});
+    return res.render("cartoes",{title:"Meus Cartões"});
          
  },
-
-index:(req,res)=>{
-    return res.render("adicionarcartoes",{title:"Adicionar Cartoes",users});
-     
-},
 
 show:(req,res)=>{ 
    const { id }= req.params
@@ -30,24 +35,22 @@ return res
      }
      const user ={
         ...userResult,
-        avatar:files.base64Encode(upload.path + userResult.avatar),
+        avatar:files.base64Encode(uploads.path + userResult.avatar),
       }
 
      return res 
     .render("cartoes",{title:"Visualizar Cartões",
      user} )
      
-    
-    
+       
+},
+
+adicionarcartoes:(req,res)=>{
+  return res.render("adicionarcartoes",{title:"Adicionar Cartoes"});
+   
 },
 
 create:(req,res)=>{
-return res.render("adicionarcartoes",{title:"Cadastrar Cartão"})
-    },
-
-// CREATE - Criar um cartao
-
-store:(req,res)=>{ 
   const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
   let filename="user-default.jpeg";
   if(req.file){
@@ -56,7 +59,12 @@ store:(req,res)=>{
   // para validação
   // ! é negação 
   //  condicional ou
-  if(!nome|| !cpf || telefonePrincipal ||!cvc ||!cartao){
+  if(!nome||
+     !cpf || 
+     telefonePrincipal ||
+     !cvc||
+     !cartao
+     ){
       return res.render ("adicionarcartoes",{
           title:"Cadastrar Cartões",
           error:{
@@ -64,17 +72,28 @@ store:(req,res)=>{
   
       })
   }
-  const newUser = {
-      id:users.length + 1,
+
+    const newUser = {
       nome,
       cpf, 
       telefonePrincipal, 
        cvc, 
       cartao ,
       avatar: filename,
+     
 
   }
+  const newId=users[users.length -1].id +1;
+  newUser.criadoEm=new Date(),
+  newUser.modificadoEm=new Date(),
+  newUser.admin=false;
+  newUser.id=newId
   users.push(newUser)
+
+  fs.writeFileSync(
+ path.join(__dirname,"..","data","users.json"),
+JSON.stringify(users)
+  )
   // length pega a quantidade de usuarios e soma 1
   
      return res.render("Success",{
@@ -96,7 +115,7 @@ if(!userResult){
 }
 const user ={
   ...userResult,
-  avatar:files.base64Encode(upload.path + userResult.avatar),
+  avatar:files.base64Encode(uploads.path + userResult.avatar),
 }  
 
 
@@ -109,6 +128,8 @@ return res.render("editarcartoes",{
 
 // update-atualizar um usuario
     update:(req,res)=>{
+     
+     
       const {id}= req.params
     const {nome, cpf,telefonePrincipal, cvc,cartao
     }=req.body;
@@ -134,13 +155,21 @@ if(cartao) updateUser.cartao=cartao;
 if(filename) 
 {
   let avatarTmp = updateUser.avatar;
-  fs.unlinkSync(upload.path +  avatarTmp);
+  fs.unlinkSync(uploads.path +  avatarTmp);
     updateUser.avatar=filename;
 }
+
+fs.writeFileSync(
+  path.join(__dirname,"..","data","users.json"),
+  // conteudo que sera salvo no arquivo
+  JSON.stringify(users)
+  );
+  
+  
 return res.render("success", {
     title: "Cartão atualizado",
     message: `Cartão ${updateUser.nome} atualizado com sucesso`,
-  });    
+  });
 },
 // delete - deletar um cartão
 
@@ -158,7 +187,7 @@ delete:(req,res)=>{
 
     const user={
       ...userResult,
-      avatar:files.base64Encode(upload.path + userResult.avatar),
+      avatar:files.base64Encode(uploads.path + userResult.avatar),
     }
     return res.render("deletarcartao", {
         title: "Deletar Cartão",
@@ -179,7 +208,7 @@ if(result === -1){
       });
 }
 
-fs.unlinkSync(upload.path + users[result].avatar);
+// fs.unlinkSync(upload.path + users[result].avatar);
 
 users.splice(result,1)
 

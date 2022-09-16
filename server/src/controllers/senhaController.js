@@ -1,6 +1,16 @@
+const fs=require("fs");
+const path=require("path")
 const files=require("../helpers/files")
-var users=require("../data/users.json");
-users=users.usuarios;
+// var users=require("../data/users.json");
+// users=users.usuarios;
+
+const userJson=fs.readFileSync(
+
+  path.join(__dirname,"..","data","users.json"),
+  "utf-8"
+)
+const users=JSON.parse(userJson);
+
 const senhaController={
 
 
@@ -29,7 +39,7 @@ edit:(req,res)=>{
     // update-atualizar um endereco
         update:(req,res)=>{
         const {id}= req.params
-        const {senha, nonovaSenhavoEmail,confirmaçãoSenha}=req.body;
+        const {senha, novaSenha,confirmaçãoSenha}=req.body;
         const userResult= users.find((users)=>
         users.id===parseInt(id));
         if (!userResult){
@@ -38,10 +48,28 @@ edit:(req,res)=>{
                 message: "Nenhuma Senha Cadastrada",
               });
             }
-    const newUser=userResult;
-    if(senha) newUser.senha=senha;
-    if(nonovaSenhavoEmail) newUser.novaSenha=novaSenha;
-    if(confirmaçãoSenha) newUser.confirmaçãoSenha=confirmaçãoSenha;
+            if(senha !== confirmaçãoSenha){
+              return res.render("register",{
+                  title:"Cadastro",
+                  error:{
+                      message:"Senha não coincidem",}
+              });
+          }  
+
+
+
+    const updateUser=userResult;
+    if(senha) updateUser.senha=senha;
+    if(novaSenha) updateUser.novaSenha=novaSenha;
+    if(confirmaçãoSenha) updateUser.confirmaçãoSenha=confirmaçãoSenha;
+
+
+    fs.writeFileSync(
+      path.join(__dirname,"..","data","users.json"),
+      // conteudo do novo arquivo cpnvertendo o array em string
+      JSON.stringify(users)
+      );
+    
     return res.render("success", {
         title: "Senha atualizada",
         message: `Senha atualizada com sucesso`,

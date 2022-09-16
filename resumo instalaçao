@@ -5,7 +5,9 @@ npm install ejs
 npm install nodemon -D
 npm install method-override 
 npm install --save multer
+ npm install multer
 npm install crypto
 npm install express-session
 npm install cookie-parser
 npm install bcrypt
+npm i express-validator

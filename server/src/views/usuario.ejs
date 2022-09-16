@@ -1,5 +1,27 @@
 
-<%- include('./partials/usuariomenu')%>
+<%- include('./partials/headerusuariomenu')%>
+
+<form action="<%= user.id %>?_method=put" method="post" enctype="multipart/form-data">   
+
+   <!-- <div class="foto-usuario"> -->
+    <% if(locals.user){ %>
+
+        <img class="foto-perfil" src="<%= user.avatar %>" alt="Imagem de perfil">
+
+  <input type="file" name="avatar" class="btn btn-success" accept="image/png, image/jpeg" />
+  </div>
+
+  <%} else {%>
+  
+<!-- <img class="foto-perfil"src="https://i.pravatar.cc/300?img=70" alt="Imagem de perfil"> -->
+
+    <!-- <input type="file" name="avatar" class="btn btn-success" accept="image/png, image/jpeg" /> -->
+</div>
+
+    <%} %> 
+
+
+    <%- include('./partials/usuariomenu 1')%>
 
 
    
@@ -12,7 +34,7 @@
      </div>
 
     <!--meus dados  -->
-<form action="" method="post" enctype="multipart/form-data">   
+<!-- <form action="<%= user.id %>?_method=put" method="post" enctype="multipart/form-data">    -->
 <div class="row">
 <div class="coluna2">
                  
@@ -29,7 +51,7 @@
 
 <label for="Data">Data de nascimento :</label>
                 
-<input type="date" class="coluna22" id="Data" name="Data" required >                          
+<input type="date" class="coluna22" id="Data" name="Data" value="<%= user.nascimento %>" >                          
 </div>
 
 <div class="coluna3">
@@ -82,16 +104,15 @@
    
         checked
          <%}%>
-    
-    
-    
-    <label for="Receber">Não</label>
+        <label for="Receber">Sim</label>
+
+
     <input type="radio" id="Não" name="Receber" value="Receber" required
     <% if (user.receber=="Não"){%>
    
         checked
          <%}%>
-    >
+   
        
     <label for="Receber">Não</label>
 </div>
@@ -136,9 +157,8 @@
         
 <input type="text" class="instabarra" id="Instagram" name="Instagram">
 
-<button class="usuario" type="submit" > <a href="/">
-    SALVAR DADOS </button>
-    </a>  
+<button class="usuario" type="submit" >  SALVAR DADOS </button>
+    
 
 </form>  
 

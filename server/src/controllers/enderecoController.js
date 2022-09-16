@@ -1,25 +1,36 @@
+const fs=require("fs");
+const path=require("path")
 const files=require("../helpers/files")
-const upload = require("../config/upload");
+const uploads = require("../config/uploads");
 
-var users=require("../data/users.json");
-users=users.usuarios;
+// var users=require("../data/users.json");
+// users=users.usuarios;
+
+const userJson=fs.readFileSync(
+
+  path.join(__dirname,"..","data","users.json"),
+  "utf-8"
+)
+const users=JSON.parse(userJson);
 
 
 const enderecoController={
     endereco:(req,res)=>{
-        return res.render("enderecos",{title:"Endereço",users});
-    },
+          
+        return res.render("enderecos",
+        {title:"Endereço"});
+      },
     
-    index:(req,res)=>{
+      adicionarendereco:(req,res)=>{
         return res
-        .status(200)
         .render("adicionarendereco",{title:"Adicionar Endereço",users});
         
-},
+      },
 
 // read - ler apenas um usuario
 show:(req,res)=>{ 
-    const { id }= req.params
+  
+  const { id }= req.params
     const userResult=users.find((user)=>{
        return user.id === parseInt(id);
      })
@@ -32,7 +43,7 @@ show:(req,res)=>{
         }
         const user ={
   ...userResult,
-   avatar:files.base64Encode(upload.path + userResult.avatar),
+   avatar:files.base64Encode(uploads.path + userResult.avatar),
           }
 
     return res 
@@ -42,18 +53,12 @@ show:(req,res)=>{
     
 },
 
-create:(req,res)=>{
-
-return res.render("adicionarendereco",{title:"Cadastrar Endereço"})
-
-},
-
 
 
 // CREATE - Criar um endereço
    
-store:(req,res)=>{ 
-  const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
+create:(req,res)=>{ 
+   const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
   
   let filename="user-default.jpeg";
   if(req.file){
@@ -62,7 +67,13 @@ store:(req,res)=>{
   // para validação
   // ! é negação 
   //  condicional ou
-  if(!nome|| !cep|| !rua|| !bairro|| ! cidade|| !numero|| complemento ){
+  if(!nome||
+    !cep|| 
+    !rua|| 
+    !bairro|| 
+    ! cidade|| 
+    !numero|| 
+    complemento ){
     return res.render ("adicionarendereco",{
           title:"Cadastrar Endereço",
           error:{
@@ -71,8 +82,8 @@ store:(req,res)=>{
       })
   }
   
+
   const newUser={
-      id:users.length + 1,
       nome, 
       cep,
       rua, 
@@ -81,17 +92,28 @@ store:(req,res)=>{
       numero,
       complemento,
       avatar:filename,
+    
   }
+
+  const newId=users[users.length -1].id +1;
+  newUser.criadoEm=new Date(),
+  newUser.modificadoEm=new Date(),
+  newUser.admin=false;
+  newUser.id=newId
   users.push(newUser)
+
+  // atualizar o arquivo 
+// caminho do arquivo
+  fs.writeFileSync(
+    path.join(__dirname,"..","data","users.json"),
+JSON.stringify(users)
+  )
          return res.render("Success",{
           title:"Endereço criado",
           message:"Endereço Criado com Sucesso",
       })   
 
-
-      
-
-        
+     
 },
 edit:(req,res)=>{
 const {id} = req.params;
@@ -104,7 +126,7 @@ if (!userResult){
     }
       const user ={
         ...userResult,
-        avatar:files.base64Encode(upload.path + userResult.avatar),
+        avatar:files.base64Encode(uploads.path + userResult.avatar),
       }  
 
 
@@ -121,6 +143,11 @@ return res.render("editarendereco", {
     const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
     const userResult= users.find((user)=>
     user.id===parseInt(id));
+
+    let filename;
+    if(req.file){
+      filename=req.file.filename;
+    }
     if (!userResult){
         return res.render("error", {
             title: "Ops!",
@@ -137,6 +164,20 @@ if(bairro) updateUser.bairro=bairro;
 if(cidade) updateUser.cidade=cidade;
 if(numero) updateUser.numero=numero;
 if(complemento) updateUser.complemento=complemento;
+if(filename)
+{
+  let avatarTmp = updateUser.avatar;
+  fs.unlinkSync(uploads.path +  avatarTmp);
+    updateUser.avatar=filename;
+}
+
+fs.writeFileSync(
+  path.join(__dirname,"..","data","users.json"),
+  // conteudo que sera salvo no arquivo
+  JSON.stringify(users)
+  );
+
+
 return res.render("success", {
     title: "Endereço atualizado",
     message: `Endereço do usuário ${updateUser.nome} atualizado com sucesso`,
@@ -155,7 +196,7 @@ delete:(req,res)=>{
         }
         const user ={
             ...userResult,
-            avatar:files.base64Encode(upload.path+ userResult.avatar),
+            avatar:files.base64Encode(uploads.path+ userResult.avatar),
           }
         return res.render("deletarenderecos", {
             title: "Deletar Endereço",

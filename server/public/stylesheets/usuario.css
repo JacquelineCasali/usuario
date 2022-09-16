@@ -216,7 +216,7 @@ float:inline-start;
 display: block;
 position: relative;
 padding: 10px 5px 0 5px;
-min-height: 50%;
+/* min-height: 50%; */
 margin-bottom: 8px;
 padding: 10px 5px 0 5px;
 

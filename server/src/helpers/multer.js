@@ -1,17 +1,17 @@
 const multer=require("multer")
 const crypto=require("crypto")
-const uploaConfig=require("../config/upload")
+const uploadConfig=require("../config/uploads")
 const storage=multer.diskStorage({
     destination:(req,file,cd)=>{
-       cd(null,uploaConfig.path) 
+       cd(null,uploadConfig.path) 
     },
     filename:(req,file,cd)=>{
-        // para nao sobrescrer o arquivo
-        // pega extenção do arquivo 
+        // para nao sobrepor o arquivo
+        // pegar extenção do arquivo 
         const extension=file.originalname.split(".")[1]
         // gera a string randomica
 const newName=crypto.randomBytes(5).toString("hex");
-// altera o nome do arquivo para string randomica
+// alterar o nome do arquivo para string randomica
 
         console.log(file)
         cd(null,`${newName}.${extension}`);
@@ -19,6 +19,6 @@ const newName=crypto.randomBytes(5).toString("hex");
 });
 
 
-const upload = multer({storage})
+const uploads = multer({storage})
 // const upload=multer({dest:__dirname+ "/../../uploads/"}) ;
-module.exports=upload
+module.exports=uploads
