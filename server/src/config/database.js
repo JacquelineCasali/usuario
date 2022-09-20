@@ -1,9 +1,10 @@
 const database = {
     username: "root",
     password:"", 
-    database:"ecommerce", 
+    database:"usuarios_db", 
     host:"localhost", 
     dialect:"mysql", 
+    operatorsAliases:false
 }
 
 module.exports = database;

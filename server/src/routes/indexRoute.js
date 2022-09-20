@@ -3,6 +3,7 @@ var router = express.Router();
 var indexController=require("../controllers/indexController")
 
 
+
 router.get( "/",indexController.home);
 
 

@@ -60,29 +60,6 @@ show:(req,res)=>{
 create:(req,res)=>{ 
    const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
   
-  let filename="user-default.jpeg";
-  if(req.file){
-    filename=req.file.filename;
-  }
-  // para validação
-  // ! é negação 
-  //  condicional ou
-  if(!nome||
-    !cep|| 
-    !rua|| 
-    !bairro|| 
-    ! cidade|| 
-    !numero|| 
-    complemento ){
-    return res.render ("adicionarendereco",{
-          title:"Cadastrar Endereço",
-          error:{
-          message:"Preencha todos os campos!",}
-  
-      })
-  }
-  
-
   const newUser={
       nome, 
       cep,
@@ -91,7 +68,7 @@ create:(req,res)=>{
       cidade,
       numero,
       complemento,
-      avatar:filename,
+      // avatar:filename,
     
   }
 

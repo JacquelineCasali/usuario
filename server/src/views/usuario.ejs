@@ -1,6 +1,10 @@
 
 <%- include('./partials/headerusuariomenu')%>
 
+<% if (locals.error) {%>
+    <h2 class="error-alert"><%= error.message%></h2>
+           <%}%>
+
 <form action="<%= user.id %>?_method=put" method="post" enctype="multipart/form-data">   
 
    <!-- <div class="foto-usuario"> -->

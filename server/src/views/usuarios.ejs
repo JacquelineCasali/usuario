@@ -32,6 +32,9 @@
                   <td><%= user.bairro %></td>
                   <td><%= user.cidade %></td>
                   <td><%= user.cep %></td>
+                 
+
+                  
 
                  
                   <td class="table-actions">
@@ -71,6 +74,9 @@
                 <th>Nome</th>
                 <th>CPF</th>
                 <TH>Numero do Cartão:</TH>
+                <TH>CVC:</TH>
+
+
                    <th>Ação</th>        
               </tr>
           </thead>
@@ -84,6 +90,7 @@
                   <td><%= user.nome %> </td>
                   <td><%= user.cpf %></td>
                   <td><%= user.cartao %></td>
+                  <td><%= user.cvc %></td>
                  
                   <td class="table-actions">
                       <a href="/MinhaConta/cartoes/<%= user.id%>" class="table-link-show"> Visualizar</a>
@@ -138,6 +145,7 @@
                 <TH>Sexo</TH>
               <th>RG</th>
               <th>E-mail</th>
+              <th>senha</th>
                 <th>Ação</th>        
             </tr>
         </thead>
@@ -156,6 +164,9 @@
                    <td><%= user.sexo %></td>
                     <td><%= user.rg %></td>           
                                  <td><%= user.email %></td>
+                  <td><%= user.nova_senha %></td>
+
+
                     
              
 

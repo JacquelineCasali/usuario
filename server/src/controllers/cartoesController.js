@@ -2,8 +2,7 @@ const fs=require("fs")
 const path=require("path")
 const files=require("../helpers/files");
 const uploads = require("../config/uploads");
-// var users=require("../data/users.json");
-// users=users.usuarios;
+const bcrypt=require("../helpers/bcrypt");
 
 const userJson=fs.readFileSync(
 
@@ -51,43 +50,44 @@ adicionarcartoes:(req,res)=>{
 },
 
 create:(req,res)=>{
+  const userJson=fs.readFileSync(
+
+    path.join(__dirname,"..","data","users.json"),
+    "utf-8"
+  )
+  const users=JSON.parse(userJson);
+ 
   const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
-  let filename="user-default.jpeg";
-  if(req.file){
-    filename=req.file.filename;
-  }
-  // para validação
-  // ! é negação 
-  //  condicional ou
-  if(!nome||
-     !cpf || 
-     telefonePrincipal ||
-     !cvc||
-     !cartao
-     ){
-      return res.render ("adicionarcartoes",{
-          title:"Cadastrar Cartões",
-          error:{
-          message:"Preencha todos os campos!",}
   
-      })
+  if(!nome|| 
+    !cpf||
+    telefonePrincipal|| 
+    !cvc||
+    !cartao
+  
+  ){
+    return res.render("adicionarcartoes",{
+      title:"Adicionar Cartão",
+      error:{
+          message:"Preencha todos os Campos"
+      },
+  });
   }
 
+  const newId=users[users.length -1].id +1;
     const newUser = {
+id:newId,
       nome,
       cpf, 
       telefonePrincipal, 
-       cvc, 
+       cvc:bcrypt.generateHash(cvc),
       cartao ,
-      avatar: filename,
-     
-
+      criadoEm:new Date(),
+  modificadoEm:new Date(),
+  admin:false,
   }
-  const newId=users[users.length -1].id +1;
-  newUser.criadoEm=new Date(),
-  newUser.modificadoEm=new Date(),
-  newUser.admin=false;
-  newUser.id=newId
+  
+
   users.push(newUser)
 
   fs.writeFileSync(
@@ -100,6 +100,33 @@ JSON.stringify(users)
       title:"Cartão Cadastrado",
       message:"Cartão Cadastrado com Sucesso",
   })
+
+  },
+
+
+  auth:(req,res)=>{
+    const usersJson=fs.readFileSync(
+      path.join(__dirname,"..","data","users.json"),
+      "utf-8"
+  );
+  
+  const users=JSON.parse(usersJson)
+  const {cvc}=req.body;
+  const userAuth = users.find(user=>{
+    if(bcrypt.compareHash(cvc,user.cvc)){
+      return true;
+    }
+  })
+
+if(!userAuth){
+  return res.render ("adicionarcartoes",{
+    title:"Adicionar Cartão",
+    error:{
+      message:"Cvc Invalido"
+    }
+  })
+}
+
 
   },
 
@@ -150,7 +177,8 @@ const updateUser=userResult;
 if(nome) updateUser.nome=nome;
 if(cpf) updateUser.cpf=cpf;
 if(telefonePrincipal) updateUser.telefonePrincipal=telefonePrincipal;
-if(cvc) updateUser.cvc=cvc;
+// if(cvc) updateUser.cvc=cvc.bcrypt.generateHash(cvc);
+
 if(cartao) updateUser.cartao=cartao;
 if(filename) 
 {

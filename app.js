@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var port=3001;
+var port=3002;
 var methodOverride=require("method-override");
 var cookieParser = require('cookie-parser');
 var session=require("express-session")
@@ -14,7 +14,7 @@ var adminProductRouter = require('./server/src/routes/adminProductsRoute');
 var usuarioRoute = require('./server/src/routes/usuarioRoute');
 var paymentRouter = require('./server/src/routes/paymentRoute');
 var cadastroRoute= require('./server/src/routes/cadastroRoute');
-// var produtoRouter= require('./server/src/routes/produtoRoute');
+var produtoRouter= require('./server/src/routes/produtoRoute');
 // var departmentRouter= require('./server/src/routes/deparment');
 
 var app = express();
@@ -47,7 +47,7 @@ app.use('/admin-produtos', adminProductRouter);
 app.use('/MinhaConta', usuarioRoute);
 app.use('/finalizacao',paymentRouter);
 app.use('/cadastro',cadastroRoute);
-// app.use('/produto/',produtoRouter);
+app.use('/produto/',produtoRouter);
 // app.use('/department',departmentRouter)
 
 

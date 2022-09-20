@@ -1,8 +1,8 @@
 const fs=require("fs");
 const path=require("path")
 const files=require("../helpers/files")
-// var users=require("../data/users.json");
-// users=users.usuarios;
+const bcrypt=require("../helpers/bcrypt")
+
 
 const userJson=fs.readFileSync(
 
@@ -39,7 +39,7 @@ edit:(req,res)=>{
     // update-atualizar um endereco
         update:(req,res)=>{
         const {id}= req.params
-        const {senha, novaSenha,confirmaçãoSenha}=req.body;
+        const {senha, nova_senha,confirmar_senha}=req.body;
         const userResult= users.find((users)=>
         users.id===parseInt(id));
         if (!userResult){
@@ -48,7 +48,7 @@ edit:(req,res)=>{
                 message: "Nenhuma Senha Cadastrada",
               });
             }
-            if(senha !== confirmaçãoSenha){
+            if(nova_senha !== confirmar_senha){
               return res.render("register",{
                   title:"Cadastro",
                   error:{
@@ -59,14 +59,15 @@ edit:(req,res)=>{
 
 
     const updateUser=userResult;
-    if(senha) updateUser.senha=senha;
-    if(novaSenha) updateUser.novaSenha=novaSenha;
-    if(confirmaçãoSenha) updateUser.confirmaçãoSenha=confirmaçãoSenha;
+    if(senha) updateUser.senha=senha.bcrypt.generateHash(senha);
+    if(nova_senha) updateUser.nova_senha.bcrypt.generateHash(nova_senha)=nova_senha;
+    
 
+ 
 
     fs.writeFileSync(
       path.join(__dirname,"..","data","users.json"),
-      // conteudo do novo arquivo cpnvertendo o array em string
+      // conteudo do novo arquivo convertendo o array em string
       JSON.stringify(users)
       );
     
@@ -75,7 +76,34 @@ edit:(req,res)=>{
         message: `Senha atualizada com sucesso`,
       });
     },
-    
+   auth:(req,res)=>{
+    const usersJson=fs.readFileSync(
+      path.join(__dirname,"..","data","users.json"),
+      "utf-8"
+  );
+  
+  const users=JSON.parse(usersJson)
+  const { nova_senha,confirmar_senha }=req.body;
+  const userAuth = users.find(user=>{
+    // === igual 
+    if(user.nova_senha===confirmar_senha){
+// comparando a senha com a senha criptografia
+        if(bcrypt.compareHash(nova_senha,user.nova_senha)){
+    return true;
+}
+    }
+
+})
+
+if(!userAuth){
+    return res.render("editarsenha",{
+        title:"Editar Senha",
+        error:{
+            message:"Senha inválida"
+        }
+    })
+}  
+   } 
 
 
 

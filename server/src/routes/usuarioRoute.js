@@ -8,7 +8,7 @@ var meuspedidosController=require("../controllers/meuspedidosController")
 var emailController=require("../controllers/emailController")
 var senhaController=require("../controllers/senhaController")
 var pedidosController=require("../controllers/pedidosController")
-
+var userValidator=require("../validators/UserValidator")
 
 var upload=require("../helpers/multer")
 
@@ -22,10 +22,12 @@ var upload=require("../helpers/multer")
 
 
 
-router.post('/enderecos/adicionarendereco',upload.single("avatar"),enderecoController.create)
+router.post('/enderecos/adicionarendereco',upload.single("avatar"),userValidator.enderecoValidator,
+enderecoController.create)
 
 
-router.post("/cartoes/adicionarcartoes",upload.single("avatar"),cartoesController.create);
+router.post("/cartoes/adicionarcartoes",upload.single("avatar"),userValidator.cartaoValidator,
+cartoesController.create);
 
 // router.post("/cartoes/adicionarcartoes", upload.single("avatar"),cartoesController.store);
 
@@ -46,6 +48,7 @@ router.patch("/editaremail/:id",emailController.update);
 router.get("/editarsenha/:id",senhaController.edit);
 router.put("/editarsenha/:id",senhaController.update);
 router.patch("/editarsenha/:id",senhaController.update);
+router.post("/editarsenha",senhaController.auth);
 
 router.get("/enderecos/editarendereco/:id",enderecoController.edit);
 router.put("/enderecos/editarendereco/:id",enderecoController.update);
