@@ -32,7 +32,10 @@ cartoesController.create);
 // router.post("/cartoes/adicionarcartoes", upload.single("avatar"),cartoesController.store);
 
 // editar usuario
-router.get("/:id",usuarioController.edit);
+//router.get("/:id",usuarioController.edit);
+
+router.get("/:id",usuarioController.show);
+
 router.patch("/:id",upload.single("avatar"),usuarioController.update);
 router.put("/:id",upload.single("avatar"),usuarioController.update);
 
@@ -41,9 +44,6 @@ router.put("/:id",upload.single("avatar"),usuarioController.update);
 router.get("/editaremail/:id",emailController.edit);
 router.put("/editaremail/:id",emailController.update);
 router.patch("/editaremail/:id",emailController.update);
-
-
-
 
 router.get("/editarsenha/:id",senhaController.edit);
 router.put("/editarsenha/:id",senhaController.update);

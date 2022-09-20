@@ -3,54 +3,81 @@ const path=require("path")
 
 const files=require("../helpers/files")
 const uploads = require("../config/uploads");
+const database = require("../config/database");
+var mysql      = require('mysql');
+
+
+var connection = mysql.createConnection(database);
+connection.connect(function(err) {
+  if (err) {
+      console.error('Error connecting: ' + err.stack);
+      return;
+  }
+  console.log('Connected as id ' + connection.threadId);
+});
+
 
 // var users=require("../data/users.json");
 // users=users.usuarios;   
-const userJson=fs.readFileSync(
+// cfs.readFileSync(
 
-  path.join(__dirname,"..","data","users.json"),
-  "utf-8"
-)
-const users=JSON.parse(userJson);
+//   path.join(__dirname,"..","data","users.json"),
+//   "utf-8"
+// )
+// const users=JSON.parse(userJson);
 
 const userController = {
   index: (req, res) => {
-    return res.render("usuarios", { title: "Lista de usuários", users});
+    
+    const sql="select * from users"
+    connection.query(sql, (error, results, fields)  => {
+        users= results;
+        return res.render("usuarios", { title: "Lista de usuários", users})
+    })
+    
+
+
   },
 
 
   show: (req, res) => {
     const { id } = req.params;
-    const userResult = users.find((user) => user.id === parseInt(id));
-    if (!userResult) {
-      return res.render("error", {
-        title: "Ops!",
-        message: "Nenhum usuário encontrado",
-      });
-    }
-const user ={
-  ...userResult,
-  avatar:files.base64Encode(uploads.path + userResult.avatar),
-}
+    //const userResult = users.find((user) => user.id === parseInt(id));
 
-
-return res.render("usuario", { title: "Usuário", user });
+    const sql="select * from users WHERE users.id = " + id
+    connection.query(sql, (error, results, fields)  => {
+        userResult =results[0];
+        // original
+        if (!userResult) {
+          return res.render("error", {
+            title: "Ops!",
+            message: "Nenhum usuário encontrado",
+          });
+        }
+        const user ={
+          ...userResult,
+        //   avatar:files.base64Encode(uploads.path + userResult.avatar),
+        }
+        return res.render("usuario", { title: "Usuário", user });
+    })
   },
 
   edit:(req,res)=>{
-   
+    console.log("useredit ===========================")
     const {id} = req.params;
-    const userResult = users.find((user) => user.id === parseInt(id))
+    //const userResult = users.id//find((user) => user.id === parseInt(id));
+    userResult=connection.query('select * from users where users.id = ' + id, function (error, results, fields) {return (results)
+    })
     if (!userResult){
         return res.render("error", {
             title: "Ops!",
             message: "Nenhum Usuário encontrado",
           });
         }
-        const user ={
-          ...userResult,
-          avatar:files.base64Encode(uploads.path + userResult.avatar),
-        }  
+         const user ={
+           ...userResult,
+        //   avatar:files.base64Encode(uploads.path + userResult.avatar),
+         }  
 
    
     return res.render("usuario", {
@@ -65,8 +92,9 @@ return res.render("usuario", { title: "Usuário", user });
           res.clearCookie("user")
           const {id}= req.params
         const {nome, cpf,telefonePrincipal,rg ,celular, sexo, nascimento,instagram,receber }=req.body;
-        const userResult= users.find((user)=>
-        user.id===parseInt(id));
+    //const userResult = users.id//find((user) => user.id === parseInt(id));
+    userResult=connection.query('select * from users where users.id = ' + id, function (error, results, fields) {return (results)
+    })
 
         let filename;
         if(req.file){

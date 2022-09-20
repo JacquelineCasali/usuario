@@ -1,46 +1,47 @@
-const db=require("../config/sequelize");
+const db=require("../../config/sequelize");
 const Sequelize = require("sequelize");
+
 
 const Usuario=db.define("Usuario",{
     
         id:{
-            type:DataTypes.INTEGER.UNSIGNED,
+            type:Sequelize.DataTypes.INTEGER.UNSIGNED,
             autoIncrement:true,
             primaryKey:true,
         },
     
         name:{
-            type:DataTypes.STRING(100).NOT.NULL,
+            type:Sequelize.DataTypes.STRING(100).NOT.NULL,
             },
         
         cpf:{
-            type:DataTypes.STRING(100).NOT.NULL,
+            type:Sequelize.DataTypes.STRING(100).NOT.NULL,
             allowNull: false,
         },
     celular:{
-        type:DataTypes.STRING(100).NOT.NULL,
+        type:Sequelize.DataTypes.STRING(100).NOT.NULL,
         allowNull: false,
     },
     birthdate:{
-        type:DataTypes.DATE
+        type:Sequelize.DataTypes.DATE
     },
     email:{
-        type:DataTypes.STRING(100).NOT.NULL,
+        type:Sequelize.DataTypes.STRING(100).NOT.NULL,
         allowNull: false,
     },
     
     is_admin:{
-        type:DataTypes.DEFAULT
+        type:Sequelize.DataTypes.DEFAULT
     },
     createdAt:{
-        type:DataTypes.DATE
+        type:Sequelize.DataTypes.DATE
     },
     modifiedAt:{
-        type:DataTypes.DATE
+        type:Sequelize.DataTypes.DATE
     }
 },
     {
-        tableName:"usuarios_db",
+        tableName:"ecommerce",
         timestamps: false,
 
     });
