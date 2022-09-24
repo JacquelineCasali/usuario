@@ -1,7 +1,7 @@
 const fs=require("fs")
 
 const files=require("../helpers/files")
-const uploads = require("../config/uploads");
+const upload = require("../config/upload");
 const path=require("path")
 
 // var users=require("../data/users.json");
@@ -27,7 +27,7 @@ const pedidosController = {
     }
 const user ={
   ...userResult,
-  avatar:files.base64Encode(uploads.path + userResult.avatar),
+  avatar:files.base64Encode(upload.path + userResult.avatar),
 }
 
 

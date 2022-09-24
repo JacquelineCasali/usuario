@@ -19,8 +19,16 @@ var upload=require("../helpers/multer")
 
 
 // criar 
+//usuario
+router.get("/",usuarioController.index);
+router.get("/:id",usuarioController.show);
+// router.post("/", usuarioController.store);
+// router.put("/:id",usuarioController.update);
+// router.patch("/:id",usuarioController.update);
+// router.delete("/:id",usuarioController.delete);
 
 
+// router.delete("/:id",usuarioController.delete);
 
 router.post('/enderecos/adicionarendereco',upload.single("avatar"),userValidator.enderecoValidator,
 enderecoController.create)
@@ -32,12 +40,13 @@ cartoesController.create);
 // router.post("/cartoes/adicionarcartoes", upload.single("avatar"),cartoesController.store);
 
 // editar usuario
-//router.get("/:id",usuarioController.edit);
 
-router.get("/:id",usuarioController.show);
 
-router.patch("/:id",upload.single("avatar"),usuarioController.update);
-router.put("/:id",upload.single("avatar"),usuarioController.update);
+// router.get("/:id",usuarioController.show);
+//  router.get("/:id",usuarioController.edit);
+
+
+//router.put("/:id",usuarioController.update); //upload.single("avatar")
 
 
 
@@ -65,9 +74,7 @@ router.delete("/enderecos/deletarenderecos/:id",enderecoController.destroy);
 router.get("/cartoes/deletarcartao/:id",cartoesController.delete);
 router.delete("/cartoes/deletarcartao/:id",cartoesController.destroy);
 
-// router.delete("/:id",usuarioController.delete);
 
-router.get("/",usuarioController.index);
 router.get("/meuspedidos",meuspedidosController.index);
 router.get("/meuscreditos",meuscreditosController.index);
 
@@ -77,7 +84,7 @@ router.get("/cartoes",cartoesController.cartoes);
 router.get("/cartoes/adicionarcartoes",cartoesController.adicionarcartoes);
 
 // :id
-router.get("/:id",usuarioController.show);
+
 router.get("/meuspedidos/:id",meuspedidosController.show);
 router.get("/meuspedidos/pedidos/:id",pedidosController.show);
 

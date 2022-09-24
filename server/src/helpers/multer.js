@@ -1,6 +1,6 @@
 const multer=require("multer")
 const crypto=require("crypto")
-const uploadConfig=require("../config/uploads")
+const uploadConfig=require("../config/upload")
 const storage=multer.diskStorage({
     destination:(req,file,cd)=>{
        cd(null,uploadConfig.path) 
@@ -19,6 +19,6 @@ const newName=crypto.randomBytes(5).toString("hex");
 });
 
 
-const uploads = multer({storage})
+const upload = multer({storage})
 // const upload=multer({dest:__dirname+ "/../../uploads/"}) ;
-module.exports=uploads
+module.exports=upload;

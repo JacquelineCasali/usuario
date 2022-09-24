@@ -1,6 +1,7 @@
+
 const database = {
-    user: "root",
-    password:"root", 
+    username: "root",
+    password:"", 
     database:"ecommerce", 
     host:"localhost", 
     dialect:"mysql", 

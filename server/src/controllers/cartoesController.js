@@ -1,15 +1,11 @@
+const Sequelize= require("sequelize");
+const configDB=require("../config/database");
+const db=new Sequelize(configDB)
 const fs=require("fs")
-const path=require("path")
-const files=require("../helpers/files");
-const uploads = require("../config/uploads");
+// const path=require("path")
+// const files=require("../helpers/files");
+// const upload = require("../config/upload");
 const bcrypt=require("../helpers/bcrypt");
-
-const userJson=fs.readFileSync(
-
-  path.join(__dirname,"..","data","users.json"),
-  "utf-8"
-)
-const users=JSON.parse(userJson);
 
 
 const cartoesController={
@@ -34,7 +30,7 @@ return res
      }
      const user ={
         ...userResult,
-        avatar:files.base64Encode(uploads.path + userResult.avatar),
+        avatar:files.base64Encode(upload.path + userResult.avatar),
       }
 
      return res 
@@ -57,11 +53,11 @@ create:(req,res)=>{
   )
   const users=JSON.parse(userJson);
  
-  const {nome, cpf,telefonePrincipal, cvc,cartao}=req.body;
+  const {nome, cpf,telefone, cvc,cartao}=req.body;
   
   if(!nome|| 
     !cpf||
-    telefonePrincipal|| 
+    telefone|| 
     !cvc||
     !cartao
   
@@ -142,7 +138,7 @@ if(!userResult){
 }
 const user ={
   ...userResult,
-  avatar:files.base64Encode(uploads.path + userResult.avatar),
+  avatar:files.base64Encode(upload.path + userResult.avatar),
 }  
 
 
@@ -183,7 +179,7 @@ if(cartao) updateUser.cartao=cartao;
 if(filename) 
 {
   let avatarTmp = updateUser.avatar;
-  fs.unlinkSync(uploads.path +  avatarTmp);
+  fs.unlinkSync(upload.path +  avatarTmp);
     updateUser.avatar=filename;
 }
 
@@ -215,7 +211,7 @@ delete:(req,res)=>{
 
     const user={
       ...userResult,
-      avatar:files.base64Encode(uploads.path + userResult.avatar),
+      avatar:files.base64Encode(upload.path + userResult.avatar),
     }
     return res.render("deletarcartao", {
         title: "Deletar Cartão",

@@ -1,22 +1,27 @@
 const fs=require("fs");
 const path=require("path")
 const files=require("../helpers/files")
-const uploads = require("../config/uploads");
+const upload = require("../config/upload");
+const database=require("../config/database")
+
+
+
 
 // var users=require("../data/users.json");
 // users=users.usuarios;
 
-const userJson=fs.readFileSync(
+// const userJson=fs.readFileSync(
 
-  path.join(__dirname,"..","data","users.json"),
-  "utf-8"
-)
-const users=JSON.parse(userJson);
+//   path.join(__dirname,"..","data","users.json"),
+//   "utf-8"
+// )
+// const users=JSON.parse(userJson);
 
 
 const enderecoController={
     endereco:(req,res)=>{
-          
+    
+      
         return res.render("enderecos",
         {title:"Endereço"});
       },
@@ -43,7 +48,7 @@ show:(req,res)=>{
         }
         const user ={
   ...userResult,
-   avatar:files.base64Encode(uploads.path + userResult.avatar),
+   avatar:files.base64Encode(upload.path + userResult.avatar),
           }
 
     return res 
@@ -58,7 +63,11 @@ show:(req,res)=>{
 // CREATE - Criar um endereço
    
 create:(req,res)=>{ 
-   const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
+   
+  const sql="select * from enderecos"
+  connection.query(sql(results,))
+  
+  const {nome, cep,rua, bairro, cidade,numero,complemento}=req.body;
   
   const newUser={
       nome, 
@@ -103,7 +112,7 @@ if (!userResult){
     }
       const user ={
         ...userResult,
-        avatar:files.base64Encode(uploads.path + userResult.avatar),
+        avatar:files.base64Encode(upload.path + userResult.avatar),
       }  
 
 
@@ -144,7 +153,7 @@ if(complemento) updateUser.complemento=complemento;
 if(filename)
 {
   let avatarTmp = updateUser.avatar;
-  fs.unlinkSync(uploads.path +  avatarTmp);
+  fs.unlinkSync(upload.path +  avatarTmp);
     updateUser.avatar=filename;
 }
 
@@ -173,7 +182,7 @@ delete:(req,res)=>{
         }
         const user ={
             ...userResult,
-            avatar:files.base64Encode(uploads.path+ userResult.avatar),
+            avatar:files.base64Encode(upload.path+ userResult.avatar),
           }
         return res.render("deletarenderecos", {
             title: "Deletar Endereço",
