@@ -1,7 +1,11 @@
+// const Sequelize= require("sequelize");
+// const configDB=require("../config/database");
+// const db=new Sequelize(configDB)
+
 const fs=require("fs")
 
 const files=require("../helpers/files")
-const upload = require("../config/upload");
+const upload=require("../config/upload")
 const path=require("path")
 
 // var users=require("../data/users.json");

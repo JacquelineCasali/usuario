@@ -1,11 +1,14 @@
 const Sequelize= require("sequelize");
 const configDB=require("../config/database");
 const db=new Sequelize(configDB)
+const User=require("../models/User")
+// const db = require("../config/sequelize");
 
 const userController = {
   index: async (req, res) => {
     try{
-    const users =await db.query ("SELECT * FROM  users",{
+    let query = "SELECT * FROM users"
+    const users =await db.query(query,{
       type:Sequelize.QueryTypes.SELECT,
          });
         // console.log(users);
@@ -23,6 +26,8 @@ const userController = {
 // const users= await db.query(`SELECT * FROM  users WHERE id= %{id}`,{
 //   type:Sequelize.QueryTypes.SELECT,
 // })
+
+
 
 const userResult= await db.query("SELECT * FROM  users WHERE id= :id",{
   replacements:{
@@ -42,102 +47,93 @@ return res.render("usuario", { title: "Usuário", user:userResult[0] });
 
     })
     
-
   }
- 
         
   },
+ 
+update: async(req,res)=>{
+    const {id}= req.params;
+     const {nome,cpf,celular,nascimento,email, is_admin,sexo,rg,telefone,receber,instagram}=req.body;
+     try {
 
-//criar usuario
-// store: async(req,res)=>{
-//   const {nome,cpf,celular,nascimento,rg , sexo, telefone,instagram,receber }=req.body;
-//   try{
-//     const users= await db.query("")
-
-//   }catch (error){
-//     console.log(error);
-//     res.status(400).json({message:"Error ao criar usuário"})
-//   }
-// }
-
-  // show:async (req, res) => {
-  //   const { id } = req.params;
-  //   //const userResult = users.find((user) => user.id === parseInt(id));
-
-  //   // const sql="select * from users WHERE users.id = " + id
-  //   //connection.query(sql, (error, results, fields)  => {
-
-  //      const userResult = await User.findOne({where:{id:id}})
-     
-        
-
-  //       if (!userResult) {
-  //                 return res.render("error", {
-  //           title: "Ops!",
-  //           message: "Nenhum usuário encontrado",
-  //         });
-  //       }
-
-  //       console.log(userResult)
-  //      let nascimento= new Date(userResult.nascimento)
-  //      let dia=nascimento.getDate()
-  //      let mes=nascimento.getMonth()+1
-  //      let ano=nascimento.getFullYear()
-  //       nascimento=`${ano}-${mes}-${dia}`
-
-        
-  //       const user ={
-  //         ...userResult,
-  //            nascimento,
-             
-
-  //         // avatar:files.base64Encode(upload.path + userResult.avatar),
-  //       }
-  //       return res.render("usuario", { title: "Usuário", user });
+if(!nome &&  !cpf && !celular  && ! nascimento  && ! email  && !is_admin && !sexo && !rg && !telefone && !receber && !instagram ){
+        throw Error ("Nenhum dado para atualizar");
+      }
+      //atualizar usuario de forma dinâmica 
+  let query= "UPDATE users SET ";
     
-  // },
+  if(nome) query += "nome = :nome";
+  if(cpf) {
+    if(nome) query += ", ";
+    query += "cpf = :cpf";
+  }
+  if(celular) {
+    if(nome || cpf ) query += ", ";
+    query += "celular=:celular";
+  }
+  if(nascimento){
+    if(nome || cpf || celular) query += ", ";
 
+    query += "nascimento = :nascimento";
+  } 
+  if(email){
+    if(nome || cpf  || celular|| nascimento ) query += ", ";
+    query += "email = :email";
+  } 
+
+  if(is_admin){
+    if(nome || cpf || celular|| nascimento || email ) query += ", ";
+    query += "is_admin = :is_admin";
+
+  }
+
+  if(sexo){
+    if(nome || cpf ||celular || nascimento || email || is_admin ) query += ", ";
+    query += "sexo = :sexo";
+
+  }
   
-  // update:(req,res)=>{
-  //    const {id}= req.params
-  //    const {nome,cpf,celular,nascimento,rg , sexo, telefone,instagram,receber }=req.body;
+  if(rg){
+    if(nome || cpf  ||celular || nascimento || email || is_admin ||sexo) query += ", ";
+    query += "rg = :rg";
+  }
+  if(telefone){
+    if(nome || cpf ||celular ||nascimento || email || is_admin ||sexo || rg) query += ", ";
+    query += "telefone = :telefone";
+  }
+
+  if(receber){
+    if(nome || cpf  ||celular || nascimento || email || is_admin ||sexo || rg ||telefone ) query += ", ";
+    query += "receber = :receber";
+  }
+  
+  if(instagram){
+    if(nome || cpf  ||celular || nascimento || email || is_admin ||sexo || rg ||telefone || receber  ) query += ", ";
+    query += "instagram = :instagram";
+  }
+  query += " WHERE id= :id";
+
+  const users= await db.query(query,
+ {
+  replacements:{
+    nome,cpf,celular,nascimento,email,is_admin,sexo,rg,telefone,receber,instagram,id,
+  },
+  type:Sequelize.QueryTypes.UPDATE,
+ } );
+console.log(users);
+//res.send();
+
+ res.render("success", {
+        title: "Usuário atualizado",
+       message: `Usuário atualizado com sucesso`,
+     });
+}catch(error){
+      console.log(error);
+      res.render("error",{title:"Ops!",message: "Error ao atualizar usuário"})
    
-
-
-  //   const updateUser=userResult;
-  //   if(nome) updateUser.nome=nome;
-  //   if(cpf) updateUser.cpf=cpf;
-  //   if(telefone) updateUser.telefone=telefone;
-  //   if(rg) updateUser.rg=rg;
-  //   if(celular) updateUser.celular=celular;
-  //   if(sexo) updateUser.sexo=sexo;
-  //   if(nascimento) updateUser.nascimento=nascimento;
-  //   if(instagram) updateUser.instagram=instagram;
-  //   if(receber) updateUser.receber=receber;
-
-
-    
-  //   updateResult=connection.query('UPDATE user SET  nome=""' + nome +  '" where id = ' + id, function (error, results, fields) {return (results)
-  //   })
-    
-  //   console.log("updateResult"+updateResult)
-
-  //   return res.render("success", {
-  //       title: "Usuário atualizado",
-  //       message: `Usuário ${updateUser.nome} atualizado com sucesso`,
-  //     });
-  //   },
-    
-
-
-
-
-
-
-
-}
-
-
+     }
+},
+  }
 
 
 module.exports = userController;

@@ -22,75 +22,63 @@ var upload=require("../helpers/multer")
 //usuario
 router.get("/",usuarioController.index);
 router.get("/:id",usuarioController.show);
-// router.post("/", usuarioController.store);
-// router.put("/:id",usuarioController.update);
-// router.patch("/:id",usuarioController.update);
-// router.delete("/:id",usuarioController.delete);
+router.put("/:id",usuarioController.update);
+ router.patch("/:id",usuarioController.update);
 
 
-// router.delete("/:id",usuarioController.delete);
-
-router.post('/enderecos/adicionarendereco',upload.single("avatar"),userValidator.enderecoValidator,
-enderecoController.create)
-
-
-router.post("/cartoes/adicionarcartoes",upload.single("avatar"),userValidator.cartaoValidator,
-cartoesController.create);
-
-// router.post("/cartoes/adicionarcartoes", upload.single("avatar"),cartoesController.store);
-
-// editar usuario
+//meus pedidos
+//  router.get("/meuspedidos",meuspedidosController.index);
+ router.get("/meuspedidos/:id",meuspedidosController.show);
+ router.get("/meuspedidos/pedidos/:id",pedidosController.show);
 
 
-// router.get("/:id",usuarioController.show);
-//  router.get("/:id",usuarioController.edit);
+// creditos
 
+router.get("/meuscreditos/:id",meuscreditosController.show);
 
-//router.put("/:id",usuarioController.update); //upload.single("avatar")
-
-
-
+//email
 router.get("/editaremail/:id",emailController.edit);
 router.put("/editaremail/:id",emailController.update);
 router.patch("/editaremail/:id",emailController.update);
 
+//senha
 router.get("/editarsenha/:id",senhaController.edit);
 router.put("/editarsenha/:id",senhaController.update);
 router.patch("/editarsenha/:id",senhaController.update);
 router.post("/editarsenha",senhaController.auth);
 
+//endereco
+// router.get("/enderecos",enderecoController.endereco);
+router.get("/enderecos/adicionarendereco",enderecoController.adicionarendereco);
+router.get("/enderecos/:id",enderecoController.show);
+router.post('/enderecos/adicionarendereco',upload.single("avatar"),userValidator.enderecoValidator,
+enderecoController.create)
 router.get("/enderecos/editarendereco/:id",enderecoController.edit);
 router.put("/enderecos/editarendereco/:id",enderecoController.update);
 router.patch("/enderecos/editarendereco/:id",enderecoController.update);
-
-router.get("/cartoes/editarcartoes/:id",cartoesController.edit);
-router.put("/cartoes/editarcartoes/:id",upload.single("avatar"),cartoesController.update);
-router.patch("/cartoes/editarcartoes/:id",upload.single("avatar"),cartoesController.update);
-
-// deletar
-router.get("/enderecos/deletarenderecos/:id",enderecoController.delete);
+router.get("/enderecos/deletarenderecos/:id",enderecoController.destroy);
 router.delete("/enderecos/deletarenderecos/:id",enderecoController.destroy);
 
+
+
+
+// cartoes
+router.get("/cartoes/adicionarcartoes",cartoesController.adicionarcartoes);
+
+router.get("/cartoes/:id",cartoesController.show);
+ router.post("/cartoes/adicionarcartoes",upload.single("avatar"),userValidator.cartaoValidator,
+ cartoesController.create);
+ router.get("/cartoes/editarcartoes/:id",cartoesController.edit);
+router.put("/cartoes/editarcartoes/:id",upload.single("avatar"),cartoesController.update);
+router.patch("/cartoes/editarcartoes/:id",upload.single("avatar"),cartoesController.update);
 router.get("/cartoes/deletarcartao/:id",cartoesController.delete);
 router.delete("/cartoes/deletarcartao/:id",cartoesController.destroy);
 
 
-router.get("/meuspedidos",meuspedidosController.index);
-router.get("/meuscreditos",meuscreditosController.index);
 
-router.get("/enderecos",enderecoController.endereco);
-router.get("/enderecos/adicionarendereco",enderecoController.adicionarendereco);
-router.get("/cartoes",cartoesController.cartoes);
-router.get("/cartoes/adicionarcartoes",cartoesController.adicionarcartoes);
 
-// :id
 
-router.get("/meuspedidos/:id",meuspedidosController.show);
-router.get("/meuspedidos/pedidos/:id",pedidosController.show);
 
-router.get("/meuscreditos/:id",meuscreditosController.show);
-router.get("/enderecos/:id",enderecoController.show);
-router.get("/cartoes/:id",cartoesController.show);
 
 
 

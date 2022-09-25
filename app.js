@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var port=3002;
+var port=3000;
 var methodOverride=require("method-override");
 var cookieParser = require('cookie-parser');
 var session=require("express-session")
@@ -10,7 +10,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./server/src/routes/indexRoute');
 var loginRouter = require('./server/src/routes/loginRoute');
-var adminProductRouter = require('./server/src/routes/adminProductsRoute');
+// var adminProductRouter = require('./server/src/routes/adminProductsRoute');
 var usuarioRoute = require('./server/src/routes/usuarioRoute');
 var paymentRouter = require('./server/src/routes/paymentRoute');
 var cadastroRoute= require('./server/src/routes/cadastroRoute');
@@ -45,7 +45,7 @@ app.use((req,res,next)=>{
 app.use('/', indexRouter);
 
 app.use('/login', loginRouter);
-app.use('/admin-produtos', adminProductRouter);
+// app.use('/admin-produtos', adminProductRouter);
 app.use('/MinhaConta', usuarioRoute);
 app.use('/finalizacao',paymentRouter);
 app.use('/cadastro',cadastroRoute);

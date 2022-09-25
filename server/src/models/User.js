@@ -1,8 +1,13 @@
-const db=require("../config/sequelize");
-const Sequelize = require("sequelize");
+const Sequelize= require("sequelize");
+const configDB=require("../config/database");
+const db=new Sequelize(configDB)
+
+// const db=require("../config/sequelize");
 
 
-const Usuario=db.define("Usuario",{
+
+
+const User=db.define("users",{
     
         id:{
             type:Sequelize.DataTypes.INTEGER.UNSIGNED,
@@ -12,6 +17,7 @@ const Usuario=db.define("Usuario",{
     
         nome:{
             type:Sequelize.DataTypes.STRING(100),
+            // nao permite valor nulo allowNull:false,
             allowNull:false,
             },
         
@@ -34,7 +40,7 @@ const Usuario=db.define("Usuario",{
 
 senha:{
     type:Sequelize.DataTypes.STRING(200),
-    allowNull: false,
+    // allowNull: false,
 },
     
     is_admin:{
@@ -66,9 +72,16 @@ instagram:{
 },
     {
         tableName:"users",
-        timestamps: false,
+    //    desativa a data de criação 
+        // timestamps: false,
 
     });
 
 
-module.exports=Usuario;
+  
+   
+    
+
+
+
+module.exports=User;
