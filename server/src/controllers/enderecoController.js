@@ -85,17 +85,16 @@ edit:async(req,res)=>{
   // const {rua, bairro, numero,cidade,cep,complemento}=req.body;
   const {id}= req.params;
   try{
-
-    const userResult= await db.query("SELECT * FROM  enderecos WHERE id= :id",{
+    
+// const userResult= await db.query(" SELECT * FROM enderecos INNER JOIN users ON enderecos.id =enderecos.user_id",{
+   const userResult= await db.query("SELECT * FROM  enderecos WHERE id= :id",{
       replacements:{
         id:id
       },
       type:Sequelize.QueryTypes.SELECT,
     })
 
-      // const users = await Enderecos.update({where:{id}})
-    //  if(users)
-      console.log(userResult)
+     console.log(userResult)
       return res.render("editarendereco", {
         title: "Editar Endereço",
         user:userResult[0]
@@ -111,10 +110,10 @@ edit:async(req,res)=>{
     },
    
 
-      update :async (req,res)=>{
-        const {rua, bairro, numero,cidade,cep,complemento}=req.body;
+  update :async (req,res)=>{
         const {id}= req.params;
-      
+        const {rua, bairro, numero,cidade,cep,complemento}=req.body;
+          
       try{
 
     if(!rua && !bairro && !numero &&!cidade &&!cep && complemento)  {
@@ -122,16 +121,21 @@ edit:async(req,res)=>{
           }
           
 const users = await Enderecos.update(
-  {rua, bairro, numero,cidade,cep,complemento,},
+  {rua, bairro, numero,cidade,cep,complemento},
   {
     WHERE:{ id },
-  })
+  });
+ // foto
+  // let filename;
+  // if(req.file){
+  //   filename=req.file.filename;
+  // }
 console.log(users);
 //res.send();
 
  res.render("success", {
         title: "Endereço atualizado",
-       message: `Endereço atualizado com sucesso`,
+       message: "Endereço atualizado com sucesso",
      });
 
       }catch (error){
@@ -147,12 +151,18 @@ console.log(users);
   delete:async (req,res)=>{ 
           const {id} = req.params;
           try{
-            const users = await Enderecos.destroy({where: {id}})
-          //  if(users)
-            console.log(users)
+    const userResult= await db.query("SELECT * FROM  enderecos WHERE id= :id",{
+  replacements:{
+    id:id
+            },
+            type:Sequelize.QueryTypes.SELECT,
+          })
+      
+            
+            console.log(userResult)
             return res.render("deletarenderecos", {
               title: "Deletar Endereço",
-              users
+              user:userResult[0]
                     })
           } catch(error){
             console.log(error);

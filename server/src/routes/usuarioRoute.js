@@ -38,8 +38,8 @@ router.get("/meuscreditos/:id",meuscreditosController.show);
 
 //email
 router.get("/editaremail/:id",emailController.edit);
-router.put("/editaremail/:id",emailController.update);
-router.patch("/editaremail/:id",emailController.update);
+ router.put("/editaremail/:id",emailController.update);
+ router.patch("/editaremail/:id",emailController.update);
 
 //senha
 router.get("/editarsenha/:id",senhaController.edit);
@@ -56,7 +56,7 @@ enderecoController.create)
 router.get("/enderecos/editarendereco/:id",enderecoController.edit);
 router.put("/enderecos/editarendereco/:id",enderecoController.update);
 router.patch("/enderecos/editarendereco/:id",enderecoController.update);
-router.get("/enderecos/deletarenderecos/:id",enderecoController.destroy);
+router.get("/enderecos/deletarenderecos/:id",enderecoController.delete);
 router.delete("/enderecos/deletarenderecos/:id",enderecoController.destroy);
 
 
