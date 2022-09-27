@@ -13,7 +13,7 @@ CREATE DATABASE ecommerce;
 -- Seleciona banco de  dados para uso
 USE ecommerce;
 
-DROP TABLE IF EXISTS users;
+
 
 -- Cria tabela de usuário
 CREATE TABLE users (
@@ -46,6 +46,24 @@ SELECT DATE_FORMAT(nascimento, "%d/%m/%y")
 FROM users;
 
 SELECT * FROM users;
+
+DROP TABLE IF EXISTS emailsenha;
+CREATE TABLE emailsenha (
+id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+novoemail VARCHAR(100) NOT NULL,
+confirmeemail VARCHAR(100) NOT NULL,
+novasenha VARCHAR(200) ,
+confirmesenha VARCHAR(200),
+created_at DATETIME,
+modified_at DATETIME,
+user_id INT UNSIGNED
+);
+
+INSERT INTO emailsenha (novoemail,confirmeemail,novasenha,confirmesenha,created_at,modified_at,user_id)
+VALUES
+("robertinho123@email.com.br","robertinho123@email.com.br","134","134","2022-09-12","2022-09-12",1);
+
+SELECT * FROM emailsenha;
 
 CREATE TABLE images(
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,

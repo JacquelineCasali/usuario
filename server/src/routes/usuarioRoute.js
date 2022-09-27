@@ -19,8 +19,8 @@ var upload=require("../helpers/multer")
 
 
 // criar 
-//usuario
-router.get("/",usuarioController.index);
+// usuario
+// router.get("/",usuarioController.index);
 router.get("/:id",usuarioController.show);
 router.put("/:id",usuarioController.update);
  router.patch("/:id",usuarioController.update);
@@ -45,7 +45,7 @@ router.get("/editaremail/:id",emailController.edit);
 router.get("/editarsenha/:id",senhaController.edit);
 router.put("/editarsenha/:id",senhaController.update);
 router.patch("/editarsenha/:id",senhaController.update);
-router.post("/editarsenha",senhaController.auth);
+// router.post("/editarsenha",senhaController.auth);
 
 //endereco
 // router.get("/enderecos",enderecoController.endereco);

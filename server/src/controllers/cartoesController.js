@@ -58,8 +58,13 @@ create: async(req,res)=>{
      telefone,
     });
     console.log(users)
-      res.status(201).json({message:"Cartão Cadastrado com Sucesso"})
-        
+      //res.status(201).json({message:"Cartão Cadastrado com Sucesso"})
+     
+      return res.render("success", {
+        title: "Cartão atualizado",
+        message: "Cartão cadastrado com sucesso",
+      });
+
     }catch(error){
       console.log(error);
      return res.render("error",
@@ -127,61 +132,66 @@ edit:async(req,res)=>{
     },
    
 
+    update :async (req,res)=>{
+      const {id}= req.params;
+      const {nome, cpf,telefone, cvc,cartao }=req.body;
+        
+    try{
+
+  // if(!rua && !bairro && !numero &&!cidade &&!cep && complemento)  {
+  //   throw Error ("Nenhum dado para atualizar");
+  //       }
+        
+const users = await cartoes.update(
+{nome,
+   cpf,
+   telefone,
+   cvc:bcrypt.generateHash(cvc),
+    cartao},
+{
+  where:{ id },
+});
+
+// let avatarTmp = updateUser.avatar;
+// fs.unlinkSync(upload.path +  avatarTmp);
+//   updateUser.avatar=filename;
 
 
+// fs.writeFileSync(
+// path.join(__dirname,"..","data","ecommerce.sql"),
+// // conteudo que sera salvo no arquivo
 
+// );
+
+// foto
+// let filename;
+// if(req.file){
+//   filename=req.file.filename;
+// }
+console.log(users);
+//res.send();
+
+res.render("success", {
+      title: "Cartão atualizado",
+     message: "Cartão atualizado com sucesso",
+   });
+
+    }catch (error){
+  console.log(error);
+  return res.render("error",
+  {title:"Ops!",message: "Error ao atualizar o cartão",
+ 
+   }
+)}
+    
+},
 
 
 
 // update-atualizar um usuario
-    update:(req,res)=>{
-     
-     
-      const {id}= req.params
-    const {nome, cpf,telefonePrincipal, cvc,cartao
-    }=req.body;
-    const userResult= users.find((user)=>
-    user.id===parseInt(id));
-    let filename;
-    if(req.file){
-      filename=req.file.filename;
-    }
-    if(!userResult){
-    return res.render ("error",{
-     title:"Ops!",
-     message:"Nenhum Cartão encontrado",
-        });
-
-    }
-const updateUser=userResult;
-if(nome) updateUser.nome=nome;
-if(cpf) updateUser.cpf=cpf;
-if(telefonePrincipal) updateUser.telefonePrincipal=telefonePrincipal;
-// if(cvc) updateUser.cvc=cvc.bcrypt.generateHash(cvc);
-
-if(cartao) updateUser.cartao=cartao;
-if(filename) 
-{
-  let avatarTmp = updateUser.avatar;
-  fs.unlinkSync(uploads.path +  avatarTmp);
-    updateUser.avatar=filename;
-}
-
-fs.writeFileSync(
-  path.join(__dirname,"..","data","users.json"),
-  // conteudo que sera salvo no arquivo
-  JSON.stringify(users)
-  );
-  
-  
-return res.render("success", {
-    title: "Cartão atualizado",
-    message: `Cartão ${updateUser.nome} atualizado com sucesso`,
-  });
-},
+ 
 // delete - deletar um cartão
 
-// delete - deletar um usuario
 
 delete:async (req,res)=>{ 
   const {id} = req.params;

@@ -1,7 +1,7 @@
 const Sequelize= require("sequelize");
 const configDB=require("../config/database");
 const db=new Sequelize(configDB)
-const User= require("../models/User")
+const Emailsenha= require("../models/Emailsenha")
 const fs=require("fs");
 const path=require("path")
 const files=require("../helpers/files")
@@ -24,7 +24,7 @@ edit:async (req,res)=>{
   // console.log(req.session.email)
   const {id}= req.params;
   try{ 
-  const userResult= await db.query("SELECT * FROM  users WHERE id= :id",{
+  const userResult= await db.query("SELECT * FROM  emailsenha WHERE id= :id",{
     replacements:{
       id:id
     },
@@ -39,49 +39,52 @@ edit:async (req,res)=>{
   } catch(error){
     console.log(error);
     return res.render("error",
-    {title:"Ops!",message: "Nenhum Email encontrado",
+    {title:"Ops!",message: " Email não encontrado",
    
      })
   }
  
   },
- 
-  
-  
-    
-    
-    
+     
     // update-atualizar um endereco
-        update:(req,res)=>{
+        update: async (req,res)=>{
         const {id}= req.params
-        const {email, novoEmail,confirmaçãoEmail}=req.body;
-        const userResult= users.find((user)=>
-        user.id===parseInt(id));
-        if (!userResult){
-            return res.render("error", {
-                title: "Ops!",
-                message: "Nenhum E-mail encontrado",
-              });
-            }
-
+        const {novoemail,confirmeemail}=req.body;
+        try{
+       
+          const users = await Emailsenha.update(
+            {
+              novoemail,confirmeemail
+              
+              },
+            {
+              where:{ user_id:id },
+            });
+                              
+           console.log(users);
+            //res.send();
+            
+            res.render("success", {
+              title: "Email atualizado",
+        message: `Email do usuário  atualizado com sucesso`,
+               });
+            
+                }catch (error){
+              console.log(error);
+              return res.render("error",{
+              title: "Ops!",
+              message: "Nenhum E-mail encontrado",
+             
+               }
+            )}
+                
+            },
+             
+       
+       
          
             
-    const updateUser=userResult;
-    if(email) updateUser.email=email;
-    if(novoEmail) updateUser.confirmaçãoEmail=novoEmail;
-    if(confirmaçãoEmail) updateUser.confirmaçãoEmail=confirmaçãoEmail;
-    fs.writeFileSync(
-      path.join(__dirname,"..","data","ecommerce.sql"),
-      // conteudo do novo arquivo convertendo o array em string
-      // JSON.stringify(users)
-      );
-    
-    // req.session.email=updateUser.email
-    return res.render("success", {
-        title: "Email atualizado",
-        message: `Email do usuário ${updateUser.nome} atualizado com sucesso`,
-      });
-    },
+
     
 
 

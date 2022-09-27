@@ -123,7 +123,7 @@ edit:async(req,res)=>{
 const users = await Enderecos.update(
   {rua, bairro, numero,cidade,cep,complemento},
   {
-    WHERE:{ id },
+    where:{ id },
   });
  // foto
   // let filename;
