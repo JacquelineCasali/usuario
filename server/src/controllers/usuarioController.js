@@ -2,24 +2,10 @@ const Sequelize= require("sequelize");
 const configDB=require("../config/database");
 const db=new Sequelize(configDB)
 const User=require("../models/User")
-// const db = require("../config/sequelize");
+
 
 const userController = {
-  // index: async (req, res) => {
-  //   try{
-  //   let query = "SELECT * FROM users"
-  //   const users =await db.query(query,{
-  //     type:Sequelize.QueryTypes.SELECT,
-  //        });
-  //       // console.log(users);
-  //       return res.render("usuario", { title: "Lista de usuários", users});
-  //        //res.status(200).json({data:users,message:"Busca realizada com sucesso"})
-  //       } catch(error){
-  //         console.log(error);
-  //        res.status(400).json({message:"Erro na busca de usuários"});
-         
-  //       }
-  //     },
+  
  show: async (req,res)=>{
   const {id}=req.params;
     try{

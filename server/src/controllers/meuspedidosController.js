@@ -4,19 +4,11 @@ const db=new Sequelize(configDB)
 
 
 const meuspedidos = {
-  //   index: (req, res) => {
-     
-  //   return res.render("meuspedidos", { title: "Lista de pedidos"});
   
-  // },
   show: async (req,res)=>{
     const {id}=req.params;
       try{
-  // const users= await db.query(`SELECT * FROM  users WHERE id= %{id}`,{
-  //   type:Sequelize.QueryTypes.SELECT,
-  // })
-  // const users = await 
-  const userResult= await db.query("SELECT * FROM  orders WHERE id= :id",{
+    const userResult= await db.query("SELECT * FROM  orders WHERE id= :id",{
     replacements:{
       id:id
     },
@@ -32,10 +24,7 @@ const meuspedidos = {
        let mes=data.getMonth()+1
        let ano=data.getFullYear()
         data=`${ano}-${mes}-${dia}`
-// const user={
-// ...userResult,
-// data,
-// }
+
   return res.render("meuspedidos", { title: "Pedidos", user:userResult[0] });
     }catch(error){
       console.log(error);

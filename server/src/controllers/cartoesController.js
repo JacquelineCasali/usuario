@@ -6,8 +6,8 @@ const cartoes=require("../models/cartoes");
 
 const fs=require("fs")
 const path=require("path")
-const files=require("../helpers/files");
-const upload = require("../config/upload");
+// const files=require("../helpers/files");
+// const uploads = require("../config/uploads");
 const bcrypt=require("../helpers/bcrypt");
 
 
@@ -151,25 +151,8 @@ const users = await cartoes.update(
 {
   where:{ id },
 });
-
-// let avatarTmp = updateUser.avatar;
-// fs.unlinkSync(upload.path +  avatarTmp);
-//   updateUser.avatar=filename;
-
-
-// fs.writeFileSync(
-// path.join(__dirname,"..","data","ecommerce.sql"),
-// // conteudo que sera salvo no arquivo
-
-// );
-
-// foto
-// let filename;
-// if(req.file){
-//   filename=req.file.filename;
-// }
 console.log(users);
-//res.send();
+
 
 res.render("success", {
       title: "Cartão atualizado",
@@ -185,12 +168,6 @@ res.render("success", {
 )}
     
 },
-
-
-
-// update-atualizar um usuario
- 
-// delete - deletar um cartão
 
 
 delete:async (req,res)=>{ 
@@ -240,19 +217,5 @@ id:id
     },
     }
     
-    
-    
-    
-    
-    
-  
-  
-  
-  
-  
-
-
-
-
 
 module.exports=cartoesController;

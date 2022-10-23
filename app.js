@@ -1,4 +1,4 @@
-var createError = require('http-errors');
+
 var express = require('express');
 var path = require('path');
 var port=3000;
@@ -8,16 +8,9 @@ var session=require("express-session")
 var logger = require('morgan');
 
 
-var indexRouter = require('./server/src/routes/indexRoute');
-var loginRouter = require('./server/src/routes/loginRoute');
-// var adminProductRouter = require('./server/src/routes/adminProductsRoute');
 var usuarioRoute = require('./server/src/routes/usuarioRoute');
-var paymentRouter = require('./server/src/routes/paymentRoute');
-var cadastroRoute= require('./server/src/routes/cadastroRoute');
-var produtoRouter= require('./server/src/routes/produtoRoute');
 var imageRoute=require("./server/src/routes/imageRoute")
 
-// var departmentRouter= require('./server/src/routes/deparment');
 
 var app = express();
 
@@ -42,24 +35,18 @@ app.use((req,res,next)=>{
 })
 
 
-app.use('/', indexRouter);
 
-app.use('/login', loginRouter);
-// app.use('/admin-produtos', adminProductRouter);
 app.use('/MinhaConta', usuarioRoute);
-app.use('/finalizacao',paymentRouter);
-app.use('/cadastro',cadastroRoute);
-app.use('/produto/',produtoRouter);
+
 app.use("/images",imageRoute)
-// app.use('/department',departmentRouter)
 
 
 
 
 // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 // app.use(function(err, req, res, next) {
@@ -73,12 +60,12 @@ app.use("/images",imageRoute)
 // });
 
 // pagina nao encontrada
-// app.use((req,res,next)=>{
-//   res.status(404).render("error",{
-//       title:"|Ops",
-//       message:"Pagina não encontrada"
-//   });
-//   });
+app.use((req,res,next)=>{
+  res.status(404).render("error",{
+      title:"|Ops",
+      message:"Pagina não encontrada"
+  });
+  });
 
   app.get("*",(req, res,next)=>{
     res.status(404).render("error",{

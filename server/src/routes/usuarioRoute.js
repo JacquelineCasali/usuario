@@ -18,16 +18,16 @@ var upload=require("../helpers/multer")
 // delete - deletar dados 
 
 
-// criar 
+
 // usuario
-// router.get("/",usuarioController.index);
+
 router.get("/:id",usuarioController.show);
 router.put("/:id",usuarioController.update);
  router.patch("/:id",usuarioController.update);
 
 
 //meus pedidos
-//  router.get("/meuspedidos",meuspedidosController.index);
+
  router.get("/meuspedidos/:id",meuspedidosController.show);
  router.get("/meuspedidos/pedidos/:id",pedidosController.show);
 
@@ -48,7 +48,7 @@ router.patch("/editarsenha/:id",senhaController.update);
 // router.post("/editarsenha",senhaController.auth);
 
 //endereco
-// router.get("/enderecos",enderecoController.endereco);
+
 router.get("/enderecos/adicionarendereco",enderecoController.adicionarendereco);
 router.get("/enderecos/:id",enderecoController.show);
 router.post('/enderecos/adicionarendereco',upload.single("avatar"),userValidator.enderecoValidator,
