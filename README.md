@@ -1,6 +1,6 @@
 Painel de usuário
 
-Painel de usuário como base em um e-commete 
+Painel de usuário como base em um e-commerce - plataforma de vendas onlines
 
 onde possui tela de endereço, usuario , cartões, senha
 
